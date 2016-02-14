@@ -4,7 +4,9 @@ using System.Collections;
 [RequireComponent(typeof(Rigidbody2D))]
 public class P2D_Motor : MonoBehaviour 
 {
-    [SerializeField] private float m_MaxSpeed = 10f;                    // Player max move speed on X axis.
+    public static P2D_Motor Instance;
+
+    [SerializeField] private float m_Speed = 10f;                    // Player max move speed on X axis.
     [Range(1, 10)][SerializeField] private float m_SprintSpeed = 1.5f;  // Player speed multiplier applied when sprinting 
     [SerializeField] private float m_JumpForce = 400f;                  // Amount of force added when the player jumps.
     [SerializeField] private float m_DashSpeed = 40f;                   // How fast will the player move while dashing.
@@ -15,21 +17,20 @@ public class P2D_Motor : MonoBehaviour
 
     private Transform GroundCheck;      // A position marking where to check if the player is grounded.
     const float GroundedRadius = .2f;   // Radius of the overlap circle to determine if grounded.
-    private bool Grounded;              // Whether or not the player is grounded.
+    public bool Grounded;              // Whether or not the player is grounded.
     private Transform CeilingCheck;     // A position marking where to check for ceilings.
     const float CeilingRadius = .01f;   // Radius of the overlap circle to determine if the player can stand up.
     private Rigidbody2D k_Rigidbody2D;  // The Rigidbody2D component attached to the player GameObject.
-    bool FacingRight = true;            // For determining which way the player is curently facing.
+    public bool FacingRight = true;            // For determining which way the player is curently facing.
     public bool IsDashing = false;             // For determining wheather or not the player is dashing.
     float dashTime;                     // To check for how long should the player dash.
 
-    private Transform Graphics;         // Stores the Transform component of the Arm attached to the player.
-    private ArmRotation armRotation;    // Used to store the rotation of the arm. 
+    private Transform Graphics;                          // Stores the Transform component of the Arm attached to the player.
 
-    float _move;
-
-	public void ImposedAwake() 
+	public void Awake() 
     {
+        Instance = this;
+
 	    // Setting up references
         GroundCheck = transform.Find("GroundCheck");
         CeilingCheck = transform.Find("CeilingCheck");
@@ -39,20 +40,13 @@ public class P2D_Motor : MonoBehaviour
     void Start()
     {
         Graphics = transform.FindChild("Graphics");
-        armRotation = transform.FindChild("Arm").GetComponent<ArmRotation>();
     }
 
     public void ImposedUpdate()
     {
-        if (armRotation.rotZ > 90 || armRotation.rotZ < -90)
+        if (ArmRotation.Instance.rotZ > 90 || ArmRotation.Instance.rotZ < -90)
         {
-            if (FacingRight)
-                Flip();
-        }
-        else
-        {
-            if (!FacingRight)
-                Flip();
+            Flip();
         }
     }
 	
@@ -95,6 +89,8 @@ public class P2D_Motor : MonoBehaviour
             }
         }
 
+        P2D_Animator.Instance.SetStateCrouch(crouch);
+
         // Only control the player if grounded or air control is true.
         if (Grounded || m_AirControl)
         {
@@ -104,17 +100,19 @@ public class P2D_Motor : MonoBehaviour
             // Multiply the speed if sprinting by the sprintSpeed multiplier
             move = (sprint ? move * m_SprintSpeed : move);
 
-            // Move the character
-            k_Rigidbody2D.velocity = new Vector2(move * m_MaxSpeed, k_Rigidbody2D.velocity.y);
+            P2D_Animator.Instance.SetStateSprint(sprint);
 
-            if (move > 0 && !FacingRight)
-            {
-                Flip();
-            }
-            else if (move < 0 && FacingRight)
-            {
-                Flip();
-            }
+            // Multiply the speed by MaxSpeed
+            move *= m_Speed;
+
+            // Move the character
+            k_Rigidbody2D.velocity = new Vector2(move, k_Rigidbody2D.velocity.y);
+
+            P2D_Animator.Instance.moveSpeed = move;
+        }
+        else
+        {
+            P2D_Animator.Instance.SetStateSprint(false);
         }
 
         // If the player should jump...
@@ -123,6 +121,7 @@ public class P2D_Motor : MonoBehaviour
             // add a vertical force to the player.
             Grounded = false;
             k_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
+            P2D_Animator.Instance.SetStateJump(jump);
         }
     }
 
@@ -132,7 +131,6 @@ public class P2D_Motor : MonoBehaviour
             return;
 
         IsDashing = true;
-        _move = move;
         gameObject.layer = 11;
         dashTime = Time.time + m_DashLenght;
     }
@@ -142,13 +140,9 @@ public class P2D_Motor : MonoBehaviour
         // Switch the way the player is labeled as facing
         FacingRight = !FacingRight;
 
-        Vector3 tempGraphicsLocalScale = Graphics.localScale;
-        tempGraphicsLocalScale.x *= -1;
-        Graphics.localScale = tempGraphicsLocalScale;
-
-        Vector3 tempArmLocalScale = armRotation.transform.localScale;
-        tempArmLocalScale.y *= -1;
-        armRotation.transform.localScale = tempArmLocalScale;
+        Vector3 tempPlayerLocalScale = transform.localScale;
+        tempPlayerLocalScale.x *= -1;
+        transform.localScale = tempPlayerLocalScale;
     }
 
     public void Reset()
@@ -158,23 +152,6 @@ public class P2D_Motor : MonoBehaviour
             Vector3 tempPlayerLocalScale = transform.localScale;
             tempPlayerLocalScale.x *= -1;
             transform.localScale = tempPlayerLocalScale;
-        }
-
-        if (Graphics.localScale.x < 0)
-        {
-            Vector3 tempGraphicsLocalScale = Graphics.localScale;
-            tempGraphicsLocalScale.x *= -1;
-            Graphics.localScale = tempGraphicsLocalScale;
-        }
-
-        if (armRotation.transform.localScale.x < 0 || armRotation.transform.localScale.y < 0)
-        {
-            Vector3 tempArmLocalScale = armRotation.transform.localScale;
-            if (armRotation.transform.localScale.x < 0)
-                tempArmLocalScale.x *= -1;
-            if (armRotation.transform.localScale.y < 0)
-                tempArmLocalScale.y *= -1;
-            armRotation.transform.localScale = tempArmLocalScale;
         }
 
         FacingRight = true;

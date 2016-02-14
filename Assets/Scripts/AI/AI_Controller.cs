@@ -63,7 +63,7 @@ public class AI_Controller : MonoBehaviour
 
     IEnumerator SearchForPlayer()
     {
-        GameObject sResult = GameObject.FindGameObjectWithTag("Player");
+        GameObject sResult = GameMaster.gm.m_Player.gameObject;
         if(sResult == null)
         {
             yield return new WaitForSeconds(1f/updateRate);

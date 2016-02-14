@@ -1,0 +1,123 @@
+fileFormatVersion: 2
+guid: e34f0fcbd461a5946b2cb456ecbe4701
+timeCreated: 1452089403
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: UI_PlayerInfo
+    21300002: UI_Itembar
+    21300004: UI_Inventory
+    21300006: UI_3
+    21300008: UI_HPBar
+    21300010: UI_Hpbar
+    21300012: UI_Hpbar2
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 8
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: UI_PlayerInfo
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 592
+        width: 595
+        height: 425
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: UI_Itembar
+      rect:
+        serializedVersion: 2
+        x: 699
+        y: 661
+        width: 265
+        height: 61
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: UI_Inventory
+      rect:
+        serializedVersion: 2
+        x: 1022
+        y: 393
+        width: 766
+        height: 661
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: UI_3
+      rect:
+        serializedVersion: 2
+        x: 1093
+        y: 394
+        width: 8
+        height: 4
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: UI_HPBar
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 1018
+        width: 664
+        height: 62
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: UI_Hpbar
+      rect:
+        serializedVersion: 2
+        x: 109
+        y: 1018
+        width: 614
+        height: 31
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,0 +1,354 @@
+fileFormatVersion: 2
+guid: fb5470f5f29f11743aa689e7e6e6b8a7
+timeCreated: 1451929403
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: liondog_Head
+    21300002: liondog_Body
+    21300004: liondog_2
+    21300006: liondog_LegUpperFront
+    21300008: liondog_LegUpperBack
+    21300010: liondog_Tail
+    21300012: liondog_LegLowerFront
+    21300014: liondog_7
+    21300016: liondog_LegMiddleBack
+    21300018: liondog_9
+    21300020: liondog_10
+    21300022: liondog_11
+    21300024: liondog_12
+    21300026: liondog_LegUpperFront2
+    21300028: liondog_14
+    21300030: liondog_LegLowerBack
+    21300032: liondog_16
+    21300034: liondog_LegUpperBack2
+    21300036: liondog_Complete
+    21300038: liondog_20
+    21300040: liondog_LegLowerFront2
+    21300042: liondog_LegMiddleBack2
+    21300044: liondog_23
+    21300046: liondog_24
+    21300048: liondog_LegLowerBack2
+    21300050: liondog_26
+    21300052: liondog_27
+    21300054: liondog_28
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 8
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: liondog_Head
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 619
+        width: 97
+        height: 101
+      alignment: 9
+      pivot: {x: .72334528, y: .633466363}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: liondog_Body
+      rect:
+        serializedVersion: 2
+        x: 103
+        y: 625
+        width: 102
+        height: 85
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: liondog_LegUpperFront
+      rect:
+        serializedVersion: 2
+        x: 250
+        y: 657
+        width: 41
+        height: 58
+      alignment: 9
+      pivot: {x: .438059747, y: .781478345}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: liondog_LegUpperBack
+      rect:
+        serializedVersion: 2
+        x: 355
+        y: 666
+        width: 35
+        height: 52
+      alignment: 9
+      pivot: {x: .55182755, y: .751165509}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: liondog_Tail
+      rect:
+        serializedVersion: 2
+        x: 466
+        y: 601
+        width: 114
+        height: 113
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: liondog_LegLowerFront
+      rect:
+        serializedVersion: 2
+        x: 223
+        y: 605
+        width: 52
+        height: 40
+      alignment: 9
+      pivot: {x: .758142352, y: .817445397}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: liondog_7
+      rect:
+        serializedVersion: 2
+        x: 307
+        y: 625
+        width: 42
+        height: 34
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: liondog_LegMiddleBack
+      rect:
+        serializedVersion: 2
+        x: 354
+        y: 633
+        width: 35
+        height: 29
+      alignment: 9
+      pivot: {x: .44817242, y: .837774873}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: liondog_9
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 625
+        width: 32
+        height: 29
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: liondog_10
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 524
+        width: 62
+        height: 93
+      alignment: 9
+      pivot: {x: .657991111, y: .815982282}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: liondog_11
+      rect:
+        serializedVersion: 2
+        x: 79
+        y: 520
+        width: 47
+        height: 94
+      alignment: 9
+      pivot: {x: .669818819, y: .906579912}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: liondog_12
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 520
+        width: 47
+        height: 99
+      alignment: 9
+      pivot: {x: .66981864, y: .818819284}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: liondog_LegUpperFront2
+      rect:
+        serializedVersion: 2
+        x: 218
+        y: 549
+        width: 43
+        height: 55
+      alignment: 9
+      pivot: {x: .592807829, y: .79023546}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: liondog_14
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 604
+        width: 36
+        height: 19
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: liondog_LegLowerBack
+      rect:
+        serializedVersion: 2
+        x: 342
+        y: 596
+        width: 47
+        height: 31
+      alignment: 9
+      pivot: {x: .770165622, y: .839388967}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: liondog_16
+      rect:
+        serializedVersion: 2
+        x: 403
+        y: 599
+        width: 38
+        height: 21
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: liondog_LegUpperBack2
+      rect:
+        serializedVersion: 2
+        x: 340
+        y: 545
+        width: 35
+        height: 52
+      alignment: 9
+      pivot: {x: .510365486, y: .723258376}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: liondog_Complete
+      rect:
+        serializedVersion: 2
+        x: 438
+        y: 435
+        width: 263
+        height: 165
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: liondog_20
+      rect:
+        serializedVersion: 2
+        x: 217
+        y: 503
+        width: 39
+        height: 41
+      alignment: 9
+      pivot: {x: .608669579, y: .809702814}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: liondog_LegLowerFront2
+      rect:
+        serializedVersion: 2
+        x: 258
+        y: 490
+        width: 56
+        height: 56
+      alignment: 9
+      pivot: {x: .674918592, y: .746182024}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: liondog_LegMiddleBack2
+      rect:
+        serializedVersion: 2
+        x: 339
+        y: 514
+        width: 35
+        height: 29
+      alignment: 9
+      pivot: {x: .44817242, y: .887815297}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: liondog_23
+      rect:
+        serializedVersion: 2
+        x: 406
+        y: 513
+        width: 31
+        height: 22
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: liondog_24
+      rect:
+        serializedVersion: 2
+        x: 204
+        y: 479
+        width: 38
+        height: 24
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: liondog_LegLowerBack2
+      rect:
+        serializedVersion: 2
+        x: 319
+        y: 473
+        width: 47
+        height: 31
+      alignment: 9
+      pivot: {x: .770165622, y: .909606934}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: liondog_26
+      rect:
+        serializedVersion: 2
+        x: 380
+        y: 491
+        width: 41
+        height: 22
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: liondog_27
+      rect:
+        serializedVersion: 2
+        x: 21
+        y: 432
+        width: 6
+        height: 10
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: liondog_28
+      rect:
+        serializedVersion: 2
+        x: 61
+        y: 360
+        width: 21
+        height: 5
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

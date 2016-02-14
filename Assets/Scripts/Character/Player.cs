@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour 
 {
@@ -12,6 +13,10 @@ public class Player : MonoBehaviour
         {
             get { return _curHP; }
             set { _curHP = Mathf.Clamp(value, 0, maxHP); }
+        }
+        public float percHP
+        {
+            get { return curHP / maxHP * 100; }
         }
         private float _regenHP = 1f;
         public float regenHP
@@ -26,7 +31,15 @@ public class Player : MonoBehaviour
         {
             get { return _PlayerTemperature; }
             set { _PlayerTemperature = Mathf.Clamp(value, 20, 38); }
-        } 
+        }
+
+        public float MaxCarryWeight;
+        private float _carryWeight;
+        public float CarryWeight
+        {
+            get { return _carryWeight; }
+            set { _carryWeight = Mathf.Clamp(value, 0, MaxCarryWeight); }
+        }
 
         public void ResetHP()
         {
@@ -40,6 +53,8 @@ public class Player : MonoBehaviour
     }
     public PlayerStats pStats;
 
+    public static Player Instance;
+
     private float curTime;
 
     public bool IsDead = false;
@@ -48,16 +63,34 @@ public class Player : MonoBehaviour
     public float timeToLoseTemperature = 2f;
     private float timeTemperature;
 
+
+    [System.Serializable]
+    public class PlayerStatsUI
+    {
+        public RectTransform HPBar;
+        public Text HPPercentage;
+
+        public RectTransform BodyTemperatureBar;
+        public Text BodyTemperature;
+
+        public Text EnvironmentTemperature;
+    }
+
+    public PlayerStatsUI pStatsUI;
+
     void Awake()
     {
         if(pStats == null)
             pStats = new PlayerStats();
+
+        Instance = this;
     }
 
     void Start() 
     {
         pStats.ResetHP();
         pStats.ResetTemperature();
+        pStats.CarryWeight = 0;
 
         curTime = Time.time;
         timeTemperature = Time.time;
@@ -78,6 +111,8 @@ public class Player : MonoBehaviour
             timeTemperature = Time.time + timeToLoseTemperature;
             pStats.PlayerTemperature -= temperatureLossPerTime;
         }
+
+        UpdateUI();
 	}
 
     void ApplyDamage(float damage)
@@ -98,18 +133,35 @@ public class Player : MonoBehaviour
         pStats.PlayerTemperature += amount;
     }
 
-    void OnGUI()
+    void UpdateUI()
     {
-        GUILayout.BeginVertical();
+        pStatsUI.HPBar.GetComponent<Image>().fillAmount = pStats.curHP / pStats.maxHP;
+        pStatsUI.BodyTemperatureBar.GetComponent<Image>().fillAmount = (pStats.PlayerTemperature - 20) / 18;
 
-        GUILayout.Box(pStats.curHP + "HP");
-        GUILayout.Box(pStats.PlayerTemperature + " C");
-
-        GUILayout.EndVertical();
-
-        if(IsDead)
+        if (pStats.percHP < 35)
         {
-            GUI.Box(new Rect(Screen.height / 2 - 25, Screen.width / 2 - 75, 150, 75), "You died");
+            pStatsUI.HPBar.GetComponent<Image>().color = Color.red;
+            pStatsUI.HPPercentage.color = Color.red;
         }
+        else
+        {
+            pStatsUI.HPBar.GetComponent<Image>().color = Color.green;
+            pStatsUI.HPPercentage.color = Color.green;
+        }
+
+        if (pStats.PlayerTemperature < 25)
+        {
+            pStatsUI.BodyTemperatureBar.GetComponent<Image>().color = Color.red;
+            pStatsUI.BodyTemperature.color = Color.red;
+        }
+        else
+        {
+            pStatsUI.BodyTemperatureBar.GetComponent<Image>().color = Color.blue;
+            pStatsUI.BodyTemperature.color = Color.blue;
+        }
+
+        pStatsUI.HPPercentage.text = " " + pStats.percHP + "%";
+        pStatsUI.BodyTemperature.text = pStats.PlayerTemperature + " °C";
+        pStatsUI.EnvironmentTemperature.text = "273K";
     }
 }

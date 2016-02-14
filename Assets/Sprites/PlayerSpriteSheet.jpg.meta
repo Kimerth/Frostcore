@@ -1,0 +1,331 @@
+fileFormatVersion: 2
+guid: 58b82a98aac8f19489819654a4c670c6
+timeCreated: 1451324806
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Head1
+    21300002: Head2
+    21300004: BodyNormal
+    21300006: UtilityBag
+    21300008: BodyBent
+    21300010: ArmOuter
+    21300012: ArmInner
+    21300014: HandHoldRifleOuter
+    21300016: HandHoldRifkeInner
+    21300018: HandHoldSwordOuter
+    21300020: HandNormalOuter
+    21300022: HandNormalInner
+    21300024: Hand1Inner
+    21300026: Hand1Outer
+    21300028: Hand2Inner
+    21300030: LegUpperOuter
+    21300032: LegUpperInner
+    21300034: Hand3Inner
+    21300036: Hand3Outer
+    21300038: LegLowerInner
+    21300040: FootOuter
+    21300042: FootInner
+    21300044: LegLowerOuter
+    21300046: Hand2Outer
+    21300048: HandHoldSwordInner
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 8
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 600
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: Head1
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 431
+        width: 39
+        height: 39
+      alignment: 9
+      pivot: {x: .295727968, y: .309346527}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Head2
+      rect:
+        serializedVersion: 2
+        x: 84
+        y: 412
+        width: 36
+        height: 39
+      alignment: 9
+      pivot: {x: .352469981, y: .316155076}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: BodyNormal
+      rect:
+        serializedVersion: 2
+        x: 29
+        y: 336
+        width: 37
+        height: 87
+      alignment: 9
+      pivot: {x: .507177293, y: .670931041}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: UtilityBag
+      rect:
+        serializedVersion: 2
+        x: 98
+        y: 351
+        width: 22
+        height: 28
+      alignment: 9
+      pivot: {x: .499999642, y: .803489685}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: BodyBent
+      rect:
+        serializedVersion: 2
+        x: 140
+        y: 341
+        width: 44
+        height: 78
+      alignment: 9
+      pivot: {x: .584494174, y: .670226634}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: ArmOuter
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 278
+        width: 25
+        height: 55
+      alignment: 9
+      pivot: {x: .449999988, y: .760811388}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: ArmInner
+      rect:
+        serializedVersion: 2
+        x: 69
+        y: 277
+        width: 24
+        height: 56
+      alignment: 9
+      pivot: {x: .449999988, y: .760811388}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: HandHoldRifleOuter
+      rect:
+        serializedVersion: 2
+        x: 98
+        y: 276
+        width: 19
+        height: 53
+      alignment: 9
+      pivot: {x: .458070457, y: .900835693}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: HandHoldRifkeInner
+      rect:
+        serializedVersion: 2
+        x: 123
+        y: 284
+        width: 17
+        height: 44
+      alignment: 9
+      pivot: {x: .531241894, y: .90436554}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: HandHoldSwordOuter
+      rect:
+        serializedVersion: 2
+        x: 153
+        y: 286
+        width: 22
+        height: 43
+      alignment: 9
+      pivot: {x: .306870192, y: .845837235}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: HandNormalOuter
+      rect:
+        serializedVersion: 2
+        x: 27
+        y: 216
+        width: 20
+        height: 51
+      alignment: 9
+      pivot: {x: .427636534, y: .891613543}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: HandNormalInner
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 217
+        width: 25
+        height: 52
+      alignment: 9
+      pivot: {x: .344584972, y: .856250465}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Hand1Inner
+      rect:
+        serializedVersion: 2
+        x: 98
+        y: 219
+        width: 19
+        height: 48
+      alignment: 9
+      pivot: {x: .484765291, y: .898681045}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Hand1Outer
+      rect:
+        serializedVersion: 2
+        x: 126
+        y: 221
+        width: 24
+        height: 45
+      alignment: 9
+      pivot: {x: .258788437, y: .892369926}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Hand2Inner
+      rect:
+        serializedVersion: 2
+        x: 155
+        y: 216
+        width: 21
+        height: 51
+      alignment: 9
+      pivot: {x: .472432464, y: .902964294}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: LegUpperOuter
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 134
+        width: 35
+        height: 75
+      alignment: 9
+      pivot: {x: .5, y: .910000026}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: LegUpperInner
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 134
+        width: 32
+        height: 74
+      alignment: 9
+      pivot: {x: .5, y: .910000026}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Hand3Inner
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 158
+        width: 19
+        height: 53
+      alignment: 9
+      pivot: {x: .439062029, y: .88229686}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Hand3Outer
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 159
+        width: 24
+        height: 52
+      alignment: 9
+      pivot: {x: .30703035, y: .884082496}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: LegLowerInner
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 66
+        width: 29
+        height: 68
+      alignment: 9
+      pivot: {x: .5, y: .860000014}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: FootOuter
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 29
+        width: 39
+        height: 28
+      alignment: 9
+      pivot: {x: .240233988, y: .789453506}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: FootInner
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 26
+        width: 36
+        height: 29
+      alignment: 9
+      pivot: {x: .323111653, y: .769491255}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: LegLowerOuter
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 63
+        width: 30
+        height: 69
+      alignment: 9
+      pivot: {x: .5, y: .860000014}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Hand2Outer
+      rect:
+        serializedVersion: 2
+        x: 184
+        y: 223
+        width: 23
+        height: 43
+      alignment: 9
+      pivot: {x: .260885477, y: .897156477}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: HandHoldSwordInner
+      rect:
+        serializedVersion: 2
+        x: 182
+        y: 284
+        width: 19
+        height: 44
+      alignment: 9
+      pivot: {x: .472047508, y: .910401106}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

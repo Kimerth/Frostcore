@@ -29,11 +29,6 @@ public class Weapon : MonoBehaviour
         }
     }
 
-	void Start() 
-    {
-	
-	}
-	
 	void Update() 
     {
         if (m_FireRate == 0)
