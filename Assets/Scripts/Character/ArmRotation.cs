@@ -15,7 +15,7 @@ public class ArmRotation : MonoBehaviour
         Instance = this;
     }
 
-	void Update() 
+	void LateUpdate()
     {
         Vector3 difference = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
         difference.Normalize();

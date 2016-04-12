@@ -24,7 +24,7 @@ public class P2D_Animator : MonoBehaviour
         else
             m_Animator.SetBool("GoingLeft", false);
 
-        moveSpeed = (moveSpeed < 0 ? moveSpeed *= -1 : moveSpeed);
+        moveSpeed = Mathf.Abs(moveSpeed);
 
         m_Animator.SetFloat("MoveSpeed", moveSpeed);
         m_Animator.SetBool("Grounded", P2D_Motor.Instance.Grounded);
@@ -70,7 +70,6 @@ public class P2D_Animator : MonoBehaviour
     public void HoldGun(bool holdGun)
     {
         m_Animator.SetBool("HoldGun", holdGun);
-
         if (holdGun)
             ArmRotation.Instance.UpdateArmRotation();
         else
