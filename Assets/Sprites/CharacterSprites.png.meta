@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: c2e2a89ffe42fa34eb52464cfe27afde
-timeCreated: 1461259001
+timeCreated: 1461260397
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -197,7 +197,7 @@ TextureImporter:
         width: 20
         height: 33
       alignment: 9
-      pivot: {x: 0.33535042, y: 0.89914864}
+      pivot: {x: 0.319458, y: 0.8606216}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: Character_InnerHand
