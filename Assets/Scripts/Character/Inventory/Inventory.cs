@@ -11,6 +11,11 @@ public class Inventory : MonoBehaviour
     /// </summary>
     public static Inventory Instance;
 
+    /// <summary>
+    /// Reference to the UIOverlay, for canvas scaler purposes
+    /// </summary>
+    public RectTransform UIOverlay;
+
     void Start()
     {
         Instance = this;

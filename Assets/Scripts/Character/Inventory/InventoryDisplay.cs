@@ -182,6 +182,19 @@ public class InventoryDisplay : MonoBehaviour
     private GameObject lastSelectedGameObject;
     private GameObject shadowItemIcon = null;
 
+    /// <summary>
+    /// Use for displaying the ItemInfo after t seconds.
+    /// </summary>
+    private RectTransform lastHoveredItem = null;
+    public GameObject ItemInfo;
+    public float showItemInfoDelay = 1f;
+    private float timeToShowItemInfo;
+
+    /// <summary>
+    /// The instantiated ItemInfo;
+    /// </summary>
+    GameObject iI = null;
+
     void Update()
     {
         if (GameMaster.gm.isMenuActive)
@@ -200,14 +213,45 @@ public class InventoryDisplay : MonoBehaviour
         if (!displayInventory)
             return;
 
-        if (lastSelectedGameObject != null && lastSelectedGameObject != EventSystem.current.currentSelectedGameObject && EventSystem.current.currentSelectedGameObject != null)
+        if (lastSelectedGameObject != null && lastSelectedGameObject != EventSystem.current.currentSelectedGameObject)
         {
             lastSelectedGameObject.transform.GetChild(0).GetComponent<Image>().color = new Color32(255, 255, 255, 255);
             lastSelectedGameObject = null;
         }
+        
+        if (lastHoveredItem != null && !Inventory.Instance.draggedItem.isAnItemDragged && iI == null)
+        {
+            if(timeToShowItemInfo < Time.time)
+            {
+                iI = Instantiate(ItemInfo) as GameObject;
+                iI.transform.parent = InventoryUIReference;
+                var tempIndex = ItemIcons.FindIndex(x => x == lastHoveredItem);
+                if(tempIndex < ItemIcons.Count && tempIndex >= 0)
+                {
+                    var tempItem = Inventory.Instance.Contents[tempIndex];
+
+                    iI.transform.GetChild(0).GetComponent<Text>().text = tempItem.Name;
+                    iI.transform.GetChild(1).GetComponent<Text>().text = "Stack: " + tempItem.Count + "/" + tempItem.MaxStack;
+                    iI.transform.GetChild(2).GetComponent<Text>().text = "Weight: " + tempItem.Weight + "KG X" + tempItem.Count;
+                    iI.transform.GetChild(3).GetComponent<Text>().text = tempItem.Weight * tempItem.Count + " KG";
+                    iI.transform.GetChild(4).GetComponent<Text>().text = "Description: ";
+                    iI.transform.GetChild(5).GetComponent<Text>().text = tempItem.Description;
+                }
+                else
+                {
+                    Destroy(iI);
+                }
+            }
+        }
+
+        if (iI != null)
+            iI.transform.position = new Vector2(Input.mousePosition.x + 2, Input.mousePosition.y + 2);
 
         if(Input.GetKeyDown(KeyCode.Mouse0))
         {
+            lastHoveredItem = null;
+            Destroy(iI);
+
             if (!Inventory.Instance.draggedItem.isAnItemDragged)
             {
                 if (EventSystem.current.currentSelectedGameObject != null)
@@ -259,19 +303,25 @@ public class InventoryDisplay : MonoBehaviour
                 {
                     RectTransform RectTransformHitUp = null;
 
-                    if( Physics2D.OverlapPoint(new Vector2(Input.mousePosition.x, Input.mousePosition.y + PositionGap / 2)) != null)
-                        RectTransformHitUp = Physics2D.OverlapPoint(new Vector2(Input.mousePosition.x, Input.mousePosition.y + PositionGap / 2)).gameObject.GetComponent<RectTransform>();
+                    if (Physics2D.OverlapPoint(new Vector2(Input.mousePosition.x, Input.mousePosition.y + (PositionGap * Inventory.Instance.UIOverlay.localScale.x) / 2)) != null)
+                        RectTransformHitUp = Physics2D.OverlapPoint(new Vector2(Input.mousePosition.x, Input.mousePosition.y + (PositionGap * Inventory.Instance.UIOverlay.localScale.x) / 2)).gameObject.GetComponent<RectTransform>();
 
                     RectTransform RectTransformHitDown = null;
 
-                    if (Physics2D.OverlapPoint(new Vector2(Input.mousePosition.x, Input.mousePosition.y - PositionGap / 2)) != null)
-                        RectTransformHitDown = Physics2D.OverlapPoint(new Vector2(Input.mousePosition.x, Input.mousePosition.y - PositionGap / 2)).gameObject.GetComponent<RectTransform>();
+                    if (Physics2D.OverlapPoint(new Vector2(Input.mousePosition.x, Input.mousePosition.y - (PositionGap * Inventory.Instance.UIOverlay.localScale.x) / 2)) != null)
+                        RectTransformHitDown = Physics2D.OverlapPoint(new Vector2(Input.mousePosition.x, Input.mousePosition.y - (PositionGap * Inventory.Instance.UIOverlay.localScale.x) / 2)).gameObject.GetComponent<RectTransform>();
 
                     if (RectTransformHitUp != null && ItemIcons.Contains(RectTransformHitUp) && RectTransformHitDown != null && ItemIcons.Contains(RectTransformHitDown))
                     {
                         int itemIndex = ItemIcons.FindIndex(x => x == RectTransformHitUp);
 
-                        Helper.Swap4List<Item>(Inventory.Instance.Contents, itemIndex, Inventory.Instance.draggedItem.indexInContents);
+                        var tempItem = Inventory.Instance.Contents[Inventory.Instance.draggedItem.indexInContents];
+
+                        Inventory.Instance.Contents.RemoveAt(Inventory.Instance.draggedItem.indexInContents);
+                        if (Inventory.Instance.draggedItem.indexInContents > itemIndex)
+                            Inventory.Instance.Contents.Insert(itemIndex + 1, tempItem);
+                        else
+                            Inventory.Instance.Contents.Insert(itemIndex, tempItem);
                         if (indexHBdrgd != -1)
                             Inventory.Instance.HotbarContents[indexHBdrgd] = -1;
                         int indexHBtrgt = Array.IndexOf(Inventory.Instance.HotbarContents, itemIndex);
@@ -281,23 +331,28 @@ public class InventoryDisplay : MonoBehaviour
                     }
                     else if (RectTransformHitUp != null && ItemIcons.Contains(RectTransformHitUp))
                     {
-                       Helper.Swap4List<Item>(Inventory.Instance.Contents, Inventory.Instance.Contents.Count - 1, Inventory.Instance.draggedItem.indexInContents);
-                       if (indexHBdrgd != -1)
-                           Inventory.Instance.HotbarContents[indexHBdrgd] = -1;
-                       int indexHBtrgt = Array.IndexOf(Inventory.Instance.HotbarContents, Inventory.Instance.Contents.Count - 1);
-                       if (indexHBtrgt != -1)
-                           Inventory.Instance.HotbarContents[indexHBtrgt] = -1;
-                       Inventory.Instance.draggedItem.ClearDraggedItem();
+                        var tempItem = Inventory.Instance.Contents[Inventory.Instance.draggedItem.indexInContents];
+
+                        Inventory.Instance.Contents.RemoveAt(Inventory.Instance.draggedItem.indexInContents);
+                        Inventory.Instance.Contents.Add(tempItem);
+                        if (indexHBdrgd != -1)
+                            Inventory.Instance.HotbarContents[indexHBdrgd] = -1;
+                        int indexHBtrgt = Array.IndexOf(Inventory.Instance.HotbarContents, Inventory.Instance.Contents.Count - 1);
+                        if (indexHBtrgt != -1)
+                            Inventory.Instance.HotbarContents[indexHBtrgt] = -1;
+                        Inventory.Instance.draggedItem.ClearDraggedItem();
                     }
                     else if (RectTransformHitDown != null && ItemIcons.Contains(RectTransformHitDown))
                     {
-                        Helper.Swap4List<Item>(Inventory.Instance.Contents, 0, Inventory.Instance.draggedItem.indexInContents);
+                        var tempItem = Inventory.Instance.Contents[Inventory.Instance.draggedItem.indexInContents];
+                        Inventory.Instance.Contents.RemoveAt(Inventory.Instance.draggedItem.indexInContents);
+                        Inventory.Instance.Contents.Insert(0, tempItem);
                         if (indexHBdrgd != -1)
                             Inventory.Instance.HotbarContents[indexHBdrgd] = -1;
                         int indexHBtrgt = Array.IndexOf(Inventory.Instance.HotbarContents, 0);
                         if (indexHBtrgt != -1)
                             Inventory.Instance.HotbarContents[indexHBtrgt] = -1;
-                        Inventory.Instance.draggedItem.ClearDraggedItem();                        
+                        Inventory.Instance.draggedItem.ClearDraggedItem();
                     }
                     else if (!IsPointerOverUIObject())
                     {
@@ -345,7 +400,7 @@ public class InventoryDisplay : MonoBehaviour
                     {
                         shadowItemIcon = Instantiate(ShadowIconNormalPrefab) as GameObject;
                         shadowItemIcon.transform.parent = InventoryItemList;
-                        shadowItemIcon.transform.position = RectTransformHit.position;
+                        shadowItemIcon.transform.localPosition = RectTransformHit.localPosition;
                         shadowItemIcon.transform.localScale = Vector3.one;
                     }
                 }
@@ -353,26 +408,26 @@ public class InventoryDisplay : MonoBehaviour
                 {
                     RectTransform RectTransformHitUp = null;
 
-                    if (Physics2D.OverlapPoint(new Vector2(Input.mousePosition.x, Input.mousePosition.y + PositionGap / 2)) != null)
-                        RectTransformHitUp = Physics2D.OverlapPoint(new Vector2(Input.mousePosition.x, Input.mousePosition.y + PositionGap / 2)).gameObject.GetComponent<RectTransform>();
+                    if (Physics2D.OverlapPoint(new Vector2(Input.mousePosition.x, Input.mousePosition.y + (PositionGap * Inventory.Instance.UIOverlay.localScale.x) / 2)) != null)
+                        RectTransformHitUp = Physics2D.OverlapPoint(new Vector2(Input.mousePosition.x, Input.mousePosition.y + (PositionGap * Inventory.Instance.UIOverlay.localScale.x) / 2)).gameObject.GetComponent<RectTransform>();
 
                     RectTransform RectTransformHitDown = null;
 
-                    if (Physics2D.OverlapPoint(new Vector2(Input.mousePosition.x, Input.mousePosition.y - PositionGap / 2)) != null)
-                        RectTransformHitDown = Physics2D.OverlapPoint(new Vector2(Input.mousePosition.x, Input.mousePosition.y - PositionGap / 2)).gameObject.GetComponent<RectTransform>();
+                    if (Physics2D.OverlapPoint(new Vector2(Input.mousePosition.x, Input.mousePosition.y - (PositionGap * Inventory.Instance.UIOverlay.localScale.x) / 2)) != null)
+                        RectTransformHitDown = Physics2D.OverlapPoint(new Vector2(Input.mousePosition.x, Input.mousePosition.y - (PositionGap * Inventory.Instance.UIOverlay.localScale.x) / 2)).gameObject.GetComponent<RectTransform>();
 
                     if (RectTransformHitUp != null && ItemIcons.Contains(RectTransformHitUp) && RectTransformHitDown != null && ItemIcons.Contains(RectTransformHitDown))
                     {
                         if (shadowItemIcon != null)
                         {
-                            if (Physics2D.OverlapPoint(new Vector2(shadowItemIcon.transform.position.x, shadowItemIcon.transform.position.y + SmallShadowIconPositionGap)) != RectTransformHitUp.GetComponent<Collider2D>())
+                            if (Physics2D.OverlapPoint(new Vector2(shadowItemIcon.transform.position.x, shadowItemIcon.transform.position.y + SmallShadowIconPositionGap * Inventory.Instance.UIOverlay.localScale.x)) != RectTransformHitUp.GetComponent<Collider2D>())
                                 Destroy(shadowItemIcon);
                         }
                         else
                         {
                             shadowItemIcon = Instantiate(ShadowIconSmallPrefab) as GameObject;
                             shadowItemIcon.transform.parent = InventoryItemList;
-                            shadowItemIcon.transform.position = new Vector3(RectTransformHitUp.transform.position.x, RectTransformHitUp.transform.position.y - SmallShadowIconPositionGap, RectTransformHitUp.transform.position.z);
+                            shadowItemIcon.transform.localPosition = new Vector3(RectTransformHitUp.localPosition.x, RectTransformHitUp.localPosition.y - SmallShadowIconPositionGap, RectTransformHitUp.localPosition.z);
                             shadowItemIcon.transform.localScale = Vector3.one;
                         }
                     }
@@ -380,14 +435,14 @@ public class InventoryDisplay : MonoBehaviour
                     {
                         if (shadowItemIcon != null)
                         {
-                            if (Physics2D.OverlapPoint(new Vector2(shadowItemIcon.transform.position.x, shadowItemIcon.transform.position.y + SmallShadowIconPositionGap)) != RectTransformHitUp.GetComponent<Collider2D>())
+                            if (Physics2D.OverlapPoint(new Vector2(shadowItemIcon.transform.position.x, shadowItemIcon.transform.position.y + SmallShadowIconPositionGap * Inventory.Instance.UIOverlay.localScale.x)) != RectTransformHitUp.GetComponent<Collider2D>())
                                 Destroy(shadowItemIcon);
                         }
                         else
                         {
                             shadowItemIcon = Instantiate(ShadowIconSmallPrefab) as GameObject;
                             shadowItemIcon.transform.parent = InventoryItemList;
-                            shadowItemIcon.transform.position = new Vector3(RectTransformHitUp.transform.position.x, RectTransformHitUp.transform.position.y - SmallShadowIconPositionGap, RectTransformHitUp.transform.position.z);
+                            shadowItemIcon.transform.localPosition = new Vector3(RectTransformHitUp.localPosition.x, RectTransformHitUp.localPosition.y - SmallShadowIconPositionGap, RectTransformHitUp.localPosition.z);
                             shadowItemIcon.transform.localScale = Vector3.one;
                         }
                     }
@@ -395,14 +450,14 @@ public class InventoryDisplay : MonoBehaviour
                     {
                         if (shadowItemIcon != null)
                         {
-                            if (Physics2D.OverlapPoint(new Vector2(shadowItemIcon.transform.position.x, shadowItemIcon.transform.position.y - SmallShadowIconPositionGap)) != RectTransformHitDown.GetComponent<Collider2D>())
+                            if (Physics2D.OverlapPoint(new Vector2(shadowItemIcon.transform.position.x, shadowItemIcon.transform.position.y - SmallShadowIconPositionGap * Inventory.Instance.UIOverlay.localScale.x)) != RectTransformHitDown.GetComponent<Collider2D>())
                                 Destroy(shadowItemIcon);
                         }
                         else
                         {
                             shadowItemIcon = Instantiate(ShadowIconSmallPrefab) as GameObject;
                             shadowItemIcon.transform.parent = InventoryItemList;
-                            shadowItemIcon.transform.position = new Vector3(RectTransformHitDown.transform.position.x, RectTransformHitDown.transform.position.y + SmallShadowIconPositionGap, RectTransformHitDown.transform.position.z);
+                            shadowItemIcon.transform.localPosition = new Vector3(RectTransformHitDown.localPosition.x, RectTransformHitDown.localPosition.y + SmallShadowIconPositionGap, RectTransformHitDown.localPosition.z);
                             shadowItemIcon.transform.localScale = Vector3.one;
                         }
                     }
@@ -412,11 +467,28 @@ public class InventoryDisplay : MonoBehaviour
                             Destroy(shadowItemIcon);
                     }
                 }
-                else if (RectTransformHit == ItemIcons[Inventory.Instance.draggedItem.indexInContents])
+
+                if (RectTransformHit == ItemIcons[Inventory.Instance.draggedItem.indexInContents])
                     Destroy(shadowItemIcon);
             }
             else
             {
+                RectTransform RectTransformHit = null;
+
+                if (Physics2D.OverlapPoint(Input.mousePosition) != null)
+                    RectTransformHit = Physics2D.OverlapPoint(Input.mousePosition).gameObject.GetComponent<RectTransform>();
+
+                if (RectTransformHit != null && ItemIcons.Contains(RectTransformHit) && lastHoveredItem != RectTransformHit)
+                {
+                    lastHoveredItem = RectTransformHit;
+                    timeToShowItemInfo = Time.time + showItemInfoDelay;
+                }
+                else if(RectTransformHit == null)
+                {
+                    lastHoveredItem = null;
+                    Destroy(iI);
+                }
+
                 if (shadowItemIcon != null)
                     Destroy(shadowItemIcon);
             }

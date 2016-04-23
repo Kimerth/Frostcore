@@ -51,4 +51,9 @@ public class Item : MonoBehaviour
     /// If the item is placeble, it must have a placement prefab; to make sure it looks right in-game
     /// </summary>
     public GameObject ItemPlacement;
+
+    /// <summary>
+    /// Some lore.
+    /// </summary>
+    public string Description;
 }
