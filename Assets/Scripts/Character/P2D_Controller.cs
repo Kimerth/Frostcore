@@ -13,8 +13,8 @@ public class P2D_Controller : MonoBehaviour
     private bool isJumping;
     private bool isSprinting;
 
-    private float timeFromLastShiftPress;
-    private bool shiftWasPressed;
+    private float timeToShifPressReset;
+    private bool dashKeyWasPressed;
     private bool isDashing;
 
     /// <summary>
@@ -43,10 +43,11 @@ public class P2D_Controller : MonoBehaviour
 	
 	void Update() 
     {
+        if (!GameMaster.gm.isMenuActive)
+            P2D_Motor.Instance.ImposedUpdate();
+
 	    if(!isJumping)
-        {
             isJumping = Input.GetButtonDown("Jump");
-        }
 
         P2D_Animator.Instance.FacingRight(P2D_Motor.Instance.FacingRight);
 
@@ -91,7 +92,10 @@ public class P2D_Controller : MonoBehaviour
             if (ItemBeingHeld != null)
             {
                 if (ItemBeingHeld.GetComponent<Weapon>() == null)
-                    P2D_Animator.Instance.Attack();
+                {
+                    if (Player.Instance.pStats.curStamina > 0)
+                        P2D_Animator.Instance.Attack();
+                }
             }
 
             if (canBreak)
@@ -120,34 +124,24 @@ public class P2D_Controller : MonoBehaviour
             _DestroyBlock.MiningStop();
         }
 
-        if (!isSprinting)
+        if(!isDashing && Input.GetKey(KeyCode.LeftShift))
         {
-            isSprinting = Input.GetKey(KeyCode.LeftShift);
-        }
-
-        if (!isDashing && !P2D_Motor.Instance.IsDashing)
-        {
-            if (Input.GetKeyDown(KeyCode.LeftShift))
+            if (!dashKeyWasPressed)
             {
-                shiftWasPressed = true;
-                timeFromLastShiftPress = Time.time;
-            }
-            else if (Input.GetKeyUp(KeyCode.LeftShift))
-            {
-                if (shiftWasPressed == true && Time.time < timeFromLastShiftPress + 0.2f)
+                if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.D))
                 {
-                    isDashing = true;
+                    dashKeyWasPressed = true;
+                    timeToShifPressReset = Time.time + 0.1f;
                 }
-                else
-                    isDashing = false;
+            }
+            else
+            {
+                if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.D))
+                    isDashing = true;
+                else if (timeToShifPressReset < Time.time)
+                    dashKeyWasPressed = false;
             }
         }
-
-        if(Input.GetKeyUp(KeyCode.LeftShift))
-        {
-            shiftWasPressed = false;
-        }
-        P2D_Motor.Instance.ImposedUpdate();
 
         if (Input.GetKeyDown(KeyCode.Q))
         {
@@ -193,20 +187,31 @@ public class P2D_Controller : MonoBehaviour
         var deadZone = 0.1f;
         bool crouch = Input.GetKey(KeyCode.C);
 
+        if (Player.Instance.pStats.curStamina > 0)
+            isSprinting = Input.GetKey(KeyCode.LeftShift);
+        else
+            isSprinting = false;
+
         float moveHorizontal = 0f;
 
         if(Input.GetAxis("Horizontal") > deadZone || Input.GetAxis("Horizontal") < -deadZone)
             moveHorizontal = Input.GetAxis("Horizontal");
 
+        if (isJumping)
+            if (Player.Instance.pStats.curStamina == 0)
+                isJumping = false;
+
         P2D_Motor.Instance.Move(moveHorizontal, isJumping, crouch, isSprinting);
 
-        P2D_Motor.Instance.Dash(moveHorizontal, isDashing);
+        if (isDashing)
+            if (Player.Instance.pStats.curStamina == 0)
+                isDashing = false;
+
+        P2D_Motor.Instance.Dash(isDashing);
 
         P2D_Motor.Instance.ImposedFixedUpdate();
         P2D_Animator.Instance.ImposedFixedUpdate();
 
         isJumping = false;
-        isSprinting = false;
-        isDashing = false;
     }
 }

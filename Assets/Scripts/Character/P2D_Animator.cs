@@ -9,6 +9,8 @@ public class P2D_Animator : MonoBehaviour
     private Animator m_Animator;
 
     public float moveSpeed;
+    public bool _HoldGun;
+    public bool _isSprinting;
 
     void Awake()
     {
@@ -64,11 +66,13 @@ public class P2D_Animator : MonoBehaviour
 
     public void SetStateSprint(bool sprint)
     {
+        _isSprinting = sprint;
         m_Animator.SetBool("Sprint", sprint);
     }
 
     public void HoldGun(bool holdGun)
     {
+        _HoldGun = holdGun;
         m_Animator.SetBool("HoldGun", holdGun);
         if (holdGun)
             ArmRotation.Instance.UpdateArmRotation();
@@ -85,11 +89,12 @@ public class P2D_Animator : MonoBehaviour
     {
         m_Animator.SetBool("Attack", value);
 
-        if(value)
-            ArmRotation.Instance.UpdateArmRotation();
-        else
+        if (value)
         {
-            ArmRotation.Instance.UpdateArmRotation(true);
+            ArmRotation.Instance.UpdateArmRotation();
+            Player.Instance.DrainStamina(20);
         }
+        else
+            ArmRotation.Instance.UpdateArmRotation(true);
     }
 }

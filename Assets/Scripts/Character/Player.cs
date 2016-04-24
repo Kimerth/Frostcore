@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
     public class PlayerStats
     {
         public float maxHP;
+        [SerializeField]
         private float _curHP;
         public float curHP
         {
@@ -18,6 +19,7 @@ public class Player : MonoBehaviour
         {
             get { return curHP / maxHP * 100; }
         }
+        [SerializeField]
         private float _regenHP = 1f;
         public float regenHP
         {
@@ -26,6 +28,7 @@ public class Player : MonoBehaviour
         }
 
         public float initialPlayerTemperature = 37f;
+        [SerializeField]
         private float _PlayerTemperature;
         public float PlayerTemperature
         {
@@ -33,7 +36,27 @@ public class Player : MonoBehaviour
             set { _PlayerTemperature = Mathf.Clamp(value, 20, 38); }
         }
 
+        public float maxStamina;
+        [SerializeField]
+        private float _curStamina;
+        public float curStamina
+        {
+            get { return _curStamina; }
+            set { _curStamina = Mathf.Clamp(value, 0, maxStamina); }
+        }
+        [SerializeField]
+        private float _regenStamina = 10f;
+        public float regenStamina
+        {
+            get { return _regenStamina; }
+            set { _regenStamina = value; }
+        }
+        public float delayRegenStamina;
+        public bool delayRegenStaminaActivated;
+        public bool stopRegenStamina;
+
         public float MaxCarryWeight;
+        [SerializeField]
         private float _carryWeight;
         public float CarryWeight
         {
@@ -46,6 +69,11 @@ public class Player : MonoBehaviour
             curHP = maxHP;
         }
 
+        public void ResetStamina()
+        {
+            curStamina = maxStamina;
+        }
+
         public void ResetTemperature()
         {
             PlayerTemperature = initialPlayerTemperature;
@@ -55,7 +83,8 @@ public class Player : MonoBehaviour
 
     public static Player Instance;
 
-    private float curTime;
+    private float timeToRegenHP;
+    private float timeToRegenStamina;
 
     public bool IsDead = false;
 
@@ -73,6 +102,8 @@ public class Player : MonoBehaviour
         public RectTransform BodyTemperatureBar;
         public Text BodyTemperature;
 
+        public RectTransform StaminaBar;
+
         public Text EnvironmentTemperature;
     }
 
@@ -89,31 +120,54 @@ public class Player : MonoBehaviour
     public void Start() 
     {
         pStats.ResetHP();
+        pStats.ResetStamina();
         pStats.ResetTemperature();
         pStats.CarryWeight = 0;
 
-        curTime = Time.time;
+        timeToRegenHP = Time.time;
+        timeToRegenStamina = Time.time;
         timeTemperature = Time.time;
 
         GameMaster.gm.m_Player = this.transform;
 	}
-	
-	void Update() 
+
+    void Update()
     {
-        if (curTime < Time.time)
+        if (pStats.curStamina == 0 && !pStats.delayRegenStaminaActivated)
         {
-            pStats.curHP += pStats.regenHP;
-            curTime = Time.time + 1f;
+            pStats.delayRegenStaminaActivated = true;
+            timeToRegenStamina = Time.time + pStats.delayRegenStamina;
         }
 
-        if (Time.time > timeTemperature)
+        if (timeToRegenStamina < Time.time && !pStats.stopRegenStamina)
+        {
+            pStats.delayRegenStaminaActivated = false;
+            pStats.curStamina += pStats.regenStamina / 10;
+            timeToRegenStamina = Time.time + 0.1f;
+        }
+
+        if (timeToRegenHP < Time.time)
+        {
+            pStats.curHP += pStats.regenHP / 10;
+            timeToRegenHP = Time.time + 0.1f;
+        }
+
+        if (timeTemperature < Time.time)
         {
             timeTemperature = Time.time + timeToLoseTemperature;
             pStats.PlayerTemperature -= temperatureLossPerTime;
         }
 
+        pStats.stopRegenStamina = false;
+
         UpdateUI();
-	}
+    }
+
+    public void DrainStamina(float amount)
+    {
+        pStats.stopRegenStamina = true;
+        pStats.curStamina -= amount;
+    }
 
     void ApplyDamage(float damage)
     {
@@ -163,5 +217,7 @@ public class Player : MonoBehaviour
         pStatsUI.HPPercentage.text = " " + pStats.percHP + "%";
         pStatsUI.BodyTemperature.text = pStats.PlayerTemperature + " °C";
         pStatsUI.EnvironmentTemperature.text = "273K";
+
+        pStatsUI.StaminaBar.localScale = new Vector3(pStats.curStamina / pStats.maxStamina, 1, 1);
     }
 }
