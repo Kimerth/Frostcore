@@ -201,6 +201,8 @@ public class P2D_Controller : MonoBehaviour
             if (Player.Instance.pStats.curStamina == 0)
                 isJumping = false;
 
+        P2D_Motor.Instance.ImposedFixedUpdate();
+
         P2D_Motor.Instance.Move(moveHorizontal, isJumping, crouch, isSprinting);
 
         if (isDashing)
@@ -209,7 +211,6 @@ public class P2D_Controller : MonoBehaviour
 
         P2D_Motor.Instance.Dash(isDashing);
 
-        P2D_Motor.Instance.ImposedFixedUpdate();
         P2D_Animator.Instance.ImposedFixedUpdate();
 
         isJumping = false;

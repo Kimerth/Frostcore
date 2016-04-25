@@ -187,6 +187,43 @@ public class Player : MonoBehaviour
         pStats.PlayerTemperature += amount;
     }
 
+    void OnCollisionEnter2D(Collision2D theCollision)
+    {
+        var contact = theCollision.contacts[0];
+        float damage = Vector2.Dot(contact.normal, lastFrameVelocity);
+
+        if (Mathf.Abs(damage) > 15)
+            StartCoroutine(P2D_Motor.Instance.Stagger(0.2f));
+
+        if (Mathf.Abs(damage) > 20)
+            damage *= pStats.maxHP / 100;
+        else 
+            damage = 0;
+
+        damage = Mathf.Clamp(Mathf.Abs(damage) - 20, 0, pStats.maxHP);
+
+        ApplyDamage(damage);
+    }
+
+    Vector2 lastFrameVelocity;
+
+    void OnEnable()
+    {
+        StartCoroutine(SaveThisFrameVelocity());
+    }
+
+    IEnumerator SaveThisFrameVelocity()
+    {
+        for(;;)
+        {
+            yield return new WaitForEndOfFrame();
+
+            lastFrameVelocity = GetComponent<Rigidbody2D>().velocity;
+
+            yield return null;
+        }
+    }
+
     void UpdateUI()
     {
         pStatsUI.HPBar.GetComponent<Image>().fillAmount = pStats.curHP / pStats.maxHP;
@@ -214,8 +251,8 @@ public class Player : MonoBehaviour
             pStatsUI.BodyTemperature.color = Color.blue;
         }
 
-        pStatsUI.HPPercentage.text = " " + pStats.percHP + "%";
-        pStatsUI.BodyTemperature.text = pStats.PlayerTemperature + " °C";
+        pStatsUI.HPPercentage.text = " " + pStats.percHP.ToString("0.00") + "%";
+        pStatsUI.BodyTemperature.text = pStats.PlayerTemperature.ToString("0.00") + " °C";
         pStatsUI.EnvironmentTemperature.text = "273K";
 
         pStatsUI.StaminaBar.localScale = new Vector3(pStats.curStamina / pStats.maxStamina, 1, 1);

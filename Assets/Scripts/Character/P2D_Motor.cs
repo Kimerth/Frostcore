@@ -62,11 +62,12 @@ public class P2D_Motor : MonoBehaviour
     /// <summary>
     ///  Radius of the overlap circle to determine if grounded
     /// </summary>
-    const float GroundedRadius = .2f;   
+    const float GroundedRadius = .3f;   
     /// <summary>
     /// Whether or not the player is grounded
     /// </summary>
-    public bool Grounded;              
+    public bool Grounded;
+    private bool LastCheckGrounded;
     /// <summary>
     /// A position marking where to check for ceilings
     /// </summary>
@@ -158,16 +159,21 @@ public class P2D_Motor : MonoBehaviour
             k_Rigidbody2D.velocity = new Vector2(Mathf.Clamp(k_Rigidbody2D.velocity.x, -1f, 1f) * m_DashSpeed, k_Rigidbody2D.velocity.y);
     }
 
+    private bool IsStaggered = false;
+
     public void Move(float move, bool jump, bool crouch, bool sprint)
     {
         // If dashing, don't do anything
         if (IsDashing)
             return;
 
+        if (IsStaggered)
+            return;
+
         // If crouching, check to see if the player can stand up.
-        if (!crouch) 
-        { 
-            if(Physics2D.OverlapCircle(CeilingCheck.position, CeilingRadius, m_WhatIsGround))
+        if (!crouch)
+        {
+            if (Physics2D.OverlapCircle(CeilingCheck.position, CeilingRadius, m_WhatIsGround))
             {
                 crouch = true;
             }
@@ -190,7 +196,10 @@ public class P2D_Motor : MonoBehaviour
             move *= m_Speed;
 
             // Move the character
-            k_Rigidbody2D.velocity = new Vector2(move, k_Rigidbody2D.velocity.y);
+            if (!LastCheckGrounded)
+                k_Rigidbody2D.velocity = new Vector2(move, k_Rigidbody2D.velocity.y);
+            else
+                k_Rigidbody2D.velocity = new Vector2(move, k_Rigidbody2D.velocity.y / 10);
 
             if (!P2D_Animator.Instance._HoldGun)
                 if (move == 0)
@@ -204,7 +213,7 @@ public class P2D_Motor : MonoBehaviour
         }
 
         // If the player should jump...
-        if(Grounded && jump)
+        if (Grounded && jump)
         {
             // add a vertical force to the player.
             Grounded = false;
@@ -213,6 +222,24 @@ public class P2D_Motor : MonoBehaviour
             Player.Instance.DrainStamina(m_JumpStaminaCost);
             P2D_Animator.Instance.SetStateJump(jump);
         }
+
+        LastCheckGrounded = Grounded;
+    }
+
+    public IEnumerator Stagger(float duration)
+    {
+        IsStaggered = true;
+
+        k_Rigidbody2D.velocity = new Vector2(k_Rigidbody2D.velocity.x / 10, k_Rigidbody2D.velocity.y / 10);
+
+        var stopTime = Time.time + duration;
+
+        while(stopTime > Time.time)
+        {
+            yield return null;
+        }
+
+        IsStaggered = false;
     }
 
     public void Dash(bool dash)
