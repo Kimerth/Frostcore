@@ -213,6 +213,8 @@ public class InventoryDisplay : MonoBehaviour
         if (!displayInventory)
             return;
 
+        var mousePosition = GameMaster.gm.mainCam.ScreenToWorldPoint(Input.mousePosition);
+
         if (lastSelectedGameObject != null && lastSelectedGameObject != EventSystem.current.currentSelectedGameObject)
         {
             lastSelectedGameObject.transform.GetChild(0).GetComponent<Image>().color = new Color32(255, 255, 255, 255);
@@ -225,6 +227,7 @@ public class InventoryDisplay : MonoBehaviour
             {
                 iI = Instantiate(ItemInfo) as GameObject;
                 iI.transform.parent = InventoryUIReference;
+                iI.transform.localScale *= (Inventory.Instance.UIOverlay.localScale.x * 1.5f);
                 var tempIndex = ItemIcons.FindIndex(x => x == lastHoveredItem);
                 if(tempIndex < ItemIcons.Count && tempIndex >= 0)
                 {
@@ -245,7 +248,7 @@ public class InventoryDisplay : MonoBehaviour
         }
 
         if (iI != null)
-            iI.transform.position = new Vector2(Input.mousePosition.x + 2, Input.mousePosition.y + 2);
+            iI.transform.position = new Vector2(mousePosition.x + 2 * (Inventory.Instance.UIOverlay.localScale.x * 1.5f), mousePosition.y + 2 * (Inventory.Instance.UIOverlay.localScale.x * 1.5f));
 
         if(Input.GetKeyDown(KeyCode.Mouse0))
         {
@@ -277,8 +280,8 @@ public class InventoryDisplay : MonoBehaviour
             {
                 RectTransform RectTransformHit = null; 
 
-                if(Physics2D.OverlapPoint(Input.mousePosition) != null)
-                    RectTransformHit = Physics2D.OverlapPoint(Input.mousePosition).gameObject.GetComponent<RectTransform>();
+                if(Physics2D.OverlapPoint(mousePosition) != null)
+                    RectTransformHit = Physics2D.OverlapPoint(mousePosition).gameObject.GetComponent<RectTransform>();
 
                 int indexHBdrgd = Array.IndexOf(Inventory.Instance.HotbarContents, Inventory.Instance.draggedItem.indexInContents);
 
@@ -303,13 +306,13 @@ public class InventoryDisplay : MonoBehaviour
                 {
                     RectTransform RectTransformHitUp = null;
 
-                    if (Physics2D.OverlapPoint(new Vector2(Input.mousePosition.x, Input.mousePosition.y + (PositionGap * Inventory.Instance.UIOverlay.localScale.x) / 2)) != null)
-                        RectTransformHitUp = Physics2D.OverlapPoint(new Vector2(Input.mousePosition.x, Input.mousePosition.y + (PositionGap * Inventory.Instance.UIOverlay.localScale.x) / 2)).gameObject.GetComponent<RectTransform>();
+                    if (Physics2D.OverlapPoint(new Vector2(mousePosition.x, mousePosition.y + (PositionGap * Inventory.Instance.UIOverlay.localScale.x) / 2)) != null)
+                        RectTransformHitUp = Physics2D.OverlapPoint(new Vector2(mousePosition.x, mousePosition.y + (PositionGap * Inventory.Instance.UIOverlay.localScale.x) / 2)).gameObject.GetComponent<RectTransform>();
 
                     RectTransform RectTransformHitDown = null;
 
-                    if (Physics2D.OverlapPoint(new Vector2(Input.mousePosition.x, Input.mousePosition.y - (PositionGap * Inventory.Instance.UIOverlay.localScale.x) / 2)) != null)
-                        RectTransformHitDown = Physics2D.OverlapPoint(new Vector2(Input.mousePosition.x, Input.mousePosition.y - (PositionGap * Inventory.Instance.UIOverlay.localScale.x) / 2)).gameObject.GetComponent<RectTransform>();
+                    if (Physics2D.OverlapPoint(new Vector2(mousePosition.x, mousePosition.y - (PositionGap * Inventory.Instance.UIOverlay.localScale.x) / 2)) != null)
+                        RectTransformHitDown = Physics2D.OverlapPoint(new Vector2(mousePosition.x, mousePosition.y - (PositionGap * Inventory.Instance.UIOverlay.localScale.x) / 2)).gameObject.GetComponent<RectTransform>();
 
                     if (RectTransformHitUp != null && ItemIcons.Contains(RectTransformHitUp) && RectTransformHitDown != null && ItemIcons.Contains(RectTransformHitDown))
                     {
@@ -386,8 +389,8 @@ public class InventoryDisplay : MonoBehaviour
             {
                 RectTransform RectTransformHit = null;
 
-                if (Physics2D.OverlapPoint(Input.mousePosition) != null)
-                    RectTransformHit = Physics2D.OverlapPoint(Input.mousePosition).gameObject.GetComponent<RectTransform>();
+                if (Physics2D.OverlapPoint(mousePosition) != null)
+                    RectTransformHit = Physics2D.OverlapPoint(mousePosition).gameObject.GetComponent<RectTransform>();
 
                 if (RectTransformHit != null && ItemIcons.Contains(RectTransformHit) && RectTransformHit != ItemIcons[Inventory.Instance.draggedItem.indexInContents])
                 {
@@ -408,13 +411,13 @@ public class InventoryDisplay : MonoBehaviour
                 {
                     RectTransform RectTransformHitUp = null;
 
-                    if (Physics2D.OverlapPoint(new Vector2(Input.mousePosition.x, Input.mousePosition.y + (PositionGap * Inventory.Instance.UIOverlay.localScale.x) / 2)) != null)
-                        RectTransformHitUp = Physics2D.OverlapPoint(new Vector2(Input.mousePosition.x, Input.mousePosition.y + (PositionGap * Inventory.Instance.UIOverlay.localScale.x) / 2)).gameObject.GetComponent<RectTransform>();
+                    if (Physics2D.OverlapPoint(new Vector2(mousePosition.x, mousePosition.y + (PositionGap * Inventory.Instance.UIOverlay.localScale.x) / 2)) != null)
+                        RectTransformHitUp = Physics2D.OverlapPoint(new Vector2(mousePosition.x, mousePosition.y + (PositionGap * Inventory.Instance.UIOverlay.localScale.x) / 2)).gameObject.GetComponent<RectTransform>();
 
                     RectTransform RectTransformHitDown = null;
 
-                    if (Physics2D.OverlapPoint(new Vector2(Input.mousePosition.x, Input.mousePosition.y - (PositionGap * Inventory.Instance.UIOverlay.localScale.x) / 2)) != null)
-                        RectTransformHitDown = Physics2D.OverlapPoint(new Vector2(Input.mousePosition.x, Input.mousePosition.y - (PositionGap * Inventory.Instance.UIOverlay.localScale.x) / 2)).gameObject.GetComponent<RectTransform>();
+                    if (Physics2D.OverlapPoint(new Vector2(mousePosition.x, mousePosition.y - (PositionGap * Inventory.Instance.UIOverlay.localScale.x) / 2)) != null)
+                        RectTransformHitDown = Physics2D.OverlapPoint(new Vector2(mousePosition.x, mousePosition.y - (PositionGap * Inventory.Instance.UIOverlay.localScale.x) / 2)).gameObject.GetComponent<RectTransform>();
 
                     if (RectTransformHitUp != null && ItemIcons.Contains(RectTransformHitUp) && RectTransformHitDown != null && ItemIcons.Contains(RectTransformHitDown))
                     {
@@ -475,8 +478,8 @@ public class InventoryDisplay : MonoBehaviour
             {
                 RectTransform RectTransformHit = null;
 
-                if (Physics2D.OverlapPoint(Input.mousePosition) != null)
-                    RectTransformHit = Physics2D.OverlapPoint(Input.mousePosition).gameObject.GetComponent<RectTransform>();
+                if (Physics2D.OverlapPoint(mousePosition) != null)
+                    RectTransformHit = Physics2D.OverlapPoint(mousePosition).gameObject.GetComponent<RectTransform>();
 
                 if (RectTransformHit != null && ItemIcons.Contains(RectTransformHit) && lastHoveredItem != RectTransformHit)
                 {

@@ -1,5 +1,9 @@
 ﻿using UnityEngine;
+using System;
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using System.Linq.Expressions;
 using UnityEngine.UI;
 
 public class Player : MonoBehaviour 
@@ -64,6 +68,8 @@ public class Player : MonoBehaviour
             set { _carryWeight = Mathf.Clamp(value, 0, MaxCarryWeight); }
         }
 
+        public EnergyCells energyCells;
+
         public void ResetHP()
         {
             curHP = maxHP;
@@ -79,19 +85,125 @@ public class Player : MonoBehaviour
             PlayerTemperature = initialPlayerTemperature;
         }
     }
+
+    [System.Serializable]
+    public class EnergyCells
+    {
+        public float TotalEnergy;
+
+        public float this[int i]
+        {
+            get { return curEnergyInCells[i]; }
+            set 
+            {
+                TotalEnergy += Mathf.Clamp(value, 0, maxEnergyInCells[i]) - curEnergyInCells[i];
+                curEnergyInCells[i] = Mathf.Clamp(value, 0, maxEnergyInCells[i]);
+            }
+        }
+
+        public float[] curEnergyInCells;
+        public float[] maxEnergyInCells;
+
+        public RectTransform[] energyCellsBar;
+        public RectTransform totalEnergyText;
+
+        public Transform[] EnergyDrainEffects;
+
+        public void ResetEnergy()
+        {
+            if (curEnergyInCells.Length != maxEnergyInCells.Length)
+                throw new UnassignedReferenceException();
+
+            activeCellindexes = new List<int>();
+
+            for (int index = 0; index < curEnergyInCells.Length; index++)
+            {
+                this[index] = maxEnergyInCells[index];
+                activeCellindexes.Add(index);
+            }
+        }
+
+        public void UpdateUI()
+        {
+            if (energyCellsBar.Length != curEnergyInCells.Length)
+                throw new UnassignedReferenceException();
+
+            for(int index = 0; index < curEnergyInCells.Length; index++)
+            {
+                if (maxEnergyInCells[index] == 0 && energyCellsBar[index].gameObject.activeSelf)
+                    energyCellsBar[index].gameObject.SetActive(false);
+
+                energyCellsBar[index].GetChild(0).localScale = new Vector3(1, this[index] / maxEnergyInCells[index], 1);
+            }
+
+            totalEnergyText.GetComponent<Text>().text = TotalEnergy.ToString("0.00") + " SEU";
+
+            if(runningInstancesOfDrainEnergy > 0)
+                for(int index = 0; index < curEnergyInCells.Length; index++)
+                {
+                    if (activeCellindexes.Contains(index))
+                    {
+                        if (!EnergyDrainEffects[index].gameObject.activeInHierarchy)
+                            EnergyDrainEffects[index].gameObject.SetActive(true);
+                    }
+                    else
+                    {
+                        if (EnergyDrainEffects[index].gameObject.activeInHierarchy)
+                            EnergyDrainEffects[index].gameObject.SetActive(false);
+                    }
+                }
+            else
+                for (int index = 0; index < curEnergyInCells.Length; index++)
+                {
+                    if (EnergyDrainEffects[index].gameObject.activeInHierarchy)
+                        EnergyDrainEffects[index].gameObject.SetActive(false);
+                }
+        }
+
+        List<int> activeCellindexes;
+
+        volatile int runningInstancesOfDrainEnergy = 0;
+        public IEnumerator DrainEnergy(float amount, float time)
+        {
+            runningInstancesOfDrainEnergy++;
+
+            var divAmount = amount / activeCellindexes.Count / time * Time.deltaTime;
+
+            var stopTime = Time.time + time;
+
+            while(stopTime > Time.time)
+            {
+                for (int indexOfindex = 0; indexOfindex < activeCellindexes.Count; indexOfindex++)
+                {
+                    if (curEnergyInCells[activeCellindexes[indexOfindex]] <= divAmount)
+                    {
+                        amount -= curEnergyInCells[activeCellindexes[indexOfindex]];
+                        this[activeCellindexes[indexOfindex]] = 0;
+                        
+                        activeCellindexes.RemoveAt(indexOfindex);
+                        divAmount = amount / activeCellindexes.Count / time * Time.deltaTime;
+                        continue;
+                    }
+
+                    this[activeCellindexes[indexOfindex]] -= divAmount;
+                    amount -= divAmount;
+                }
+                yield return null;
+            }
+            runningInstancesOfDrainEnergy--;
+        }
+    }
+
     public PlayerStats pStats;
 
     public static Player Instance;
 
-    private float timeToRegenHP;
     private float timeToRegenStamina;
 
     public bool IsDead = false;
 
     public float temperatureLossPerTime = 0.02f;
     public float timeToLoseTemperature = 2f;
-    private float timeTemperature;
-
 
     [System.Serializable]
     public class PlayerStatsUI
@@ -122,11 +234,10 @@ public class Player : MonoBehaviour
         pStats.ResetHP();
         pStats.ResetStamina();
         pStats.ResetTemperature();
+        pStats.energyCells.ResetEnergy();
         pStats.CarryWeight = 0;
 
-        timeToRegenHP = Time.time;
         timeToRegenStamina = Time.time;
-        timeTemperature = Time.time;
 
         GameMaster.gm.m_Player = this.transform;
 	}
@@ -142,23 +253,20 @@ public class Player : MonoBehaviour
         if (timeToRegenStamina < Time.time && !pStats.stopRegenStamina)
         {
             pStats.delayRegenStaminaActivated = false;
-            pStats.curStamina += pStats.regenStamina / 10;
-            timeToRegenStamina = Time.time + 0.1f;
+            pStats.curStamina += pStats.regenStamina * Time.deltaTime;
         }
 
-        if (timeToRegenHP < Time.time)
-        {
-            pStats.curHP += pStats.regenHP / 10;
-            timeToRegenHP = Time.time + 0.1f;
-        }
+        pStats.curHP += pStats.regenHP * Time.deltaTime;
 
-        if (timeTemperature < Time.time)
-        {
-            timeTemperature = Time.time + timeToLoseTemperature;
-            pStats.PlayerTemperature -= temperatureLossPerTime;
-        }
+        pStats.PlayerTemperature -= temperatureLossPerTime * Time.deltaTime;
 
         pStats.stopRegenStamina = false;
+
+        if (Input.GetKeyDown(KeyCode.H))
+        {
+            StartCoroutine(pStats.energyCells.DrainEnergy(100, 1));
+            Debug.Log("PressedH");
+        }
 
         UpdateUI();
     }
@@ -189,20 +297,28 @@ public class Player : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D theCollision)
     {
-        var contact = theCollision.contacts[0];
-        float damage = Vector2.Dot(contact.normal, lastFrameVelocity);
+        float damage = 0;
+        foreach (ContactPoint2D contact in theCollision.contacts)
+        {
+            float auxdamage = Mathf.Abs(Vector2.Dot(contact.normal, lastFrameVelocity));
+            if (auxdamage > damage)
+                damage = auxdamage;
+        }
 
-        if (Mathf.Abs(damage) > 15)
+        if (damage > 15)
             StartCoroutine(P2D_Motor.Instance.Stagger(0.2f));
 
-        if (Mathf.Abs(damage) > 20)
+        if (damage > 20)
             damage *= pStats.maxHP / 100;
         else 
             damage = 0;
 
-        damage = Mathf.Clamp(Mathf.Abs(damage) - 20, 0, pStats.maxHP);
+        damage = Mathf.Clamp(damage - 20, 0, pStats.maxHP);
 
         ApplyDamage(damage);
+
+        if (damage > 0)
+            GameMaster.gm.camShake.Shake(damage / 100, damage / 100);
     }
 
     Vector2 lastFrameVelocity;
@@ -256,5 +372,7 @@ public class Player : MonoBehaviour
         pStatsUI.EnvironmentTemperature.text = "273K";
 
         pStatsUI.StaminaBar.localScale = new Vector3(pStats.curStamina / pStats.maxStamina, 1, 1);
+
+        pStats.energyCells.UpdateUI();
     }
 }

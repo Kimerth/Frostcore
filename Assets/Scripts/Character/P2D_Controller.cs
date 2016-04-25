@@ -131,7 +131,7 @@ public class P2D_Controller : MonoBehaviour
                 if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.D))
                 {
                     dashKeyWasPressed = true;
-                    timeToShifPressReset = Time.time + 0.1f;
+                    timeToShifPressReset = Time.time + 0.2f;
                 }
             }
             else
