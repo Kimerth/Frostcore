@@ -5,6 +5,7 @@ public class Weapon : MonoBehaviour
 {
     [SerializeField] private float m_FireRate;
     [SerializeField] private float m_Damage;
+    [SerializeField] private float m_KnockbackForce;
     [SerializeField] private LayerMask m_WhatToHit;
 
     [SerializeField] private Transform k_BulletTrailPrefab;
@@ -33,7 +34,7 @@ public class Weapon : MonoBehaviour
     {
         if (m_FireRate == 0)
         {
-            if (Input.GetButtonDown("Fire1"))
+            if (Input.GetButtonDown("Fire1") && !Helper.IsPointerOverUIObject())
             {
                 Shoot();
             }
@@ -41,7 +42,7 @@ public class Weapon : MonoBehaviour
 
         else
         {
-            if(Input.GetButton("Fire1") && Time.time > timeToFire)
+            if(Input.GetButton("Fire1") && Time.time > timeToFire && !Helper.IsPointerOverUIObject())
             {
                 timeToFire = Time.time + 1 / m_FireRate;
                 Shoot();
@@ -57,11 +58,12 @@ public class Weapon : MonoBehaviour
 
         if (hit.collider != null)
         {
-            Enemy enemy = hit.transform.GetComponent<Enemy>();
-            if (enemy != null)
-            {
-                enemy.ApplyDamage(m_Damage);
-            }
+            object[] tempStorage = new object[2];
+            tempStorage[0] = m_Damage;
+            hit.collider.gameObject.SendMessage("ApplyDamage", tempStorage, SendMessageOptions.DontRequireReceiver);
+
+            if (hit.collider.GetComponent<Rigidbody2D>() != null)
+                hit.collider.GetComponent<Rigidbody2D>().AddForce((hit.collider.transform.position - transform.position).normalized * m_KnockbackForce);
         }
 
         if (Time.time > timeToSpawnEffect)

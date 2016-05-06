@@ -640,31 +640,31 @@ public class MapGenerator : MonoBehaviour
 
     void AddHalfblock(int x, int y)
     {
-        if (map[x, y] != 0)
+        if (map[x, y] == 0)
             return;
 
-        if (map[x, y - 1] != 0 && map[x + 1, y] != 0 && map[x, y - 1] < 10 && map[x + 1, y] < 10)
+        if (map[x, y - 1] != 0 && map[x + 1, y] != 0 && map[x, y - 1] < 10 && map[x + 1, y] < 10 && map[x, y + 1] == 0 && map[x - 1, y] == 0)
         {
             if (map[x + 1, y] == 1 || map[x + 1, y] == 2 || map[x + 1, y] == 3)
                 map[x, y] = map[x + 1, y] * 10 + 1;
             else if (map[x, y - 1] == 1 || map[x, y - 1] == 2 || map[x, y - 1] == 3)
                 map[x, y] = map[x, y - 1] * 10 + 1;
         }
-        else if (map[x + 1, y] != 0 && map[x, y + 1] != 0 && map[x + 1, y] < 10 && map[x, y + 1] < 10)
+        else if (map[x + 1, y] != 0 && map[x, y + 1] != 0 && map[x + 1, y] < 10 && map[x, y + 1] < 10 && map[x, y - 1] == 0 && map[x - 1, y] == 0)
         {
             if (map[x, y + 1] == 1 || map[x, y + 1] == 2 || map[x, y + 1] == 3)
                 map[x, y] = map[x, y + 1] * 10 + 2;
             else if (map[x + 1, y] == 1 || map[x + 1, y] == 2 || map[x + 1, y] == 3)
                 map[x, y] = map[x + 1, y] * 10 + 2;
         }
-        else if (map[x, y + 1] != 0 && map[x - 1, y] != 0 && map[x, y + 1] < 10 && map[x - 1, y] < 10)
+        else if (map[x, y + 1] != 0 && map[x - 1, y] != 0 && map[x, y + 1] < 10 && map[x - 1, y] < 10 && map[x, y - 1] == 0 && map[x + 1, y] == 0)
         {
             if (map[x - 1, y] == 1 || map[x - 1, y] == 2 || map[x - 1, y] == 3)
                 map[x, y] = map[x - 1, y] * 10 + 3;
             else if (map[x, y + 1] == 1 || map[x, y + 1] == 2 || map[x, y + 1] == 3)
                 map[x, y] = map[x, y + 1] * 10 + 3;
         }
-        else if (map[x - 1, y] != 0 && map[x, y - 1] != 0 && map[x - 1, y] < 10 && map[x, y - 1] < 10)
+        else if (map[x - 1, y] != 0 && map[x, y - 1] != 0 && map[x - 1, y] < 10 && map[x, y - 1] < 10 && map[x, y + 1] == 0 && map[x + 1, y] == 0)
         {
             if (map[x, y - 1] == 1 || map[x, y - 1] == 2 || map[x, y - 1] == 3)
                 map[x, y] = map[x, y - 1] * 10 + 4;

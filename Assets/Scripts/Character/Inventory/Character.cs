@@ -157,16 +157,14 @@ public class Character : MonoBehaviour
         for (int index = 0; index < WeaponHolder.childCount; index++)
             Destroy(WeaponHolder.GetChild(index).gameObject);
 
-        if (ItemsInWeaponSlots[WeaponInUseIndex] != null)
-        {
-            InstantiateWeapon(ItemsInWeaponSlots[WeaponInUseIndex]);
-            P2D_Controller.Instance.ItemBeingHeld = WeaponHolder.GetChild(0);
-        }
+        if (WeaponInUseIndex != -1)
+            if (ItemsInWeaponSlots[WeaponInUseIndex] != null)
+                InstantiateWeapon(ItemsInWeaponSlots[WeaponInUseIndex]);
 
         //TODO: Armors
     }
 
-    void InstantiateWeapon(Item item)
+    public void InstantiateWeapon(Item item)
     {
         GameObject clone = Instantiate(item.EquippedPrefab) as GameObject;
 

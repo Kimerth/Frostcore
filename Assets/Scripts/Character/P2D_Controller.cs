@@ -24,7 +24,7 @@ public class P2D_Controller : MonoBehaviour
 
     public Transform ItemHolderObject;
     public Transform ItemBeingHeld;
-    public int IndexOfItemBeingHeld;
+    public int IndexOfHotbarItemBeingHeld;
 
     public bool canPlace = false;
     public bool canBreak = false;
@@ -82,46 +82,59 @@ public class P2D_Controller : MonoBehaviour
         }
         else
         {
+            if (Character.Instance.WeaponHolder.childCount > 0)
+                P2D_Controller.Instance.ItemBeingHeld = Character.Instance.WeaponHolder.GetChild(0);
             P2D_Animator.Instance.HoldGun(false);
             canPlace = false;
             canBreak = false;
+        }
+
+        if (canPlace)
+        {
+            _PlaceBlock.Preview(block);
         }
 
         if (Input.GetButtonDown("Fire1"))
         {
             if (ItemBeingHeld != null)
             {
-                if (ItemBeingHeld.GetComponent<Weapon>() == null)
+                if (ItemBeingHeld.GetComponent<CollisionBasedDamage>() != null && Player.Instance.pStats.curStamina > 0 && !Helper.IsPointerOverUIObject())
                 {
-                    if (Player.Instance.pStats.curStamina > 0)
-                        P2D_Animator.Instance.Attack();
+                    P2D_Animator.Instance.Attack();
+                    ItemBeingHeld.GetComponent<Collider2D>().enabled = true;
                 }
+                else
+                    P2D_Animator.Instance.StopAttack();
             }
 
             if (canBreak)
                 _DestroyBlock.MiningStart();
             if (canPlace)
             {
-                _PlaceBlock.Place(block);
-                Inventory.Instance.Contents[Inventory.Instance.HotbarContents[IndexOfItemBeingHeld]].GetComponent<Item>().Count--;
-                if (Inventory.Instance.Contents[Inventory.Instance.HotbarContents[IndexOfItemBeingHeld]].GetComponent<Item>().Count == 0)
+                if (_PlaceBlock.Place(block))
+                    Inventory.Instance.Contents[Inventory.Instance.HotbarContents[IndexOfHotbarItemBeingHeld]].GetComponent<Item>().Count--;
+                if (Inventory.Instance.Contents[Inventory.Instance.HotbarContents[IndexOfHotbarItemBeingHeld]].GetComponent<Item>().Count == 0)
                 {
-                    Destroy(Inventory.Instance.Contents[Inventory.Instance.HotbarContents[IndexOfItemBeingHeld]].gameObject);
+                    Destroy(Inventory.Instance.Contents[Inventory.Instance.HotbarContents[IndexOfHotbarItemBeingHeld]].gameObject);
                     block = null;
                     Destroy(ItemBeingHeld.gameObject);
+                    ItemBeingHeld = null;
+                    Inventory.Instance.Contents.RemoveAt(Inventory.Instance.HotbarContents[IndexOfHotbarItemBeingHeld]);
+                    Inventory.Instance.HotbarContents[IndexOfHotbarItemBeingHeld] = -1;
                 }
             }
 
         }
-        else if (Input.GetButtonUp("Fire1"))
+        else
         {
             if (ItemBeingHeld != null)
             {
-                if (ItemBeingHeld.GetComponent<Weapon>() == null)
-                    P2D_Animator.Instance.Attack(false);
+                if (ItemBeingHeld.GetComponent<CollisionBasedDamage>() != null)
+                    ItemBeingHeld.GetComponent<Collider2D>().enabled = false;
             }
 
-            _DestroyBlock.MiningStop();
+            if (!Input.GetButton("Fire1"))
+                _DestroyBlock.MiningStop();
         }
 
         if(!isDashing && Input.GetKey(KeyCode.LeftShift))
@@ -161,7 +174,7 @@ public class P2D_Controller : MonoBehaviour
             } while (Character.Instance.ItemsInWeaponSlots[Character.Instance.WeaponInUseIndex] == null);
             Character.Instance.UpdateEquipment();
         }
-        /*
+        
         if (InventoryDisplay.Instance.displayInventory)
             return;
 
@@ -170,16 +183,19 @@ public class P2D_Controller : MonoBehaviour
         {
             if (Input.GetKeyDown(k))
             {
-                if (Inventory.Instance.HotbarContents[i].GetComponent<Item>().isUsable)
-                    Inventory.Instance.UseItem(Inventory.Instance.HotbarContents[i]);
-                else
+                if (Inventory.Instance.HotbarContents[i] == -1)
+                    continue;
+
+                if (Character.Instance.IsRightType(Inventory.Instance.Contents[Inventory.Instance.HotbarContents[i]], Item.ItemType.Itemblock))
                 {
-                    Inventory.Instance.EquipItem(Inventory.Instance.HotbarContents[i], i);
-                    IndexOfItemBeingHeld = i;
+                    Inventory.Instance.EquipItem(Inventory.Instance.Contents[Inventory.Instance.HotbarContents[i]]);
+                    IndexOfHotbarItemBeingHeld = i;
                 }
+                else
+                    Inventory.Instance.UseItem(Inventory.Instance.Contents[Inventory.Instance.HotbarContents[i]]);
             }
             i++;
-        }*/
+        }
 	}
 
     void FixedUpdate()
@@ -214,5 +230,6 @@ public class P2D_Controller : MonoBehaviour
         P2D_Animator.Instance.ImposedFixedUpdate();
 
         isJumping = false;
+        isDashing = false;
     }
 }

@@ -97,7 +97,9 @@ public class P2D_Motor : MonoBehaviour
     /// <summary>
     /// Stores the Transform component of the Arm attached to the player
     /// </summary>
-    private Transform Graphics;                         
+    private Transform Graphics;
+
+    public Thruster thruster;
 
     /// <summary>
     /// Setting up references
@@ -115,6 +117,8 @@ public class P2D_Motor : MonoBehaviour
         timeToDrainSprintStamina = Time.time;
     }
 
+    private bool isSticky;
+
     public void ImposedUpdate()
     {
         if (P2D_Animator.Instance._HoldGun)
@@ -123,7 +127,22 @@ public class P2D_Motor : MonoBehaviour
                 Flip();
         }
 
-        if (P2D_Animator.Instance._isSprinting)
+        if(isSticky && P2D_Animator.Instance.moveSpeed != 0)
+        {
+            Collider2D[] colliders = GetComponents<Collider2D>();
+            foreach (Collider2D coll in colliders)
+                coll.sharedMaterial = (PhysicsMaterial2D)Resources.Load("PhysicsMaterials/Slippery");
+            isSticky = false;
+        }
+        if (!isSticky && P2D_Animator.Instance.moveSpeed == 0)
+        {
+            Collider2D[] colliders = GetComponents<Collider2D>();
+            foreach (Collider2D coll in colliders)
+                coll.sharedMaterial = (PhysicsMaterial2D)Resources.Load("PhysicsMaterials/Sticky");
+            isSticky = true;
+        }
+
+        if (P2D_Animator.Instance._isSprinting && P2D_Animator.Instance.moveSpeed != 0)
         {
             if (timeToDrainSprintStamina < Time.time)
             {
@@ -133,6 +152,20 @@ public class P2D_Motor : MonoBehaviour
             Player.Instance.DrainStamina(0);
         }
 
+        if (thruster != null)
+        {
+            if (isSpacePressed && !Grounded && k_Rigidbody2D.velocity.y < thruster.MaxUpwardsSpeed && Player.Instance.pStats.energyCells.virtualTotalEnergy > thruster.EnergyConsumptionPerSecond * Time.deltaTime)
+            {
+                P2D_Animator.Instance.SetStateFlying(true);
+                k_Rigidbody2D.velocity = new Vector2(k_Rigidbody2D.velocity.x, thruster.MaxUpwardsSpeed);
+                StartCoroutine(Player.Instance.pStats.energyCells.DrainEnergy(thruster.EnergyConsumptionPerSecond * Time.deltaTime));
+            }
+            else
+                P2D_Animator.Instance.SetStateFlying(false);
+        }
+        else
+            P2D_Animator.Instance.SetStateFlying(false);
+
         if (Time.time > dashTime && IsDashing)
         {
             k_Rigidbody2D.velocity = Vector2.zero;
@@ -141,7 +174,9 @@ public class P2D_Motor : MonoBehaviour
             return;
         }
     }
-	
+
+    bool isSpacePressed;
+
 	public void ImposedFixedUpdate() 
     {
         Grounded = false;
@@ -154,6 +189,8 @@ public class P2D_Motor : MonoBehaviour
                 Grounded = true;
             }
         }
+
+        isSpacePressed = Input.GetKey(KeyCode.Space);
 
         if(IsDashing)
             k_Rigidbody2D.velocity = new Vector2(Mathf.Clamp(k_Rigidbody2D.velocity.x, -1f, 1f) * m_DashSpeed, k_Rigidbody2D.velocity.y);
@@ -169,6 +206,12 @@ public class P2D_Motor : MonoBehaviour
 
         if (IsStaggered)
             return;
+
+        if (!Grounded)
+        {
+            sprint = false;
+            crouch = false;
+        }
 
         // If crouching, check to see if the player can stand up.
         if (!crouch)
@@ -226,20 +269,65 @@ public class P2D_Motor : MonoBehaviour
         LastCheckGrounded = Grounded;
     }
 
-    public IEnumerator Stagger(float duration)
+    void OnEnable()
+    {
+        StartCoroutine(_Stagger(0, true));
+    }
+
+    public void Stagger(object[] tempStorage)
+    {
+        float duration = (float)tempStorage[0];
+        bool ragdoll = (bool)tempStorage[1];
+        StartCoroutine(_Stagger(duration, ragdoll));
+    }
+
+    IEnumerator _Stagger(float duration, bool ragdoll)
     {
         IsStaggered = true;
 
-        k_Rigidbody2D.velocity = new Vector2(k_Rigidbody2D.velocity.x / 10, k_Rigidbody2D.velocity.y / 10);
+        yield return null;
+
+        Collider2D[] colliders = null;
+        if (ragdoll)
+        {
+            colliders = GetComponents<Collider2D>();
+            foreach (Collider2D coll in colliders)
+                coll.sharedMaterial = (PhysicsMaterial2D)Resources.Load("PhysicsMaterials/Slippery");
+        }
 
         var stopTime = Time.time + duration;
 
-        while(stopTime > Time.time)
+        while (stopTime > Time.time)
         {
+            P2D_Animator.Instance.StopAttack();
             yield return null;
         }
 
+        if (ragdoll)
+        {
+            foreach (Collider2D coll in colliders)
+                coll.sharedMaterial = (PhysicsMaterial2D)Resources.Load("PhysicsMaterials/Slippery");
+        }
+
         IsStaggered = false;
+    }
+
+    public void MakeItBouncy()
+    {
+        StartCoroutine(_MakeItBouncy());
+    }
+
+    IEnumerator _MakeItBouncy()
+    {
+        Collider2D[] colliders = null;
+        colliders = GetComponents<Collider2D>();
+        foreach (Collider2D coll in colliders)
+            coll.sharedMaterial = (PhysicsMaterial2D)Resources.Load("PhysicsMaterials/BouncyBox");
+
+        yield return null;
+
+        foreach (Collider2D coll in colliders)
+            coll.sharedMaterial = (PhysicsMaterial2D)Resources.Load("PhysicsMaterials/Slippery");
     }
 
     public void Dash(bool dash)
@@ -250,6 +338,8 @@ public class P2D_Motor : MonoBehaviour
         IsDashing = true;
         gameObject.layer = 11;
         dashTime = Time.time + m_DashLenght;
+
+        P2D_Animator.Instance.SetStateSprint(false);
 
         Player.Instance.DrainStamina(m_DashStaminaCost);
     }

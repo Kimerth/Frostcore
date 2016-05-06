@@ -205,6 +205,20 @@ public class Inventory : MonoBehaviour
         Contents.Remove(item);
     }
 
+    public void UseItem(Item item)
+    {
+
+    }
+
+    public void EquipItem(Item item)
+    {
+        Character.Instance.WeaponInUseIndex = -1;
+
+        Character.Instance.UpdateEquipment();
+
+        Character.Instance.InstantiateWeapon(item);
+    }
+
     IEnumerator ResetLayerOfItem(Item item)
     {
         yield return new WaitForSeconds(4f);

@@ -90,6 +90,7 @@ public class Player : MonoBehaviour
     public class EnergyCells
     {
         public float TotalEnergy;
+        public float virtualTotalEnergy;
 
         public float this[int i]
         {
@@ -115,10 +116,12 @@ public class Player : MonoBehaviour
                 throw new UnassignedReferenceException();
 
             activeCellindexes = new List<int>();
+            virtualTotalEnergy = 0;
 
             for (int index = 0; index < curEnergyInCells.Length; index++)
             {
                 this[index] = maxEnergyInCells[index];
+                virtualTotalEnergy += maxEnergyInCells[index];
                 activeCellindexes.Add(index);
             }
         }
@@ -135,6 +138,9 @@ public class Player : MonoBehaviour
 
                 energyCellsBar[index].GetChild(0).localScale = new Vector3(1, this[index] / maxEnergyInCells[index], 1);
             }
+
+            if (virtualTotalEnergy != TotalEnergy)
+                virtualTotalEnergy = TotalEnergy;
 
             totalEnergyText.GetComponent<Text>().text = TotalEnergy.ToString("0.00") + " SEU";
 
@@ -163,33 +169,61 @@ public class Player : MonoBehaviour
         List<int> activeCellindexes;
 
         volatile int runningInstancesOfDrainEnergy = 0;
-        public IEnumerator DrainEnergy(float amount, float time)
+        public IEnumerator DrainEnergy(float amount, float time = 0)
         {
             runningInstancesOfDrainEnergy++;
+            virtualTotalEnergy -= amount;
+            float divAmount;
 
-            var divAmount = amount / activeCellindexes.Count / time * Time.deltaTime;
+            if (time == 0)
+                divAmount = amount / activeCellindexes.Count;
+            else
+                divAmount = amount / activeCellindexes.Count / time * Time.deltaTime;
 
-            var stopTime = Time.time + time;
-
-            while(stopTime > Time.time)
+            while(amount > 0)
             {
                 for (int indexOfindex = 0; indexOfindex < activeCellindexes.Count; indexOfindex++)
                 {
+                    if (amount - divAmount <= 0)
+                    {
+                        if(curEnergyInCells[activeCellindexes[indexOfindex]] >= amount)
+                        {
+                            this[activeCellindexes[indexOfindex]] -= amount;
+                            amount = 0;
+                            break;
+                        }
+                        else
+                        {
+                            amount -= this[activeCellindexes[indexOfindex]];
+                            this[activeCellindexes[indexOfindex]] = 0;
+                            continue;
+                        }
+                    }
+
                     if (curEnergyInCells[activeCellindexes[indexOfindex]] <= divAmount)
                     {
-                        amount -= curEnergyInCells[activeCellindexes[indexOfindex]];
+                        amount -= this[activeCellindexes[indexOfindex]];
                         this[activeCellindexes[indexOfindex]] = 0;
                         
                         activeCellindexes.RemoveAt(indexOfindex);
-                        divAmount = amount / activeCellindexes.Count / time * Time.deltaTime;
+
+                        if (time == 0)
+                            divAmount = amount / activeCellindexes.Count;
+                        else
+                            divAmount = amount / activeCellindexes.Count / time * Time.deltaTime;
+                        
                         continue;
                     }
 
                     this[activeCellindexes[indexOfindex]] -= divAmount;
                     amount -= divAmount;
                 }
+
                 yield return null;
             }
+
+            virtualTotalEnergy += amount;
+
             runningInstancesOfDrainEnergy--;
         }
     }
@@ -242,6 +276,11 @@ public class Player : MonoBehaviour
         GameMaster.gm.m_Player = this.transform;
 	}
 
+    public void AttachCollisionBasedDamage(CollisionBasedDamage theSource)
+    {
+        theSource.thisPlayers = this;
+    }
+    
     void Update()
     {
         if (pStats.curStamina == 0 && !pStats.delayRegenStaminaActivated)
@@ -262,10 +301,21 @@ public class Player : MonoBehaviour
 
         pStats.stopRegenStamina = false;
 
-        if (Input.GetKeyDown(KeyCode.H))
+        if(shield != null)
         {
-            StartCoroutine(pStats.energyCells.DrainEnergy(100, 1));
-            Debug.Log("PressedH");
+            if(Input.GetKeyDown(KeyCode.H))
+            {
+                if (shield.gameObject.activeInHierarchy)
+                    shield.gameObject.SetActive(false);
+                else
+                {
+                    if (pStats.energyCells.virtualTotalEnergy > shield.TurnOnEnegy)
+                    {
+                        StartCoroutine(pStats.energyCells.DrainEnergy(shield.TurnOnEnegy, 0.1f));
+                        shield.gameObject.SetActive(true);
+                    }
+                }
+            }
         }
 
         UpdateUI();
@@ -277,8 +327,24 @@ public class Player : MonoBehaviour
         pStats.curStamina -= amount;
     }
 
-    void ApplyDamage(float damage)
+    public EnergyShield shield;
+    List<CollisionBasedDamage> ignoreSources = new List<CollisionBasedDamage>();
+
+    public void ApplyDamage(object[] tempStorage)
     {
+        float damage = (float)tempStorage[0];
+        CollisionBasedDamage source = tempStorage[1] as CollisionBasedDamage;
+
+        if (source != null)
+            if (ignoreSources.Contains(source))
+                return;
+
+        if (source != null)
+        {
+            ignoreSources.Add(source);
+            StartCoroutine(resetIgnoreSource(source));
+        }
+
         if (GetComponent<P2D_Motor>().IsDashing)
             return;
         pStats.curHP -= damage;
@@ -286,8 +352,16 @@ public class Player : MonoBehaviour
         if(pStats.curHP == 0)
         {
             IsDead = true;
+            UpdateUI();
             GameMaster.KillPlayer(this);
         }
+    }
+
+    IEnumerator resetIgnoreSource(CollisionBasedDamage source)
+    {
+        yield return new WaitForSeconds(0.5f);
+
+        ignoreSources.Remove(source);
     }
 
     public void RecieveHeat(float amount)
@@ -306,19 +380,29 @@ public class Player : MonoBehaviour
         }
 
         if (damage > 15)
-            StartCoroutine(P2D_Motor.Instance.Stagger(0.2f));
+        {
+            object[] tempStorage = new object[2];
+            tempStorage[0] = 0.2f;
+            tempStorage[1] = false;
+            P2D_Motor.Instance.Stagger(tempStorage);
+        }
 
         if (damage > 20)
             damage *= pStats.maxHP / 100;
         else 
             damage = 0;
 
+        if (P2D_Motor.Instance.IsDashing)
+            damage = 0;
+
         damage = Mathf.Clamp(damage - 20, 0, pStats.maxHP);
 
-        ApplyDamage(damage);
+        object[] tempStorage2 = new object[2];
+        tempStorage2[0] = damage;
+        ApplyDamage(tempStorage2);
 
         if (damage > 0)
-            GameMaster.gm.camShake.Shake(damage / 100, damage / 100);
+            GameMaster.gm.camShake.Shake(damage / 400, damage / 400);
     }
 
     Vector2 lastFrameVelocity;

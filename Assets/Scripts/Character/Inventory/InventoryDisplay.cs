@@ -357,7 +357,7 @@ public class InventoryDisplay : MonoBehaviour
                             Inventory.Instance.HotbarContents[indexHBtrgt] = -1;
                         Inventory.Instance.draggedItem.ClearDraggedItem();
                     }
-                    else if (!IsPointerOverUIObject())
+                    else if (!Helper.IsPointerOverUIObject())
                     {
                         Inventory.Instance.DropItem(Inventory.Instance.Contents[Inventory.Instance.draggedItem.indexInContents]);
                         if (indexHBdrgd != -1)
@@ -499,19 +499,6 @@ public class InventoryDisplay : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Mouse1))
                 Inventory.Instance.draggedItem.ClearDraggedItem();
         }
-    }
-
-    /// <summary>
-    /// Checks if the mouse is over an UI object
-    /// </summary>
-    /// <returns> true if yes </returns>
-    private bool IsPointerOverUIObject()
-    {
-        PointerEventData eventDataCurrentPosition = new PointerEventData(EventSystem.current);
-        eventDataCurrentPosition.position = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
-        List<RaycastResult> results = new List<RaycastResult>();
-        EventSystem.current.RaycastAll(eventDataCurrentPosition, results);
-        return results.Count > 0;
     }
 
     /// <summary>
