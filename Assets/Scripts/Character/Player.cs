@@ -236,6 +236,9 @@ public class Player : MonoBehaviour
 
     public bool IsDead = false;
 
+    [Range(0, 1)]
+    public float LowTemperatureSpeedModifier;
+
     public float temperatureLossPerTime = 0.02f;
     public float timeToLoseTemperature = 2f;
 
@@ -280,9 +283,19 @@ public class Player : MonoBehaviour
     {
         theSource.thisPlayers = this;
     }
-    
+
     void Update()
     {
+        if (pStats.PlayerTemperature == 20)
+        {
+            object[] damage = new object[2];
+            damage[0] = pStats.maxHP / 4 * Time.deltaTime;
+            ApplyDamage(damage);
+
+            UpdateUI();
+            return;
+        }
+
         if (pStats.curStamina == 0 && !pStats.delayRegenStaminaActivated)
         {
             pStats.delayRegenStaminaActivated = true;
@@ -429,15 +442,20 @@ public class Player : MonoBehaviour
         pStatsUI.HPBar.GetComponent<Image>().fillAmount = pStats.curHP / pStats.maxHP;
         pStatsUI.BodyTemperatureBar.GetComponent<Image>().fillAmount = (pStats.PlayerTemperature - 20) / 18;
 
-        if (pStats.percHP < 35)
+        if (pStats.percHP < 35 && pStats.PlayerTemperature > 20)
         {
             pStatsUI.HPBar.GetComponent<Image>().color = Color.red;
             pStatsUI.HPPercentage.color = Color.red;
         }
-        else
+        else if (pStats.PlayerTemperature > 20)
         {
             pStatsUI.HPBar.GetComponent<Image>().color = Color.green;
             pStatsUI.HPPercentage.color = Color.green;
+        }
+        else
+        {
+            pStatsUI.HPBar.GetComponent<Image>().color = Color.blue;
+            pStatsUI.HPPercentage.color = Color.blue;
         }
 
         if (pStats.PlayerTemperature < 25)
@@ -453,6 +471,9 @@ public class Player : MonoBehaviour
 
         pStatsUI.HPPercentage.text = " " + pStats.percHP.ToString("0.00") + "%";
         pStatsUI.BodyTemperature.text = pStats.PlayerTemperature.ToString("0.00") + " °C";
+
+        FrostEffect.Instance.FrostAmount = 0.6f - pStats.PlayerTemperature / 100;
+
         pStatsUI.EnvironmentTemperature.text = "273K";
 
         pStatsUI.StaminaBar.localScale = new Vector3(pStats.curStamina / pStats.maxStamina, 1, 1);

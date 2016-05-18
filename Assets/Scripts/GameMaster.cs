@@ -194,6 +194,9 @@ public class GameMaster : MonoBehaviour {
         isMenuActive = false;
 
         LoadingScreen.SetActive(false);
+        GameObject frostEff = GameObject.Find("FrostEffect");
+        frostEff.SetActive(false);
+        frostEff.SetActive(true);
 
         yield break;
     }

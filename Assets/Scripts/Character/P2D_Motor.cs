@@ -207,6 +207,12 @@ public class P2D_Motor : MonoBehaviour
         if (IsStaggered)
             return;
 
+        if (Player.Instance.pStats.PlayerTemperature == 20)
+        {
+            P2D_Animator.Instance.moveSpeed = 0;
+            return;
+        }
+
         if (!Grounded)
         {
             sprint = false;
@@ -232,6 +238,8 @@ public class P2D_Motor : MonoBehaviour
 
             // Multiply the speed if sprinting by the sprintSpeed multiplier
             move = (sprint ? move * m_SprintSpeed : move);
+
+            move *= Mathf.Clamp(Player.Instance.LowTemperatureSpeedModifier * (Player.Instance.pStats.PlayerTemperature - 20), Player.Instance.LowTemperatureSpeedModifier, 1);
 
             P2D_Animator.Instance.SetStateSprint(sprint);
 
