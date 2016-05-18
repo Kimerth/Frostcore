@@ -18,7 +18,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Frostcore
-   &#160;<span id="projectnumber">0.31a</span>
+   &#160;<span id="projectnumber">0.42f</span>
    </div>
    <div id="projectbrief">2D ARPG SC-FI</div>
   </td>
@@ -93,17 +93,18 @@
 <li>random
 : <a class="el" href="class_procedural_world_1_1_procedural_prefab.html#a238551b8bbe80610769c5bc8ffcac4fd">ProceduralWorld.ProceduralPrefab</a>
 </li>
+<li>randomFillPercent
+: <a class="el" href="class_map_generator.html#a7fbd982f3d0a20228f1afb586664e286">MapGenerator</a>
+</li>
 <li>randomStep
 : <a class="el" href="class_pathfinding_1_1_alternative_path.html#a8cd852f91eeae1821905936207220b39">Pathfinding.AlternativePath</a>
 </li>
 <li>Range
-: <a class="el" href="class_item2_d_pick_up.html#aa20735a644d47f56e05db9d59f24f783">Item2DPickUp</a>
+: <a class="el" href="class_p2_d_i___destroy_block.html#a9bb4b8877e67d59bbaf8baee8d47a9c4">P2DI_DestroyBlock</a>
+, <a class="el" href="class_p2_d_i___place_block.html#a50acce8627eef64e524d8cd7e0711901">P2DI_PlaceBlock</a>
 </li>
 <li>range
 : <a class="el" href="class_procedural_world.html#a01525bc08904b82f9fec62dd9a0952ac">ProceduralWorld</a>
-</li>
-<li>RangedType
-: <a class="el" href="class_item.html#ad91546069700d4c127f2175d426d5fa5">Item</a>
 </li>
 <li>Raycast()
 : <a class="el" href="class_pathfinding_1_1_graph_collision.html#ab119f59f8bbaff1cd2f8eddb63a7643c">Pathfinding.GraphCollision</a>
@@ -186,9 +187,6 @@
 <li>RecieveHeat()
 : <a class="el" href="class_player.html#a25e18ae04d7958ac34fc72ec756e49dd">Player</a>
 </li>
-<li>rectTransform
-: <a class="el" href="struct_inventory_display_1_1_dragged_item.html#a26bc2f83758f2fdc81e2d835bfdc0843">InventoryDisplay.DraggedItem</a>
-</li>
 <li>recursive
 : <a class="el" href="class_pathfinding_1_1_point_graph.html#ada935a5bb9e71d2b5db0a85c7909e1bd">Pathfinding.PointGraph</a>
 </li>
@@ -204,8 +202,14 @@
 <li>referenceMesh
 : <a class="el" href="class_pathfinding_1_1_animation_link.html#a95b158a344ad7f24d7e97fb7d6f72ca1">Pathfinding.AnimationLink</a>
 </li>
+<li>refPower
+: <a class="el" href="class_game_master_1_1_pre_rendered_light.html#a0e87dfefa81055c846f4c5db132d7894">GameMaster.PreRenderedLight</a>
+</li>
 <li>regenHP
 : <a class="el" href="class_player_1_1_player_stats.html#aceea94b8b67498fb38dd14210886fe53">Player.PlayerStats</a>
+</li>
+<li>regenStamina
+: <a class="el" href="class_player_1_1_player_stats.html#a0f3d897092dc0137e65821ba93ef2c82">Player.PlayerStats</a>
 </li>
 <li>RegisterSafeUpdate()
 : <a class="el" href="class_astar_path.html#a70a6104cbbb26f627c58061cc64bb14d">AstarPath</a>
@@ -235,17 +239,11 @@
 , <a class="el" href="class_pathfinding_1_1_point_node.html#a60b670c37b9a74b1f27312b7daae336b">Pathfinding.PointNode</a>
 , <a class="el" href="class_pathfinding_1_1_quadtree_node.html#a93000a9078a5c1842cc3d665659a2a95">Pathfinding.QuadtreeNode</a>
 </li>
-<li>RemoveFromHotbar()
-: <a class="el" href="class_equipment_slot.html#aa3fc45fcfb87481d2c7f5acecfe17c53">EquipmentSlot</a>
-</li>
 <li>RemoveGraph()
 : <a class="el" href="class_pathfinding_1_1_astar_data.html#a916892e16f6fc171bb33a690d14a0747">Pathfinding.AstarData</a>
 </li>
 <li>RemoveID()
 : <a class="el" href="class_pathfinding_1_1_editor_g_u_i_layoutx.html#adb4da90cf2d192a4e01fa78b1bc9766f">Pathfinding.EditorGUILayoutx</a>
-</li>
-<li>RemoveItem()
-: <a class="el" href="class_inventory.html#ac17d7531e01dbecf1179820e1124c912">Inventory</a>
 </li>
 <li>RemoveObject()
 : <a class="el" href="class_object_placer.html#ac27003cb3901389dfba7005c7ec8b48e">ObjectPlacer</a>
@@ -289,6 +287,12 @@
 <li>ResetCosts()
 : <a class="el" href="class_pathfinding_1_1_a_b_path.html#a148fe28313134ba6299ad718b4bac2d7">Pathfinding.ABPath</a>
 </li>
+<li>ResetDinamicMatrix()
+: <a class="el" href="class_game_master_1_1_map_light.html#a207d2b449d36adddc81d20c29f163350">GameMaster.MapLight</a>
+</li>
+<li>ResetEnergy()
+: <a class="el" href="class_player_1_1_energy_cells.html#a399b1ae435c1da5ce8e1d2bd4b8cec82">Player.EnergyCells</a>
+</li>
 <li>ResetHP()
 : <a class="el" href="class_enemy_1_1_enemy_stats.html#a349aa3fc858273285b5635f615bc8709">Enemy.EnemyStats</a>
 , <a class="el" href="class_player_1_1_player_stats.html#aa69b54972233295790a82b2942613a82">Player.PlayerStats</a>
@@ -296,6 +300,9 @@
 <li>resetPenaltyOnPhysics
 : <a class="el" href="class_pathfinding_1_1_graph_update_object.html#a7462e9e4ec8d6831c65213306cd41baa">Pathfinding.GraphUpdateObject</a>
 , <a class="el" href="class_pathfinding_1_1_graph_update_scene.html#a2e5a90ba152debe499b9cd59cf5b531d">Pathfinding.GraphUpdateScene</a>
+</li>
+<li>ResetStamina()
+: <a class="el" href="class_player_1_1_player_stats.html#afb415a5e04439ad92c0c30f36f0cac3d">Player.PlayerStats</a>
 </li>
 <li>ResetTemperature()
 : <a class="el" href="class_player_1_1_player_stats.html#a752b37c4b7265bc81aec3479b6183be7">Player.PlayerStats</a>
@@ -351,7 +358,7 @@
 : <a class="el" href="class_arm_rotation.html#a3b791af78cd79f119a790f0a81967266">ArmRotation</a>
 </li>
 <li>RoundToInt()
-: <a class="el" href="class_pathfinding_1_1_astar_math.html#a968721714056868d9e2d1eb8b88ac2f1">Pathfinding.AstarMath</a>
+: <a class="el" href="class_pathfinding_1_1_astar_math.html#a5e8e89f67f4f111f2408e47d3fde2757">Pathfinding.AstarMath</a>
 </li>
 <li>RoundVector3()
 : <a class="el" href="class_pathfinding_1_1_grid_graph_editor.html#ab5f6f4dd882fb1b0b0538ac45960d444">Pathfinding.GridGraphEditor</a>
@@ -375,7 +382,7 @@
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Jan 18 2016 19:28:56 for Frostcore by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed May 18 2016 15:51:35 for Frostcore by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

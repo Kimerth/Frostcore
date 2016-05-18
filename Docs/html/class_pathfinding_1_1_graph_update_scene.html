@@ -18,7 +18,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Frostcore
-   &#160;<span id="projectnumber">0.31a</span>
+   &#160;<span id="projectnumber">0.42f</span>
    </div>
    <div id="projectbrief">2D ARPG SC-FI</div>
   </td>
@@ -60,7 +60,7 @@
 </div><!--header-->
 <div class="contents">
 
-<p>Helper class for easily updating graphs.  
+<p><a class="el" href="class_helper.html">Helper</a> class for easily updating graphs.  
  <a href="class_pathfinding_1_1_graph_update_scene.html#details">More...</a></p>
 
 <p>Inherits <a class="el" href="class_pathfinding_1_1_graph_modifier.html">Pathfinding.GraphModifier</a>.</p>
@@ -201,7 +201,7 @@ Additional Inherited Members</h2></td></tr>
 <tr class="separator:a4c1ff0d316418b9ca1833d87b61aaede inherit pro_methods_class_pathfinding_1_1_graph_modifier"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Helper class for easily updating graphs. </p>
+<div class="textblock"><p><a class="el" href="class_helper.html">Helper</a> class for easily updating graphs. </p>
 <p>The <a class="el" href="class_pathfinding_1_1_graph_update_scene.html" title="Helper class for easily updating graphs. ">GraphUpdateScene</a> component is really easy to use. Create a new empty GameObject and add the component to it, it can be found in Components&ndash;&gt;<a class="el" href="namespace_pathfinding.html">Pathfinding</a>&ndash;&gt;<a class="el" href="class_pathfinding_1_1_graph_update_scene.html" title="Helper class for easily updating graphs. ">GraphUpdateScene</a>.<br />
 When you have added the component, you should see something like the image below. {graphUpdateScene.png} The area which the component will affect is defined by creating a polygon in the scene. If you make sure you have the Position tool enabled (top-left corner of the Unity window) you can shift-click in the scene view to add more points to the polygon. You can remove points using shift-alt-click. By clicking on the points you can bring up a positioning tool. You can also open the "points" array in the inspector to set each point's coordinates. {graphUpdateScenePoly.png} In the inspector there are a number of variables. The first one is named "Convex", it sets if the convex hull of the points should be calculated or if the polygon should be used as-is. Using the convex hull is faster when applying the changes to the graph, but with a non-convex polygon you can specify more complicated areas.<br />
 The next two variables, called "Apply On Start" and "Apply On Scan" determine when to apply the changes. If the object is in the scene from the beginning, both can be left on, it doesn't matter since the graph is also scanned at start. However if you instantiate it later in the game, you can make it apply it's setting directly, or wait until the next scan (if any). If the graph is rescanned, all <a class="el" href="class_pathfinding_1_1_graph_update_scene.html" title="Helper class for easily updating graphs. ">GraphUpdateScene</a> components which have the Apply On Scan variable toggled will apply their settings again to the graph since rescanning clears all previous changes.<br />
@@ -700,7 +700,7 @@ When updateErosion=False, all nodes walkability are simply set to be walkable in
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Jan 18 2016 19:28:56 for Frostcore by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed May 18 2016 15:51:34 for Frostcore by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

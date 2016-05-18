@@ -18,7 +18,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Frostcore
-   &#160;<span id="projectnumber">0.31a</span>
+   &#160;<span id="projectnumber">0.42f</span>
    </div>
    <div id="projectbrief">2D ARPG SC-FI</div>
   </td>
@@ -56,7 +56,8 @@
   </div>
   <div id="navrow4" class="tabs3">
     <ul class="tablist">
-      <li><a href="functions_func.html#index_a"><span>a</span></a></li>
+      <li><a href="functions_func.html#index__"><span>_</span></a></li>
+      <li><a href="functions_func_a.html#index_a"><span>a</span></a></li>
       <li><a href="functions_func_b.html#index_b"><span>b</span></a></li>
       <li class="current"><a href="functions_func_c.html#index_c"><span>c</span></a></li>
       <li><a href="functions_func_d.html#index_d"><span>d</span></a></li>
@@ -187,6 +188,7 @@
 , <a class="el" href="class_pathfinding_1_1_util_1_1_list_pool.html#ab980c021d69768c965b1b2a6e5e4088b">Pathfinding.Util.ListPool&lt; T &gt;</a>
 , <a class="el" href="class_pathfinding_1_1_util_1_1_object_pool.html#a5657290abf997875ecd033aa62233310">Pathfinding.Util.ObjectPool&lt; T &gt;</a>
 , <a class="el" href="class_pathfinding_1_1_util_1_1_stack_pool.html#ac8a8ddb27273dabbef03b4c6a1212b1a">Pathfinding.Util.StackPool&lt; T &gt;</a>
+, <a class="el" href="class_unmanaged2_d_float_matrix.html#adaf36950a58a4b1ec68d1ad1699eda3f">Unmanaged2DFloatMatrix</a>
 </li>
 <li>ClearConnections()
 : <a class="el" href="class_pathfinding_1_1_graph_node.html#a999ec09df07a4672ff9258f6a398c599">Pathfinding.GraphNode</a>
@@ -196,18 +198,13 @@
 , <a class="el" href="class_pathfinding_1_1_quadtree_node.html#af9b5383f5b1a9220afa507d1f09e738a">Pathfinding.QuadtreeNode</a>
 </li>
 <li>ClearDraggedItem()
-: <a class="el" href="class_equipment_slot.html#a643d16f9a0823c14a92904269aaa5ccf">EquipmentSlot</a>
-, <a class="el" href="class_inventory_display.html#a47a464497b1c2db33e2aa7a6b890ca32">InventoryDisplay</a>
-, <a class="el" href="class_item_icon.html#ada07090126fd0e1bddf0a761acfc74f5">ItemIcon</a>
+: <a class="el" href="class_inventory_1_1_dragged_item.html#ab0d4bc7413033d3cf7ce1dd1cf353ee8">Inventory.DraggedItem</a>
 </li>
 <li>ClearFadeAreaStack()
 : <a class="el" href="class_pathfinding_1_1_editor_g_u_i_layoutx.html#a77c5ae235c420b2b2cea011187747cf0">Pathfinding.EditorGUILayoutx</a>
 </li>
 <li>ClearPathIDs()
 : <a class="el" href="class_pathfinding_1_1_path_handler.html#aef570f832fb0689d61775923c5643440">Pathfinding.PathHandler</a>
-</li>
-<li>ClearSlot()
-: <a class="el" href="class_equipment_slot.html#a402fb29f9e274d52dde7e8145dc91650">EquipmentSlot</a>
 </li>
 <li>CloseDeserialize()
 : <a class="el" href="class_pathfinding_1_1_serialization_1_1_astar_serializer.html#a4489588e9b1f582de3b4f6c230800c7e">Pathfinding.Serialization.AstarSerializer</a>
@@ -251,12 +248,15 @@
 </li>
 <li>ContainsPoint()
 : <a class="el" href="class_pathfinding_1_1_mesh_node.html#aff723cb8bd2993eaf21ee552c9418d5a">Pathfinding.MeshNode</a>
-, <a class="el" href="class_pathfinding_1_1_nav_mesh_graph.html#a835dcd265393583f0ce5d20b46bc95ea">Pathfinding.NavMeshGraph</a>
-, <a class="el" href="class_pathfinding_1_1_polygon.html#ab62912a84c412991ce708f8a5f63c3f4">Pathfinding.Polygon</a>
+, <a class="el" href="class_pathfinding_1_1_nav_mesh_graph.html#a8ea2160e194a24f5e6617cbcaafbaa77">Pathfinding.NavMeshGraph</a>
+, <a class="el" href="class_pathfinding_1_1_polygon.html#a2a7f07c1d7320dd2a7c02d1e761008be">Pathfinding.Polygon</a>
 , <a class="el" href="class_pathfinding_1_1_triangle_mesh_node.html#a6ab01032953397c2644cec7ebaf4116b">Pathfinding.TriangleMeshNode</a>
 </li>
 <li>Control()
 : <a class="el" href="class_pathfinding_1_1_profile.html#a72a8d5f057bdeef38bd6a62b13f0d893">Pathfinding.Profile</a>
+</li>
+<li>ControlNode()
+: <a class="el" href="class_light_mesh_1_1_control_node.html#aa18998e2628ecb286d57d508fad73820">LightMesh.ControlNode</a>
 </li>
 <li>ControlValue()
 : <a class="el" href="class_pathfinding_1_1_profile.html#afa36fabb650fecde81d57330d08c819c">Pathfinding.Profile</a>
@@ -269,6 +269,9 @@
 </li>
 <li>ConvexMeshNode()
 : <a class="el" href="class_pathfinding_1_1_convex_mesh_node.html#a3582c6cdb1536b688483dd1810bbecbb">Pathfinding.ConvexMeshNode</a>
+</li>
+<li>Coord()
+: <a class="el" href="struct_game_master_1_1_coord.html#ab0f0a77eb54e5b7a4bb3e013c52e5516">GameMaster.Coord</a>
 </li>
 <li>CountChildren()
 : <a class="el" href="class_pathfinding_1_1_point_graph.html#a4537c6002eef998cd229a3b05af74dc5">Pathfinding.PointGraph</a>
@@ -301,7 +304,7 @@
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Jan 18 2016 19:28:56 for Frostcore by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed May 18 2016 15:51:35 for Frostcore by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

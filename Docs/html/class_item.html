@@ -18,7 +18,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Frostcore
-   &#160;<span id="projectnumber">0.31a</span>
+   &#160;<span id="projectnumber">0.42f</span>
    </div>
    <div id="projectbrief">2D ARPG SC-FI</div>
   </td>
@@ -48,7 +48,7 @@
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="class_item-members.html">List of all members</a>  </div>
   <div class="headertitle">
@@ -58,234 +58,253 @@
 
 <p>Inherits MonoBehaviour.</p>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
-Public Member Functions</h2></td></tr>
-<tr class="memitem:a30d23f60cc8783c40917a8cf63dbb8b1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_item.html#a30d23f60cc8783c40917a8cf63dbb8b1">PickUpItem</a> ()</td></tr>
-<tr class="separator:a30d23f60cc8783c40917a8cf63dbb8b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae5c51ba4b7541b3bbc0e0ff1718e0ac6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_item.html#ae5c51ba4b7541b3bbc0e0ff1718e0ac6">MoveMeToThePlayer</a> (Transform itemHolderObject)</td></tr>
-<tr class="separator:ae5c51ba4b7541b3bbc0e0ff1718e0ac6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae38d55a3b9db450d023c36a4cb53bb34"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_item.html#ae38d55a3b9db450d023c36a4cb53bb34">DropMeFromThePlayer</a> (bool makeDuplicate)</td></tr>
-<tr class="separator:ae38d55a3b9db450d023c36a4cb53bb34"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae54bcecf18e6d760fde988a5e2389dc4"><td class="memItemLeft" align="right" valign="top">IEnumerator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_item.html#ae54bcecf18e6d760fde988a5e2389dc4">MakeItPickable</a> ()</td></tr>
-<tr class="separator:ae54bcecf18e6d760fde988a5e2389dc4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
+Public Types</h2></td></tr>
+<tr class="memitem:ab5eeb575e9d66ebcfef9b58b667fad05"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_item.html#ab5eeb575e9d66ebcfef9b58b667fad05">ItemType</a> { <a class="el" href="class_item.html#ab5eeb575e9d66ebcfef9b58b667fad05ad421fd439cd14456726791338b3b397e">ItemType.Tool</a>, 
+<a class="el" href="class_item.html#ab5eeb575e9d66ebcfef9b58b667fad05a18c83669920215a818638ad0e5421e4b">ItemType.Weapon</a>, 
+<a class="el" href="class_item.html#ab5eeb575e9d66ebcfef9b58b667fad05a25510a243582b6d2cb071f223eafdffc">ItemType.Gun</a>, 
+<a class="el" href="class_item.html#ab5eeb575e9d66ebcfef9b58b667fad05a85c2d3deebea5d53a3cb7eb4aa2c6612">ItemType.Itemblock</a>
+ }</td></tr>
+<tr class="separator:ab5eeb575e9d66ebcfef9b58b667fad05"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af382bd88dddb83337fe21e9ec0e30356"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_item.html#af382bd88dddb83337fe21e9ec0e30356">ItemSubType</a> { <a class="el" href="class_item.html#af382bd88dddb83337fe21e9ec0e30356a524b64722661b303ed5754c492c0ef14">ItemSubType.Pistol</a>, 
+<a class="el" href="class_item.html#af382bd88dddb83337fe21e9ec0e30356a160fe77b37f21af0891f50091de9adb4">ItemSubType.Pickaxe</a>, 
+<a class="el" href="class_item.html#af382bd88dddb83337fe21e9ec0e30356a6adf97f83acf6453d4a6a4b1070f3754">ItemSubType.None</a>
+ }</td></tr>
+<tr class="separator:af382bd88dddb83337fe21e9ec0e30356"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a500bc159cd8cba56e3066a341344c499"><td class="memItemLeft" align="right" valign="top">Sprite&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_item.html#a500bc159cd8cba56e3066a341344c499">itemIcon</a></td></tr>
-<tr class="separator:a500bc159cd8cba56e3066a341344c499"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5cf6556e73c85af67ad9b9c745bbe966"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_item.html#a5cf6556e73c85af67ad9b9c745bbe966">canGet</a> = true</td></tr>
-<tr class="separator:a5cf6556e73c85af67ad9b9c745bbe966"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8626cf4f7204136485934370585f07ff"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_item.html#a8626cf4f7204136485934370585f07ff">isUsable</a></td></tr>
-<tr class="separator:a8626cf4f7204136485934370585f07ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adebd8aceb727a5277e0fe1e5c6d8b191"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_item.html#adebd8aceb727a5277e0fe1e5c6d8b191">Weight</a> = 0</td></tr>
+<tr class="memitem:aecffb7791f8bc6de473b87d56f31f94f"><td class="memItemLeft" align="right" valign="top">Sprite&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_item.html#aecffb7791f8bc6de473b87d56f31f94f">Icon</a></td></tr>
+<tr class="separator:aecffb7791f8bc6de473b87d56f31f94f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aab24cfb4fb684aa5e3697b42f7c37f35"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_item.html#aab24cfb4fb684aa5e3697b42f7c37f35">Name</a></td></tr>
+<tr class="separator:aab24cfb4fb684aa5e3697b42f7c37f35"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adebd8aceb727a5277e0fe1e5c6d8b191"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_item.html#adebd8aceb727a5277e0fe1e5c6d8b191">Weight</a></td></tr>
+<tr class="memdesc:adebd8aceb727a5277e0fe1e5c6d8b191"><td class="mdescLeft">&#160;</td><td class="mdescRight">The mass of each unit of this item in KG.  <a href="#adebd8aceb727a5277e0fe1e5c6d8b191">More...</a><br /></td></tr>
 <tr class="separator:adebd8aceb727a5277e0fe1e5c6d8b191"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab48cda7847b1ed0a54d8973500088925"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_item.html#ab48cda7847b1ed0a54d8973500088925">stackable</a> = false</td></tr>
-<tr class="separator:ab48cda7847b1ed0a54d8973500088925"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6e35aa31ca611fa855542433cc7adbc8"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_item.html#a6e35aa31ca611fa855542433cc7adbc8">maxStack</a> = 0</td></tr>
-<tr class="separator:a6e35aa31ca611fa855542433cc7adbc8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a87032523d0721bc622ae3d37452f78b8"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_item.html#a87032523d0721bc622ae3d37452f78b8">stack</a> = 0</td></tr>
-<tr class="separator:a87032523d0721bc622ae3d37452f78b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a64fab61ff53795c265198704a69047bb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_item_8cs.html#a272cb25a2467fc9f7d378ae2563ec970">InventoryEquipSlot</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_item.html#a64fab61ff53795c265198704a69047bb">EquipSlot</a></td></tr>
-<tr class="separator:a64fab61ff53795c265198704a69047bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab713ce256367a8de96db728ee17ddb5e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_item_8cs.html#a9106a53cb741d2b651ac1415504bb150">MeleeTypes</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_item.html#ab713ce256367a8de96db728ee17ddb5e">MeleeType</a></td></tr>
-<tr class="separator:ab713ce256367a8de96db728ee17ddb5e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad91546069700d4c127f2175d426d5fa5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_item_8cs.html#af06714b54b715df8de7c9ec2112779d3">RangedTypes</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_item.html#ad91546069700d4c127f2175d426d5fa5">RangedType</a></td></tr>
-<tr class="separator:ad91546069700d4c127f2175d426d5fa5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aeffc563444dc78b2e229cb1fa2bbdf36"><td class="memItemLeft" align="right" valign="top">GameObject&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_item.html#aeffc563444dc78b2e229cb1fa2bbdf36">equippedWeaponVersion</a></td></tr>
-<tr class="separator:aeffc563444dc78b2e229cb1fa2bbdf36"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a53937dbe5325b6e11d4f4b98d58e2cca"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_equipment_effect.html">EquipmentEffect</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_item.html#a53937dbe5325b6e11d4f4b98d58e2cca">equipmentEffect</a></td></tr>
-<tr class="separator:a53937dbe5325b6e11d4f4b98d58e2cca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adbecc774c576b08f57f32655acf7363d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_item.html#ab5eeb575e9d66ebcfef9b58b667fad05">ItemType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_item.html#adbecc774c576b08f57f32655acf7363d">itemType</a></td></tr>
+<tr class="separator:adbecc774c576b08f57f32655acf7363d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a433fa0c5f9d2cd9271db0dee73a4ebdd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_item.html#af382bd88dddb83337fe21e9ec0e30356">ItemSubType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_item.html#a433fa0c5f9d2cd9271db0dee73a4ebdd">itemSubType</a></td></tr>
+<tr class="separator:a433fa0c5f9d2cd9271db0dee73a4ebdd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9bb8b7d4f5a5a3242136bd49eb2833da"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_item.html#a9bb8b7d4f5a5a3242136bd49eb2833da">ID</a></td></tr>
+<tr class="memdesc:a9bb8b7d4f5a5a3242136bd49eb2833da"><td class="mdescLeft">&#160;</td><td class="mdescRight">Corresponding ID of this <a class="el" href="class_item.html">Item</a>.  <a href="#a9bb8b7d4f5a5a3242136bd49eb2833da">More...</a><br /></td></tr>
+<tr class="separator:a9bb8b7d4f5a5a3242136bd49eb2833da"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae8d523b6853a05049f1adcfba951134b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_item.html#ae8d523b6853a05049f1adcfba951134b">Count</a></td></tr>
+<tr class="memdesc:ae8d523b6853a05049f1adcfba951134b"><td class="mdescLeft">&#160;</td><td class="mdescRight">How many of this item are stacked together  <a href="#ae8d523b6853a05049f1adcfba951134b">More...</a><br /></td></tr>
+<tr class="separator:ae8d523b6853a05049f1adcfba951134b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad7b927bcd65ef32f88878fbbe89f12f2"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_item.html#ad7b927bcd65ef32f88878fbbe89f12f2">MaxStack</a></td></tr>
+<tr class="memdesc:ad7b927bcd65ef32f88878fbbe89f12f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">The limit of how many this item can be stacked together  <a href="#ad7b927bcd65ef32f88878fbbe89f12f2">More...</a><br /></td></tr>
+<tr class="separator:ad7b927bcd65ef32f88878fbbe89f12f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1eccf0b9e7a5a8a6ad8170120490754c"><td class="memItemLeft" align="right" valign="top">GameObject&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_item.html#a1eccf0b9e7a5a8a6ad8170120490754c">EquippedPrefab</a></td></tr>
+<tr class="memdesc:a1eccf0b9e7a5a8a6ad8170120490754c"><td class="mdescLeft">&#160;</td><td class="mdescRight">The equipped object prefab; to make sure it looks right in-game  <a href="#a1eccf0b9e7a5a8a6ad8170120490754c">More...</a><br /></td></tr>
+<tr class="separator:a1eccf0b9e7a5a8a6ad8170120490754c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7810007cefc8030e11b681a141f13dd7"><td class="memItemLeft" align="right" valign="top">Vector3&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_item.html#a7810007cefc8030e11b681a141f13dd7">EquippedPrefabScale</a></td></tr>
+<tr class="separator:a7810007cefc8030e11b681a141f13dd7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a50d2e21cb4ebdcf5f35c91080893a619"><td class="memItemLeft" align="right" valign="top">GameObject&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_item.html#a50d2e21cb4ebdcf5f35c91080893a619">ItemPlacement</a></td></tr>
+<tr class="memdesc:a50d2e21cb4ebdcf5f35c91080893a619"><td class="mdescLeft">&#160;</td><td class="mdescRight">If the item is placeble, it must have a placement prefab; to make sure it looks right in-game  <a href="#a50d2e21cb4ebdcf5f35c91080893a619">More...</a><br /></td></tr>
+<tr class="separator:a50d2e21cb4ebdcf5f35c91080893a619"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6ab995f3b67cbd469a5fd037283a04b3"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_item.html#a6ab995f3b67cbd469a5fd037283a04b3">Description</a></td></tr>
+<tr class="memdesc:a6ab995f3b67cbd469a5fd037283a04b3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Some lore.  <a href="#a6ab995f3b67cbd469a5fd037283a04b3">More...</a><br /></td></tr>
+<tr class="separator:a6ab995f3b67cbd469a5fd037283a04b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="ae38d55a3b9db450d023c36a4cb53bb34"></a>
+<h2 class="groupheader">Member Enumeration Documentation</h2>
+<a class="anchor" id="af382bd88dddb83337fe21e9ec0e30356"></a>
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void Item.DropMeFromThePlayer </td>
-          <td>(</td>
-          <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>makeDuplicate</em></td><td>)</td>
-          <td></td>
+          <td class="memname">enum <a class="el" href="class_item.html#af382bd88dddb83337fe21e9ec0e30356">Item.ItemSubType</a></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">strong</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a class="anchor" id="af382bd88dddb83337fe21e9ec0e30356a524b64722661b303ed5754c492c0ef14"></a>Pistol&#160;</td><td class="fielddoc">
+</td></tr>
+<tr><td class="fieldname"><a class="anchor" id="af382bd88dddb83337fe21e9ec0e30356a160fe77b37f21af0891f50091de9adb4"></a>Pickaxe&#160;</td><td class="fielddoc">
+</td></tr>
+<tr><td class="fieldname"><a class="anchor" id="af382bd88dddb83337fe21e9ec0e30356a6adf97f83acf6453d4a6a4b1070f3754"></a>None&#160;</td><td class="fielddoc">
+</td></tr>
+</table>
 
 </div>
 </div>
-<a class="anchor" id="ae54bcecf18e6d760fde988a5e2389dc4"></a>
+<a class="anchor" id="ab5eeb575e9d66ebcfef9b58b667fad05"></a>
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">IEnumerator Item.MakeItPickable </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
+          <td class="memname">enum <a class="el" href="class_item.html#ab5eeb575e9d66ebcfef9b58b667fad05">Item.ItemType</a></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">strong</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="ae5c51ba4b7541b3bbc0e0ff1718e0ac6"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Item.MoveMeToThePlayer </td>
-          <td>(</td>
-          <td class="paramtype">Transform&#160;</td>
-          <td class="paramname"><em>itemHolderObject</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a30d23f60cc8783c40917a8cf63dbb8b1"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Item.PickUpItem </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a class="anchor" id="ab5eeb575e9d66ebcfef9b58b667fad05ad421fd439cd14456726791338b3b397e"></a>Tool&#160;</td><td class="fielddoc">
+</td></tr>
+<tr><td class="fieldname"><a class="anchor" id="ab5eeb575e9d66ebcfef9b58b667fad05a18c83669920215a818638ad0e5421e4b"></a>Weapon&#160;</td><td class="fielddoc">
+</td></tr>
+<tr><td class="fieldname"><a class="anchor" id="ab5eeb575e9d66ebcfef9b58b667fad05a25510a243582b6d2cb071f223eafdffc"></a>Gun&#160;</td><td class="fielddoc">
+</td></tr>
+<tr><td class="fieldname"><a class="anchor" id="ab5eeb575e9d66ebcfef9b58b667fad05a85c2d3deebea5d53a3cb7eb4aa2c6612"></a>Itemblock&#160;</td><td class="fielddoc">
+</td></tr>
+</table>
 
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
-<a class="anchor" id="a5cf6556e73c85af67ad9b9c745bbe966"></a>
+<a class="anchor" id="ae8d523b6853a05049f1adcfba951134b"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">bool Item.canGet = true</td>
+          <td class="memname">int Item.Count</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>How many of this item are stacked together </p>
+
+</div>
+</div>
+<a class="anchor" id="a6ab995f3b67cbd469a5fd037283a04b3"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">string Item.Description</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Some lore. </p>
+
+</div>
+</div>
+<a class="anchor" id="a1eccf0b9e7a5a8a6ad8170120490754c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">GameObject Item.EquippedPrefab</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>The equipped object prefab; to make sure it looks right in-game </p>
+
+</div>
+</div>
+<a class="anchor" id="a7810007cefc8030e11b681a141f13dd7"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Vector3 Item.EquippedPrefabScale</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 </div>
 </div>
-<a class="anchor" id="a53937dbe5325b6e11d4f4b98d58e2cca"></a>
+<a class="anchor" id="aecffb7791f8bc6de473b87d56f31f94f"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="class_equipment_effect.html">EquipmentEffect</a> Item.equipmentEffect</td>
+          <td class="memname">Sprite Item.Icon</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 </div>
 </div>
-<a class="anchor" id="aeffc563444dc78b2e229cb1fa2bbdf36"></a>
+<a class="anchor" id="a9bb8b7d4f5a5a3242136bd49eb2833da"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">GameObject Item.equippedWeaponVersion</td>
+          <td class="memname">int Item.ID</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Corresponding ID of this <a class="el" href="class_item.html">Item</a>. </p>
+<p>Must be assigned manually </p>
+
+</div>
+</div>
+<a class="anchor" id="a50d2e21cb4ebdcf5f35c91080893a619"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">GameObject Item.ItemPlacement</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>If the item is placeble, it must have a placement prefab; to make sure it looks right in-game </p>
+
+</div>
+</div>
+<a class="anchor" id="a433fa0c5f9d2cd9271db0dee73a4ebdd"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_item.html#af382bd88dddb83337fe21e9ec0e30356">ItemSubType</a> Item.itemSubType</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 </div>
 </div>
-<a class="anchor" id="a64fab61ff53795c265198704a69047bb"></a>
+<a class="anchor" id="adbecc774c576b08f57f32655acf7363d"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="_item_8cs.html#a272cb25a2467fc9f7d378ae2563ec970">InventoryEquipSlot</a> Item.EquipSlot</td>
+          <td class="memname"><a class="el" href="class_item.html#ab5eeb575e9d66ebcfef9b58b667fad05">ItemType</a> Item.itemType</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 </div>
 </div>
-<a class="anchor" id="a8626cf4f7204136485934370585f07ff"></a>
+<a class="anchor" id="ad7b927bcd65ef32f88878fbbe89f12f2"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">bool Item.isUsable</td>
+          <td class="memname">int Item.MaxStack</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-</div>
-</div>
-<a class="anchor" id="a500bc159cd8cba56e3066a341344c499"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Sprite Item.itemIcon</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
+<p>The limit of how many this item can be stacked together </p>
 
 </div>
 </div>
-<a class="anchor" id="a6e35aa31ca611fa855542433cc7adbc8"></a>
+<a class="anchor" id="aab24cfb4fb684aa5e3697b42f7c37f35"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int Item.maxStack = 0</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="ab713ce256367a8de96db728ee17ddb5e"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="_item_8cs.html#a9106a53cb741d2b651ac1415504bb150">MeleeTypes</a> Item.MeleeType</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="ad91546069700d4c127f2175d426d5fa5"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="_item_8cs.html#af06714b54b715df8de7c9ec2112779d3">RangedTypes</a> Item.RangedType</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a87032523d0721bc622ae3d37452f78b8"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int Item.stack = 0</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="ab48cda7847b1ed0a54d8973500088925"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool Item.stackable = false</td>
+          <td class="memname">string Item.Name</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -297,10 +316,12 @@ Public Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">float Item.Weight = 0</td>
+          <td class="memname">float Item.Weight</td>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>The mass of each unit of this item in KG. </p>
 
 </div>
 </div>
@@ -310,7 +331,7 @@ Public Attributes</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Jan 18 2016 19:28:56 for Frostcore by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed May 18 2016 15:51:34 for Frostcore by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>
