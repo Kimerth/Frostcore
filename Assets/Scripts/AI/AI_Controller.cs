@@ -137,18 +137,25 @@ public class AI_Controller : MonoBehaviour
 
         Distance = Vector2.Distance(transform.position, Target.position);
 
-        if(Distance < m_LookAtRange)
+        if(Distance < m_LookAtRange && !_Motor.HasAttacked)
         {
             _Motor.LookAt(Target.position);
         }
-        if(Distance < m_AttackRange)
-        {
-            _Motor.Attack(Target);
-        }
-        else if(Distance < m_ChaseRange)
+
+        if (Distance < m_AttackRange)
+            if (!_Motor.IsAttacking && !_Motor.HasAttacked)
+                StartCoroutine(_Motor.Attack(0.75f, 0.5f));
+
+        if(Distance < m_ChaseRange && !_Motor.HasAttacked)
         {
             Vector3 dir = (path.vectorPath[currentWaypoint] - transform.position).normalized;
             _Motor.Move(dir);
+        }
+        else if(_Motor.HasAttacked)
+        {
+            Vector3 dir = (transform.position - path.vectorPath[currentWaypoint]).normalized;
+            _Motor.Move(dir);
+            _Motor.LookAt(dir);
         }
 
         if (dis < nextWaypointDistance)

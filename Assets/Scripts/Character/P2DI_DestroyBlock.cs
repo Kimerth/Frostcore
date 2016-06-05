@@ -69,16 +69,9 @@ public class P2DI_DestroyBlock : MonoBehaviour
             GameMaster.gm.Map[(int)destroyPos.x][(int)destroyPos.y].id = 0;
             Destroy(GameMaster.gm.Map[(int)destroyPos.x][(int)destroyPos.y].clone);
 
-            GameObject clone;
-
-            if(destroyPos.y > GameMaster.gm.mapGen.height)
-                clone = Instantiate(Resources.Load("Prefabs/" + GameMaster.gm.Map[(int)destroyPos.x][(int)destroyPos.y].id.ToString(), typeof(GameObject)), new Vector3((float)destroyPos.x / 2, (float)-((int)destroyPos.y - GameMaster.gm.mapGen.height) / 2), Quaternion.identity) as GameObject;
-            else
-                clone = Instantiate(Resources.Load("Prefabs/" + GameMaster.gm.Map[(int)destroyPos.x][(int)destroyPos.y].id.ToString(), typeof(GameObject)), new Vector3((float)destroyPos.x / 2, GameMaster.gm.mapGen.height / 2 - (float)destroyPos.y / 2), Quaternion.identity) as GameObject;
-
-            GameMaster.gm.Map[(int)destroyPos.x][(int)destroyPos.y].clone = clone;
+            GameMaster.gm.Map[(int)destroyPos.x][(int)destroyPos.y].clone = null;
             GameMaster.gm.Map[(int)destroyPos.x][(int)destroyPos.y].blockingAmount = 0;
-            GameMaster.gm.Map[(int)destroyPos.x][(int)destroyPos.y].spriteRenderer = clone.GetComponent<SpriteRenderer>();
+            GameMaster.gm.Map[(int)destroyPos.x][(int)destroyPos.y].spriteRenderer = null;
         }
     }
 

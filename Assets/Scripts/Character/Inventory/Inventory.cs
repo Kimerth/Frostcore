@@ -11,6 +11,11 @@ public class Inventory : MonoBehaviour
     /// </summary>
     public static Inventory Instance;
 
+    /// <summary>
+    /// Reference to the UIOverlay, for canvas scaler purposes
+    /// </summary>
+    public RectTransform UIOverlay;
+
     void Start()
     {
         Instance = this;
@@ -57,7 +62,9 @@ public class Inventory : MonoBehaviour
             clone.transform.parent = InventoryDisplay.Instance.InventoryUIReference.transform;
             clone.AddComponent<Canvas>();
             clone.GetComponent<Canvas>().overrideSorting = true;
+            clone.GetComponent<Canvas>().sortingLayerName = "UI";
             clone.GetComponent<Canvas>().sortingOrder = 20;
+            clone.transform.localScale = clone.transform.localScale * (Inventory.Instance.UIOverlay.localScale.x * 2);
             itemIcon = clone.GetComponent<RectTransform>();
 
             Inventory.Instance.StartCoroutine(UpdateDraggedItemIconPos());
@@ -91,7 +98,9 @@ public class Inventory : MonoBehaviour
                 if (itemIcon == null)
                     yield break;
 
-                itemIcon.position = new Vector2(Input.mousePosition.x + 20, Input.mousePosition.y + 20);
+                var mousePos = GameMaster.gm.mainCam.ScreenToWorldPoint(Input.mousePosition);
+
+                itemIcon.position = new Vector2(mousePos.x + 20 * (Inventory.Instance.UIOverlay.localScale.x * 1.5f), mousePos.y + 20 * (Inventory.Instance.UIOverlay.localScale.x * 1.5f));
 
                 yield return null;
             }
@@ -194,6 +203,20 @@ public class Inventory : MonoBehaviour
         StartCoroutine(ResetLayerOfItem(item));
 
         Contents.Remove(item);
+    }
+
+    public void UseItem(Item item)
+    {
+
+    }
+
+    public void EquipItem(Item item)
+    {
+        Character.Instance.WeaponInUseIndex = -1;
+
+        Character.Instance.UpdateEquipment();
+
+        Character.Instance.InstantiateWeapon(item);
     }
 
     IEnumerator ResetLayerOfItem(Item item)

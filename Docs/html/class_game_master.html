@@ -18,7 +18,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Frostcore
-   &#160;<span id="projectnumber">0.31a</span>
+   &#160;<span id="projectnumber">0.42f</span>
    </div>
    <div id="projectbrief">2D ARPG SC-FI</div>
   </td>
@@ -48,6 +48,8 @@
 </div><!-- top -->
 <div class="header">
   <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
+<a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="#pub-static-attribs">Static Public Attributes</a> &#124;
@@ -59,6 +61,30 @@
 
 <p>Inherits MonoBehaviour.</p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_game_master_1_1_coord.html">Coord</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_master_1_1_map_light.html">MapLight</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_game_master_1_1_node.html">Node</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_master_1_1_pre_rendered_light.html">PreRenderedLight</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a4fdb86b62dca344ab460d8870f1116b3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_master.html#a4fdb86b62dca344ab460d8870f1116b3">StartGame</a> ()</td></tr>
+<tr class="separator:a4fdb86b62dca344ab460d8870f1116b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a12a06bbfe1bb83ece611fc6432938097"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_master.html#a12a06bbfe1bb83ece611fc6432938097">isValidPosition</a> (<a class="el" href="struct_game_master_1_1_coord.html">Coord</a> coord)</td></tr>
+<tr class="separator:a12a06bbfe1bb83ece611fc6432938097"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a54b7c956f67aaae8f128e868617eb634"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_master.html#a54b7c956f67aaae8f128e868617eb634">isValidPositionNC</a> (int coordX, int coordY)</td></tr>
+<tr class="separator:a54b7c956f67aaae8f128e868617eb634"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac57596fd956e010e90aeafecb9c948a5"><td class="memItemLeft" align="right" valign="top">IEnumerator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_master.html#ac57596fd956e010e90aeafecb9c948a5">UpdateLight</a> (<a class="el" href="class_light_source.html">LightSource</a> source)</td></tr>
+<tr class="separator:ac57596fd956e010e90aeafecb9c948a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a54f7d0d7df820d2259371b33e5004038"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_master.html#a54f7d0d7df820d2259371b33e5004038">PreRenderLight</a> (float Power, <a class="el" href="class_light_source.html">LightSource</a> source)</td></tr>
+<tr class="separator:a54f7d0d7df820d2259371b33e5004038"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a21f46b5da1508cdbde26212cbd0708b3"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_master.html#a21f46b5da1508cdbde26212cbd0708b3">KillPlayer</a> (<a class="el" href="class_player.html">Player</a> player)</td></tr>
@@ -68,6 +94,8 @@ Static Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
+<tr class="memitem:a44a1ab1f21a0afa79e8755c3581d03c6"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_master.html#a44a1ab1f21a0afa79e8755c3581d03c6">HasGameStarted</a> = false</td></tr>
+<tr class="separator:a44a1ab1f21a0afa79e8755c3581d03c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3fbd37beb88e4395194bb440a43d67d9"><td class="memItemLeft" align="right" valign="top">Transform&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_master.html#a3fbd37beb88e4395194bb440a43d67d9">m_Player</a></td></tr>
 <tr class="separator:a3fbd37beb88e4395194bb440a43d67d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a09f56fd1553c0f3b240da4272294eaae"><td class="memItemLeft" align="right" valign="top">Transform&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_master.html#a09f56fd1553c0f3b240da4272294eaae">spawnPoint</a></td></tr>
@@ -76,8 +104,54 @@ Public Attributes</h2></td></tr>
 <tr class="separator:a1d87aa56643ac05f8b36631610bf1093"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a44d6979bb48bd6200bed3e40c1e03eef"><td class="memItemLeft" align="right" valign="top">Transform&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_master.html#a44d6979bb48bd6200bed3e40c1e03eef">spawnPrefab</a></td></tr>
 <tr class="separator:a44d6979bb48bd6200bed3e40c1e03eef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2eb15861f07b1f49f71f7ead6fa451ef"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_master.html#a2eb15861f07b1f49f71f7ead6fa451ef">mobSpawnDelay</a> = 20f</td></tr>
+<tr class="separator:a2eb15861f07b1f49f71f7ead6fa451ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9ab3d4c115390ac9c882d2eaec00dba0"><td class="memItemLeft" align="right" valign="top">GameObject&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_master.html#a9ab3d4c115390ac9c882d2eaec00dba0">Enemy</a></td></tr>
+<tr class="separator:a9ab3d4c115390ac9c882d2eaec00dba0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a164eff3e95380208930b5a3eb604b169"><td class="memItemLeft" align="right" valign="top">Transform&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_master.html#a164eff3e95380208930b5a3eb604b169">mobSpawn1</a></td></tr>
+<tr class="separator:a164eff3e95380208930b5a3eb604b169"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad621337885b74c4a8e71c19e7b7b2130"><td class="memItemLeft" align="right" valign="top">Transform&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_master.html#ad621337885b74c4a8e71c19e7b7b2130">mobSpawn2</a></td></tr>
+<tr class="separator:ad621337885b74c4a8e71c19e7b7b2130"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a58739ed5fd31015be6892320a97e82d8"><td class="memItemLeft" align="right" valign="top">Transform&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_master.html#a58739ed5fd31015be6892320a97e82d8">mobSpawn3</a></td></tr>
+<tr class="separator:a58739ed5fd31015be6892320a97e82d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a66c3e39125d066fd4b1b263593cf83c8"><td class="memItemLeft" align="right" valign="top">Transform&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_master.html#a66c3e39125d066fd4b1b263593cf83c8">mobSpawn4</a></td></tr>
+<tr class="separator:a66c3e39125d066fd4b1b263593cf83c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0ba20dfbb34767608aa643b66e8ae706"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_camera_shake.html">CameraShake</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_master.html#a0ba20dfbb34767608aa643b66e8ae706">camShake</a></td></tr>
 <tr class="separator:a0ba20dfbb34767608aa643b66e8ae706"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5b5e4affdf3e063e07ac429d18a9365c"><td class="memItemLeft" align="right" valign="top">GameObject&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_master.html#a5b5e4affdf3e063e07ac429d18a9365c">Hotbar</a></td></tr>
+<tr class="separator:a5b5e4affdf3e063e07ac429d18a9365c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3fe554fd0521ac0ea3f836af0b5cba45"><td class="memItemLeft" align="right" valign="top">GameObject&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_master.html#a3fe554fd0521ac0ea3f836af0b5cba45">PlayerInfo</a></td></tr>
+<tr class="separator:a3fe554fd0521ac0ea3f836af0b5cba45"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6007ff67bf03c08f81b6c2ee910c8126"><td class="memItemLeft" align="right" valign="top">GameObject&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_master.html#a6007ff67bf03c08f81b6c2ee910c8126">FPSCounter</a></td></tr>
+<tr class="separator:a6007ff67bf03c08f81b6c2ee910c8126"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af69d7c1561425be27c6d1b6ef46ecc6d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_master.html#af69d7c1561425be27c6d1b6ef46ecc6d">ShowFpsCounter</a></td></tr>
+<tr class="separator:af69d7c1561425be27c6d1b6ef46ecc6d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a01a92de028ee29a4e6b79909ea9109cb"><td class="memItemLeft" align="right" valign="top">GameObject&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_master.html#a01a92de028ee29a4e6b79909ea9109cb">MainMenu</a></td></tr>
+<tr class="separator:a01a92de028ee29a4e6b79909ea9109cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5fc979cd00fd153a712db3c0d7708a2b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_master.html#a5fc979cd00fd153a712db3c0d7708a2b">isMenuActive</a> = false</td></tr>
+<tr class="separator:a5fc979cd00fd153a712db3c0d7708a2b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0ae511e742ec943ab56f0e72d873c52d"><td class="memItemLeft" align="right" valign="top">GameObject&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_master.html#a0ae511e742ec943ab56f0e72d873c52d">LoadingScreen</a></td></tr>
+<tr class="separator:a0ae511e742ec943ab56f0e72d873c52d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a95bdc06a9b0bf821e3c4a4f5025a8745"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_master.html#a95bdc06a9b0bf821e3c4a4f5025a8745">gameIsStarting</a> = false</td></tr>
+<tr class="separator:a95bdc06a9b0bf821e3c4a4f5025a8745"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5a240dbf3bc9c6842137c02c925c872a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_master.html#a5a240dbf3bc9c6842137c02c925c872a">Generating</a></td></tr>
+<tr class="separator:a5a240dbf3bc9c6842137c02c925c872a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a49c45367d5c36bef03853ccbae5d22eb"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_master.html#a49c45367d5c36bef03853ccbae5d22eb">numberOfGens</a> = 0</td></tr>
+<tr class="separator:a49c45367d5c36bef03853ccbae5d22eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3ea6214ecb5926f55f2c4d1b89cac409"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_map_generator.html">MapGenerator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_master.html#a3ea6214ecb5926f55f2c4d1b89cac409">mapGen</a></td></tr>
+<tr class="separator:a3ea6214ecb5926f55f2c4d1b89cac409"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8287fdaea0ec1596190331c53f1945a1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_game_master_1_1_node.html">Node</a>[][]&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_master.html#a8287fdaea0ec1596190331c53f1945a1">Map</a></td></tr>
+<tr class="separator:a8287fdaea0ec1596190331c53f1945a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a53521a55b067de987c61cee0c68d572a"><td class="memItemLeft" align="right" valign="top">Camera&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_master.html#a53521a55b067de987c61cee0c68d572a">mainCam</a></td></tr>
+<tr class="separator:a53521a55b067de987c61cee0c68d572a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5052f9269b5843e3ed714a05a5407269"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_master.html#a5052f9269b5843e3ed714a05a5407269">AirAffection</a> = .1f</td></tr>
+<tr class="separator:a5052f9269b5843e3ed714a05a5407269"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a973bc9facbcb219504091261bc6d307c"><td class="memItemLeft" align="right" valign="top">List&lt; <a class="el" href="class_light_source.html">LightSource</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_master.html#a973bc9facbcb219504091261bc6d307c">lightSources</a></td></tr>
+<tr class="separator:a973bc9facbcb219504091261bc6d307c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6a0cccb0af4a3f341bc95d6691494ba6"><td class="memItemLeft" align="right" valign="top">List&lt; <a class="el" href="class_game_master_1_1_pre_rendered_light.html">PreRenderedLight</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_master.html#a6a0cccb0af4a3f341bc95d6691494ba6">preRenderedLightOfSources</a></td></tr>
+<tr class="separator:a6a0cccb0af4a3f341bc95d6691494ba6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7378a7ae06360bd4e989cdfcf1f88399"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_game_master_1_1_map_light.html">MapLight</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_master.html#a7378a7ae06360bd4e989cdfcf1f88399">mapLight</a></td></tr>
+<tr class="separator:a7378a7ae06360bd4e989cdfcf1f88399"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
 Static Public Attributes</h2></td></tr>
@@ -85,6 +159,48 @@ Static Public Attributes</h2></td></tr>
 <tr class="separator:a98cbae96fea43049eda4842ac609625a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a12a06bbfe1bb83ece611fc6432938097"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool GameMaster.isValidPosition </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_game_master_1_1_coord.html">Coord</a>&#160;</td>
+          <td class="paramname"><em>coord</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a54b7c956f67aaae8f128e868617eb634"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool GameMaster.isValidPositionNC </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>coordX</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>coordY</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a class="anchor" id="a87feaa0e8f190a7bb92243f1ce1afafc"></a>
 <div class="memitem">
 <div class="memproto">
@@ -133,13 +249,130 @@ Static Public Attributes</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a54f7d0d7df820d2259371b33e5004038"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void GameMaster.PreRenderLight </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>Power</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_light_source.html">LightSource</a>&#160;</td>
+          <td class="paramname"><em>source</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a4fdb86b62dca344ab460d8870f1116b3"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void GameMaster.StartGame </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ac57596fd956e010e90aeafecb9c948a5"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IEnumerator GameMaster.UpdateLight </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_light_source.html">LightSource</a>&#160;</td>
+          <td class="paramname"><em>source</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <h2 class="groupheader">Member Data Documentation</h2>
+<a class="anchor" id="a5052f9269b5843e3ed714a05a5407269"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float GameMaster.AirAffection = .1f</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a class="anchor" id="a0ba20dfbb34767608aa643b66e8ae706"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="class_camera_shake.html">CameraShake</a> GameMaster.camShake</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a9ab3d4c115390ac9c882d2eaec00dba0"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">GameObject GameMaster.Enemy</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a6007ff67bf03c08f81b6c2ee910c8126"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">GameObject GameMaster.FPSCounter</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a95bdc06a9b0bf821e3c4a4f5025a8745"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool GameMaster.gameIsStarting = false</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a5a240dbf3bc9c6842137c02c925c872a"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool GameMaster.Generating</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -166,12 +399,240 @@ Static Public Attributes</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a44a1ab1f21a0afa79e8755c3581d03c6"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool GameMaster.HasGameStarted = false</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a5b5e4affdf3e063e07ac429d18a9365c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">GameObject GameMaster.Hotbar</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a5fc979cd00fd153a712db3c0d7708a2b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool GameMaster.isMenuActive = false</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a973bc9facbcb219504091261bc6d307c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">List&lt;<a class="el" href="class_light_source.html">LightSource</a>&gt; GameMaster.lightSources</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a0ae511e742ec943ab56f0e72d873c52d"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">GameObject GameMaster.LoadingScreen</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a class="anchor" id="a3fbd37beb88e4395194bb440a43d67d9"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">Transform GameMaster.m_Player</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a53521a55b067de987c61cee0c68d572a"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Camera GameMaster.mainCam</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a01a92de028ee29a4e6b79909ea9109cb"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">GameObject GameMaster.MainMenu</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a8287fdaea0ec1596190331c53f1945a1"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_game_master_1_1_node.html">Node</a> [][] GameMaster.Map</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a3ea6214ecb5926f55f2c4d1b89cac409"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_map_generator.html">MapGenerator</a> GameMaster.mapGen</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a7378a7ae06360bd4e989cdfcf1f88399"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_game_master_1_1_map_light.html">MapLight</a> GameMaster.mapLight</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a164eff3e95380208930b5a3eb604b169"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Transform GameMaster.mobSpawn1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ad621337885b74c4a8e71c19e7b7b2130"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Transform GameMaster.mobSpawn2</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a58739ed5fd31015be6892320a97e82d8"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Transform GameMaster.mobSpawn3</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a66c3e39125d066fd4b1b263593cf83c8"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Transform GameMaster.mobSpawn4</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a2eb15861f07b1f49f71f7ead6fa451ef"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float GameMaster.mobSpawnDelay = 20f</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a49c45367d5c36bef03853ccbae5d22eb"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int GameMaster.numberOfGens = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a3fe554fd0521ac0ea3f836af0b5cba45"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">GameObject GameMaster.PlayerInfo</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a6a0cccb0af4a3f341bc95d6691494ba6"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">List&lt;<a class="el" href="class_game_master_1_1_pre_rendered_light.html">PreRenderedLight</a>&gt; GameMaster.preRenderedLightOfSources</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="af69d7c1561425be27c6d1b6ef46ecc6d"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool GameMaster.ShowFpsCounter</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -220,7 +681,7 @@ Static Public Attributes</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Jan 18 2016 19:28:56 for Frostcore by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed May 18 2016 15:51:34 for Frostcore by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

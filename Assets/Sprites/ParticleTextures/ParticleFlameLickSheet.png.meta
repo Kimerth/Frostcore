@@ -1,0 +1,218 @@
+fileFormatVersion: 2
+guid: 3587b30505d00a44c87d9c3b9d8bc35c
+timeCreated: 1461656753
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: ParticleFlameLickSheet_0
+    21300002: ParticleFlameLickSheet_1
+    21300004: ParticleFlameLickSheet_2
+    21300006: ParticleFlameLickSheet_3
+    21300008: ParticleFlameLickSheet_4
+    21300010: ParticleFlameLickSheet_5
+    21300012: ParticleFlameLickSheet_6
+    21300014: ParticleFlameLickSheet_7
+    21300016: ParticleFlameLickSheet_8
+    21300018: ParticleFlameLickSheet_9
+    21300020: ParticleFlameLickSheet_10
+    21300022: ParticleFlameLickSheet_11
+    21300024: ParticleFlameLickSheet_12
+    21300026: ParticleFlameLickSheet_13
+    21300028: ParticleFlameLickSheet_14
+    21300030: ParticleFlameLickSheet_15
+    21300032: ParticleFlameLickSheet_16
+    21300034: ParticleFlameLickSheet_17
+    21300036: ParticleFlameLickSheet_18
+    21300038: ParticleFlameLickSheet_19
+    21300040: ParticleFlameLickSheet_20
+    21300042: ParticleFlameLickSheet_21
+    21300044: ParticleFlameLickSheet_22
+    21300046: ParticleFlameLickSheet_23
+    21300048: ParticleFlameLickSheet_24
+    21300050: ParticleFlameLickSheet_25
+    21300052: ParticleFlameLickSheet_26
+    21300054: ParticleFlameLickSheet_27
+    21300056: ParticleFlameLickSheet_28
+    21300058: ParticleFlameLickSheet_29
+    21300060: ParticleFlameLickSheet_30
+    21300062: ParticleFlameLickSheet_31
+    21300064: ParticleFlameLickSheet_32
+    21300066: ParticleFlameLickSheet_33
+    21300068: ParticleFlameLickSheet_34
+    21300070: ParticleFlameLickSheet_35
+    21300072: ParticleFlameLickSheet_36
+    21300074: ParticleFlameLickSheet_37
+    21300076: ParticleFlameLickSheet_38
+    21300078: ParticleFlameLickSheet_39
+    21300080: ParticleFlameLickSheet_40
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 8
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 1024
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 1
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 0
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 0
+  textureType: 0
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: ParticleFlameLickSheet_25
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1033
+        width: 256
+        height: 241
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -64, y: 61}
+        - {x: -64, y: -60}
+        - {x: 64, y: -60}
+        - {x: 64, y: 61}
+    - name: ParticleFlameLickSheet_29
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 773
+        width: 256
+        height: 241
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -64, y: 61}
+        - {x: -64, y: -60}
+        - {x: 64, y: -60}
+        - {x: 64, y: 61}
+    - name: ParticleFlameLickSheet_33
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 508
+        width: 256
+        height: 241
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -64, y: 60.5}
+        - {x: -64, y: -60.5}
+        - {x: 64, y: -60.5}
+        - {x: 64, y: 60.5}
+    - name: ParticleFlameLickSheet_37
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 266
+        width: 256
+        height: 241
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -64, y: 60.5}
+        - {x: -64, y: -60.5}
+        - {x: 64, y: -60.5}
+        - {x: 64, y: 60.5}
+    - name: ParticleFlameLickSheet_40
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 13
+        width: 256
+        height: 241
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -64, y: 61}
+        - {x: -64, y: -60}
+        - {x: 64, y: -60}
+        - {x: 64, y: 61}
+    - name: ParticleFlameLickSheet_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1795
+        width: 256
+        height: 241
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -64, y: 61}
+        - {x: -64, y: -60}
+        - {x: 64, y: -60}
+        - {x: 64, y: 61}
+    - name: ParticleFlameLickSheet_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1530
+        width: 256
+        height: 241
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -64, y: 60.5}
+        - {x: -64, y: -60.5}
+        - {x: 64, y: -60.5}
+        - {x: 64, y: 60.5}
+    - name: ParticleFlameLickSheet_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1284
+        width: 256
+        height: 241
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -64, y: 60.5}
+        - {x: -64, y: -60.5}
+        - {x: 64, y: -60.5}
+        - {x: 64, y: 60.5}
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

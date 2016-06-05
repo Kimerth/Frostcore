@@ -18,7 +18,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Frostcore
-   &#160;<span id="projectnumber">0.31a</span>
+   &#160;<span id="projectnumber">0.42f</span>
    </div>
    <div id="projectbrief">2D ARPG SC-FI</div>
   </td>
@@ -67,7 +67,6 @@
       <li><a href="functions_vars_h.html#index_h"><span>h</span></a></li>
       <li><a href="functions_vars_i.html#index_i"><span>i</span></a></li>
       <li><a href="functions_vars_j.html#index_j"><span>j</span></a></li>
-      <li><a href="functions_vars_k.html#index_k"><span>k</span></a></li>
       <li><a href="functions_vars_l.html#index_l"><span>l</span></a></li>
       <li><a href="functions_vars_m.html#index_m"><span>m</span></a></li>
       <li><a href="functions_vars_n.html#index_n"><span>n</span></a></li>
@@ -116,9 +115,6 @@
 <li>canBreak
 : <a class="el" href="class_p2_d___controller.html#aaf5cc7c9961e9c0aff6a4bbc36bd7a4e">P2D_Controller</a>
 </li>
-<li>canGet
-: <a class="el" href="class_item.html#a5cf6556e73c85af67ad9b9c745bbe966">Item</a>
-</li>
 <li>canMove
 : <a class="el" href="class_a_i_follow.html#a1d971c0cd9b3ca80f9bca810f521fac8">AIFollow</a>
 , <a class="el" href="class_a_i_path.html#a742465edf73b968b5f975e37f242bf18">AIPath</a>
@@ -136,12 +132,24 @@
 <li>CarryWeightBar
 : <a class="el" href="class_inventory_display.html#a531b33c038193a7b2b54080a173a787f">InventoryDisplay</a>
 </li>
+<li>CeilingCheck
+: <a class="el" href="class_p2_d___motor.html#a74f185a906a2cb5509c3ea1c739cec9f">P2D_Motor</a>
+</li>
 <li>center
 : <a class="el" href="class_pathfinding_1_1_grid_graph.html#a5ade35875a2ad29c32cd9e7a41ff42b6">Pathfinding.GridGraph</a>
 , <a class="el" href="class_pathfinding_1_1_quadtree_graph.html#a26140402b5ad462d3ef7c3bb56101199">Pathfinding.QuadtreeGraph</a>
 </li>
+<li>centreTop
+: <a class="el" href="class_light_mesh_1_1_square.html#ad728f9420fdb2a91fa5260c27335c626">LightMesh.Square</a>
+</li>
+<li>Chance
+: <a class="el" href="struct_map_generator_1_1_element.html#acf326e79f9ebb5e7faec1784409b35e4">MapGenerator.Element</a>
+</li>
 <li>changedNodes
 : <a class="el" href="class_pathfinding_1_1_graph_update_object.html#a1d9f0348454ef66fe2fa7804eb47d76e">Pathfinding.GraphUpdateObject</a>
+</li>
+<li>checkAngle
+: <a class="el" href="class_lighting.html#a56b4fa427cb9548c87a799b1862ac5b3">Lighting</a>
 </li>
 <li>checkTime
 : <a class="el" href="class_dynamic_grid_obstacle.html#af69f510d79b6dfd4bb446c9e8db5dc80">DynamicGridObstacle</a>
@@ -152,6 +160,9 @@
 <li>clip
 : <a class="el" href="class_pathfinding_1_1_animation_link.html#a99230018d67da240834cf89facda6707">Pathfinding.AnimationLink</a>
 , <a class="el" href="class_pathfinding_1_1_animation_link_1_1_link_clip.html#ae8f1a7208d2110b84658ac5a80949176">Pathfinding.AnimationLink.LinkClip</a>
+</li>
+<li>clone
+: <a class="el" href="struct_game_master_1_1_node.html#a76e7ce81212a03309113e00e3c1a8ccb">GameMaster.Node</a>
 </li>
 <li>closedtag
 : <a class="el" href="class_door_controller.html#a60f26e7086ab98b6fb20e19b059533bc">DoorController</a>
@@ -170,6 +181,9 @@
 </li>
 <li>colorSettings
 : <a class="el" href="class_astar_path.html#accfda07fe53c6e743d52fbfd8b7bc6a2">AstarPath</a>
+</li>
+<li>configuration
+: <a class="el" href="class_light_mesh_1_1_square.html#a66c396282683d4afae4dcfbc13765223">LightMesh.Square</a>
 </li>
 <li>connectionCosts
 : <a class="el" href="class_pathfinding_1_1_grid_node.html#adafa05790f762c65110803c96bd98b9c">Pathfinding.GridNode</a>
@@ -208,7 +222,7 @@
 : <a class="el" href="class_pathfinding_1_1_n_n_constraint.html#ae2f8272dce8505746970fdb9b5cf3f23">Pathfinding.NNConstraint</a>
 </li>
 <li>Contents
-: <a class="el" href="class_inventory.html#ac5bfcaab2b3e1edb078b10574cfb812d">Inventory</a>
+: <a class="el" href="class_inventory.html#adb222796591a0fe84a7782ec9d0bcd3a">Inventory</a>
 </li>
 <li>controller
 : <a class="el" href="class_a_i_follow.html#a2903f3ff27f752ebc9f9458bc6fca179">AIFollow</a>
@@ -217,29 +231,22 @@
 <li>convex
 : <a class="el" href="class_pathfinding_1_1_graph_update_scene.html#ab2fdd93432cc61ce320224a415aa78a4">Pathfinding.GraphUpdateScene</a>
 </li>
-<li>copyOf
-: <a class="el" href="struct_inventory_display_1_1_dragged_item.html#a544793e141d9b4b7ff298c8a7c91ebd3">InventoryDisplay.DraggedItem</a>
-</li>
 <li>corners
 : <a class="el" href="class_pathfinding_1_1_grid_graph.html#ad1409a7ee58d06cce6f6cdeeef13d613">Pathfinding.GridGraph</a>
-</li>
-<li>CorrespondingItem
-: <a class="el" href="class_equipment_slot.html#a9fd6f411c02994a4e0217b65e383e299">EquipmentSlot</a>
-, <a class="el" href="class_item_icon.html#a8b2636fb85aba3fc4a02ee9c10fc929e">ItemIcon</a>
-</li>
-<li>CorrespondingItemPosInContents
-: <a class="el" href="class_item_icon.html#a2589c64da7ba5fbcaaf00751b7109237">ItemIcon</a>
 </li>
 <li>costFactor
 : <a class="el" href="class_pathfinding_1_1_node_link.html#ad7fb10715290fa49f940176b9fbfad73">Pathfinding.NodeLink</a>
 , <a class="el" href="class_pathfinding_1_1_node_link2.html#a7e5c30c85da4682e5c0e2d50fd98b5e3">Pathfinding.NodeLink2</a>
 , <a class="el" href="class_pathfinding_1_1_node_link3.html#a5f91221f8a9fc8ab1870eea88892ef28">Pathfinding.NodeLink3</a>
 </li>
+<li>Count
+: <a class="el" href="class_item.html#ae8d523b6853a05049f1adcfba951134b">Item</a>
+</li>
+<li>curEnergyInCells
+: <a class="el" href="class_player_1_1_energy_cells.html#ac6e405dbc913d5c003258bb71473f373">Player.EnergyCells</a>
+</li>
 <li>CurentOutput
 : <a class="el" href="class_doxygen_window.html#a82b41ae2e3c44b050acc7603031ccd55">DoxygenWindow</a>
-</li>
-<li>CurrentPage
-: <a class="el" href="class_inventory_display.html#a8931d65fbe0bd0f5e96acc186ec61ffb">InventoryDisplay</a>
 </li>
 <li>currentR
 : <a class="el" href="class_pathfinding_1_1_path.html#a9b44fd9b42ddb504d47852e2bcfbdfd4">Pathfinding.Path</a>
@@ -257,7 +264,7 @@
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Jan 18 2016 19:28:57 for Frostcore by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed May 18 2016 15:51:35 for Frostcore by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

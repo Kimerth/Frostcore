@@ -18,7 +18,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Frostcore
-   &#160;<span id="projectnumber">0.31a</span>
+   &#160;<span id="projectnumber">0.42f</span>
    </div>
    <div id="projectbrief">2D ARPG SC-FI</div>
   </td>
@@ -68,8 +68,12 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:aee49b63af58bf4c019fee947627ada95"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a557605c257b16b070798092fd5392bf4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_i___motor.html#a557605c257b16b070798092fd5392bf4">Move</a> (Vector3 move)</td></tr>
 <tr class="separator:a557605c257b16b070798092fd5392bf4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af4036129f9023e272219ad58ca7c94a9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_i___motor.html#af4036129f9023e272219ad58ca7c94a9">Attack</a> (Transform target)</td></tr>
-<tr class="separator:af4036129f9023e272219ad58ca7c94a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae30674be889fe2ae3e1bdeea1b73c00a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_i___motor.html#ae30674be889fe2ae3e1bdeea1b73c00a">Stagger</a> (object[] tempStorage)</td></tr>
+<tr class="separator:ae30674be889fe2ae3e1bdeea1b73c00a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af757556a76850379721737f005bfcf9c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_i___motor.html#af757556a76850379721737f005bfcf9c">MakeItBouncy</a> ()</td></tr>
+<tr class="separator:af757556a76850379721737f005bfcf9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a68821550cdc1868a84e453817692e45b"><td class="memItemLeft" align="right" valign="top">IEnumerator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_i___motor.html#a68821550cdc1868a84e453817692e45b">Attack</a> (float timeAmount, float coolDown)</td></tr>
+<tr class="separator:a68821550cdc1868a84e453817692e45b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
@@ -79,18 +83,36 @@ Public Attributes</h2></td></tr>
 <tr class="separator:ae3b742391f391f42f6b05eb44fcb987e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac5c8edaa4843d978db9f1fc32d96102b"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_i___motor.html#ac5c8edaa4843d978db9f1fc32d96102b">attackTime</a></td></tr>
 <tr class="separator:ac5c8edaa4843d978db9f1fc32d96102b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac0f441a1e94b49e1f95cd89a06133b61"><td class="memItemLeft" align="right" valign="top">Transform[]&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_i___motor.html#ac0f441a1e94b49e1f95cd89a06133b61">AttackPoints</a></td></tr>
+<tr class="separator:ac0f441a1e94b49e1f95cd89a06133b61"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3b93d0cfcd08c58cb13e37c648083a2e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_i___motor.html#a3b93d0cfcd08c58cb13e37c648083a2e">IsStaggered</a></td></tr>
+<tr class="separator:a3b93d0cfcd08c58cb13e37c648083a2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a72d409aebc6892dd7f1c4c2b48dd4dd0"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_i___motor.html#a72d409aebc6892dd7f1c4c2b48dd4dd0">IsAttacking</a></td></tr>
+<tr class="separator:a72d409aebc6892dd7f1c4c2b48dd4dd0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a22c6d16fcd0e004accd7a57b1861c198"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_i___motor.html#a22c6d16fcd0e004accd7a57b1861c198">HasAttacked</a></td></tr>
+<tr class="separator:a22c6d16fcd0e004accd7a57b1861c198"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="af4036129f9023e272219ad58ca7c94a9"></a>
+<a class="anchor" id="a68821550cdc1868a84e453817692e45b"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void AI_Motor.Attack </td>
+          <td class="memname">IEnumerator AI_Motor.Attack </td>
           <td>(</td>
-          <td class="paramtype">Transform&#160;</td>
-          <td class="paramname"><em>target</em></td><td>)</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>timeAmount</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>coolDown</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -143,6 +165,21 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="af757556a76850379721737f005bfcf9c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void AI_Motor.MakeItBouncy </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a class="anchor" id="a557605c257b16b070798092fd5392bf4"></a>
 <div class="memitem">
 <div class="memproto">
@@ -159,7 +196,35 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="ae30674be889fe2ae3e1bdeea1b73c00a"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void AI_Motor.Stagger </td>
+          <td>(</td>
+          <td class="paramtype">object[]&#160;</td>
+          <td class="paramname"><em>tempStorage</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <h2 class="groupheader">Member Data Documentation</h2>
+<a class="anchor" id="ac0f441a1e94b49e1f95cd89a06133b61"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Transform [] AI_Motor.AttackPoints</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a class="anchor" id="ae3b742391f391f42f6b05eb44fcb987e"></a>
 <div class="memitem">
 <div class="memproto">
@@ -196,13 +261,49 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a22c6d16fcd0e004accd7a57b1861c198"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool AI_Motor.HasAttacked</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a72d409aebc6892dd7f1c4c2b48dd4dd0"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool AI_Motor.IsAttacking</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a3b93d0cfcd08c58cb13e37c648083a2e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool AI_Motor.IsStaggered</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>E:/Andrei/Frostcore/Frostcore/Assets/Scripts/AI/<a class="el" href="_a_i___motor_8cs.html">AI_Motor.cs</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Jan 18 2016 19:28:56 for Frostcore by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed May 18 2016 15:51:34 for Frostcore by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

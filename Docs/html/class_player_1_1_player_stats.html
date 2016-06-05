@@ -18,7 +18,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Frostcore
-   &#160;<span id="projectnumber">0.31a</span>
+   &#160;<span id="projectnumber">0.42f</span>
    </div>
    <div id="projectbrief">2D ARPG SC-FI</div>
   </td>
@@ -65,6 +65,8 @@
 Public Member Functions</h2></td></tr>
 <tr class="memitem:aa69b54972233295790a82b2942613a82"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_player_1_1_player_stats.html#aa69b54972233295790a82b2942613a82">ResetHP</a> ()</td></tr>
 <tr class="separator:aa69b54972233295790a82b2942613a82"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afb415a5e04439ad92c0c30f36f0cac3d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_player_1_1_player_stats.html#afb415a5e04439ad92c0c30f36f0cac3d">ResetStamina</a> ()</td></tr>
+<tr class="separator:afb415a5e04439ad92c0c30f36f0cac3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a752b37c4b7265bc81aec3479b6183be7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_player_1_1_player_stats.html#a752b37c4b7265bc81aec3479b6183be7">ResetTemperature</a> ()</td></tr>
 <tr class="separator:a752b37c4b7265bc81aec3479b6183be7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -74,8 +76,18 @@ Public Attributes</h2></td></tr>
 <tr class="separator:a359d34774e07a450b32deb52c4ac4e2a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4c362f83ce98ed8ca2deda751be7d3f5"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_player_1_1_player_stats.html#a4c362f83ce98ed8ca2deda751be7d3f5">initialPlayerTemperature</a> = 37f</td></tr>
 <tr class="separator:a4c362f83ce98ed8ca2deda751be7d3f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af661d45453f1733b7cd75c6d3500e3ab"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_player_1_1_player_stats.html#af661d45453f1733b7cd75c6d3500e3ab">maxStamina</a></td></tr>
+<tr class="separator:af661d45453f1733b7cd75c6d3500e3ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abf658ff1176c6bbe96e1f2e5c84838f8"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_player_1_1_player_stats.html#abf658ff1176c6bbe96e1f2e5c84838f8">delayRegenStamina</a></td></tr>
+<tr class="separator:abf658ff1176c6bbe96e1f2e5c84838f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a130b02ee6dfb6ba87dae288312015e4b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_player_1_1_player_stats.html#a130b02ee6dfb6ba87dae288312015e4b">delayRegenStaminaActivated</a></td></tr>
+<tr class="separator:a130b02ee6dfb6ba87dae288312015e4b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab6ed0501152e489b4c7904669b66c6f0"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_player_1_1_player_stats.html#ab6ed0501152e489b4c7904669b66c6f0">stopRegenStamina</a></td></tr>
+<tr class="separator:ab6ed0501152e489b4c7904669b66c6f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8d5c01fce5893391e99c250f5bd1cddf"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_player_1_1_player_stats.html#a8d5c01fce5893391e99c250f5bd1cddf">MaxCarryWeight</a></td></tr>
 <tr class="separator:a8d5c01fce5893391e99c250f5bd1cddf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:affb300262788ff9267cd1c3dee62d48e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_player_1_1_energy_cells.html">EnergyCells</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_player_1_1_player_stats.html#affb300262788ff9267cd1c3dee62d48e">energyCells</a></td></tr>
+<tr class="separator:affb300262788ff9267cd1c3dee62d48e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="properties"></a>
 Properties</h2></td></tr>
@@ -87,6 +99,10 @@ Properties</h2></td></tr>
 <tr class="separator:aceea94b8b67498fb38dd14210886fe53"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6652773d3ab28c74194c27d9c6b55a84"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_player_1_1_player_stats.html#a6652773d3ab28c74194c27d9c6b55a84">PlayerTemperature</a><code> [get, set]</code></td></tr>
 <tr class="separator:a6652773d3ab28c74194c27d9c6b55a84"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a04d339474e0cc4d88abba71372f1f979"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_player_1_1_player_stats.html#a04d339474e0cc4d88abba71372f1f979">curStamina</a><code> [get, set]</code></td></tr>
+<tr class="separator:a04d339474e0cc4d88abba71372f1f979"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0f3d897092dc0137e65821ba93ef2c82"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_player_1_1_player_stats.html#a0f3d897092dc0137e65821ba93ef2c82">regenStamina</a><code> [get, set]</code></td></tr>
+<tr class="separator:a0f3d897092dc0137e65821ba93ef2c82"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7c7ca282a0f4176ac94e2346e715c3db"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_player_1_1_player_stats.html#a7c7ca282a0f4176ac94e2346e715c3db">CarryWeight</a><code> [get, set]</code></td></tr>
 <tr class="separator:a7c7ca282a0f4176ac94e2346e715c3db"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
@@ -97,6 +113,21 @@ Properties</h2></td></tr>
       <table class="memname">
         <tr>
           <td class="memname">void Player.PlayerStats.ResetHP </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="afb415a5e04439ad92c0c30f36f0cac3d"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Player.PlayerStats.ResetStamina </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -122,6 +153,42 @@ Properties</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
+<a class="anchor" id="abf658ff1176c6bbe96e1f2e5c84838f8"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Player.PlayerStats.delayRegenStamina</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a130b02ee6dfb6ba87dae288312015e4b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Player.PlayerStats.delayRegenStaminaActivated</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="affb300262788ff9267cd1c3dee62d48e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_player_1_1_energy_cells.html">EnergyCells</a> Player.PlayerStats.energyCells</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a class="anchor" id="a4c362f83ce98ed8ca2deda751be7d3f5"></a>
 <div class="memitem">
 <div class="memproto">
@@ -158,6 +225,30 @@ Properties</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="af661d45453f1733b7cd75c6d3500e3ab"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Player.PlayerStats.maxStamina</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ab6ed0501152e489b4c7904669b66c6f0"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Player.PlayerStats.stopRegenStamina</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <h2 class="groupheader">Property Documentation</h2>
 <a class="anchor" id="a7c7ca282a0f4176ac94e2346e715c3db"></a>
 <div class="memitem">
@@ -188,6 +279,26 @@ Properties</h2></td></tr>
       <table class="memname">
         <tr>
           <td class="memname">float Player.PlayerStats.curHP</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a04d339474e0cc4d88abba71372f1f979"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Player.PlayerStats.curStamina</td>
         </tr>
       </table>
   </td>
@@ -259,13 +370,33 @@ Properties</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a0f3d897092dc0137e65821ba93ef2c82"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Player.PlayerStats.regenStamina</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>E:/Andrei/Frostcore/Frostcore/Assets/Scripts/Character/<a class="el" href="_player_8cs.html">Player.cs</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Jan 18 2016 19:28:56 for Frostcore by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed May 18 2016 15:51:34 for Frostcore by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

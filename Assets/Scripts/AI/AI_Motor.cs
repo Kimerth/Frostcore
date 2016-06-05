@@ -21,6 +21,8 @@ public class AI_Motor : MonoBehaviour
     public float attackRepeatTime = 1f;
     public float attackTime;
 
+    public Transform[] AttackPoints;
+
     Animator k_Animator;
 
 	public void ImposedAwake() 
@@ -63,8 +65,12 @@ public class AI_Motor : MonoBehaviour
         }
     }
 
+    public bool IsStaggered;
+
     public void Move(Vector3 move)
     {
+        if (IsStaggered)
+            return;
 
         float moveHorizontal = move.magnitude;
         moveHorizontal = (move.x > 0 ? moveHorizontal : moveHorizontal * -1);
@@ -109,6 +115,83 @@ public class AI_Motor : MonoBehaviour
         }
     }
 
+    public void Stagger(object[] tempStorage)
+    {
+        float duration = (float)tempStorage[0];
+        bool ragdoll = (bool)tempStorage[1];
+
+        StartCoroutine(Attack(0, duration));
+
+        StartCoroutine(_Stagger(duration, ragdoll));
+    }
+
+    IEnumerator _Stagger(float duration, bool ragdoll)
+    {
+        IsStaggered = true;
+
+        yield return null;
+
+        Collider2D[] colliders = null;
+        if (ragdoll)
+        {
+            colliders = GetComponents<Collider2D>();
+            foreach (Collider2D coll in colliders)
+                coll.sharedMaterial = (PhysicsMaterial2D)Resources.Load("PhysicsMaterials/Slippery");
+        }
+
+        var stopTime = Time.time + duration;
+
+        while (stopTime > Time.time)
+            yield return null;
+
+        if (ragdoll)
+        {
+            foreach (Collider2D coll in colliders)
+                coll.sharedMaterial = (PhysicsMaterial2D)Resources.Load("PhysicsMaterials/Slippery");
+        }
+
+        IsStaggered = false;
+    }
+
+    public void MakeItBouncy()
+    {
+        StartCoroutine(_MakeItBouncy());
+    }
+
+    IEnumerator _MakeItBouncy()
+    {
+        Collider2D[] colliders = null;
+        colliders = GetComponents<Collider2D>();
+        foreach (Collider2D coll in colliders)
+            coll.sharedMaterial = (PhysicsMaterial2D)Resources.Load("PhysicsMaterials/BouncyBox");
+
+        yield return null;
+
+        foreach (Collider2D coll in colliders)
+            coll.sharedMaterial = (PhysicsMaterial2D)Resources.Load("PhysicsMaterials/Slippery");
+    }
+
+    public bool IsAttacking;
+    public bool HasAttacked;
+    public IEnumerator Attack(float timeAmount, float coolDown)
+    {
+        IsAttacking = true;
+
+        foreach (Transform point in AttackPoints)
+            point.gameObject.SetActive(true);
+
+        yield return new WaitForSeconds(timeAmount);
+
+        IsAttacking = false;
+        HasAttacked = true;
+
+        foreach (Transform point in AttackPoints)
+            point.gameObject.SetActive(false);
+
+        yield return new WaitForSeconds(coolDown);
+        HasAttacked = false;
+    }
+
     void StopHittingTheWall()
     {
         RaycastHit2D hit = Physics2D.Raycast(GroundCheck.position, transform.forward - transform.position, m_MaxDistanceToAWall, m_WhatIsGround);
@@ -116,15 +199,6 @@ public class AI_Motor : MonoBehaviour
         if(hit.collider != null)
         {
             k_Rigidbody2D.velocity = new Vector2(0f, k_Rigidbody2D.velocity.y);
-        }
-    }
-
-    public void Attack(Transform target)
-    {
-        if (Time.time > attackTime)
-        {
-            target.SendMessage("ApplyDamage", Damage, SendMessageOptions.DontRequireReceiver);
-            attackTime = Time.time + attackRepeatTime;
         }
     }
 

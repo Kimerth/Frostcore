@@ -5,6 +5,8 @@ public class ArmRotation : MonoBehaviour
 {
     public static ArmRotation Instance;
 
+    private Camera mainCamera;
+
     public float rotationOffset = 45;
 
     public float rotZ;
@@ -12,12 +14,13 @@ public class ArmRotation : MonoBehaviour
 
     void Awake()
     {
+        mainCamera = Camera.main;
         Instance = this;
     }
 
 	void LateUpdate()
     {
-        Vector3 difference = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
+        Vector3 difference = mainCamera.ScreenToWorldPoint(Input.mousePosition) - transform.position;
         difference.Normalize();
 
         rotZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;

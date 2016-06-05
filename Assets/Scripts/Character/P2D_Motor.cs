@@ -6,48 +6,177 @@ public class P2D_Motor : MonoBehaviour
 {
     public static P2D_Motor Instance;
 
-    [SerializeField] private float m_Speed = 10f;                    // Player max move speed on X axis.
-    [Range(1, 10)][SerializeField] private float m_SprintSpeed = 1.5f;  // Player speed multiplier applied when sprinting 
-    [SerializeField] private float m_JumpForce = 400f;                  // Amount of force added when the player jumps.
-    [SerializeField] private float m_DashSpeed = 40f;                   // How fast will the player move while dashing.
-    [SerializeField] private float m_DashLenght = 0.02f;                 // For how long will the player dash.
-    [Range(0, 1)][SerializeField] private float m_CrouchSpeed = .36f;   // Amount of maxSpeed applied to crouching movement. 1 = 100%
-    [SerializeField] private bool m_AirControl = false;                 // Whether or not a player can steer while jumping.
-    [SerializeField] private LayerMask m_WhatIsGround;                  // A mask determining what is ground to the character.
+    /// <summary>
+    /// Player max move speed on X axis
+    /// </summary>
+    [SerializeField] private float m_Speed = 10f;                    
+    /// <summary>
+    /// Player speed multiplier applied when sprinting
+    /// </summary>
+    [Range(1, 10)][SerializeField] private float m_SprintSpeed = 1.5f;
+    /// <summary>
+    /// How much stamina will be lost each second while sprint is active
+    /// </summary>
+    [SerializeField] private float m_SprintStaminaCost;
+    /// <summary>
+    /// How many times per second stamina will be lost
+    /// </summary>
+    [SerializeField] private int sprintStaminaCostRate;
+    /// <summary>
+    /// Amount of force added when the player jumps
+    /// </summary>
+    [SerializeField] private float m_JumpForce = 400f;
+    /// <summary>
+    /// How much stamina will be lost when you jump
+    /// </summary>
+    [SerializeField] private float m_JumpStaminaCost;
+    /// <summary>
+    /// How fast will the player move while dashing
+    /// </summary>
+    [SerializeField] private float m_DashSpeed = 40f;                   
+    /// <summary>
+    /// How long will the player dash
+    /// </summary>
+    [SerializeField] private float m_DashLenght = 0.02f;  
+    /// <summary>
+    /// How much stamina will be lost at dash
+    /// </summary>
+    [SerializeField] private float m_DashStaminaCost;
+    /// <summary>
+    /// Amount of maxSpeed applied to crouching movement. 1 = 100%
+    /// </summary>
+    [Range(0, 1)][SerializeField] private float m_CrouchSpeed = .36f;   
+    /// <summary>
+    /// Whether or not a player can steer while jumping
+    /// </summary>
+    [SerializeField] private bool m_AirControl = false;                 
+    /// <summary>
+    /// A mask determining what is ground to the character
+    /// </summary>
+    [SerializeField] private LayerMask m_WhatIsGround;                  
 
-    public Transform GroundCheck;      // A position marking where to check if the player is grounded.
-    const float GroundedRadius = .2f;   // Radius of the overlap circle to determine if grounded.
-    public bool Grounded;              // Whether or not the player is grounded.
-    public Transform CeilingCheck;     // A position marking where to check for ceilings.
-    const float CeilingRadius = .01f;   // Radius of the overlap circle to determine if the player can stand up.
-    private Rigidbody2D k_Rigidbody2D;  // The Rigidbody2D component attached to the player GameObject.
-    public bool FacingRight = true;            // For determining which way the player is curently facing.
-    public bool IsDashing = false;             // For determining wheather or not the player is dashing.
-    float dashTime;                     // To check for how long should the player dash.
+    /// <summary>
+    /// A position marking where to check if the player is grounded
+    /// </summary>
+    public Transform GroundCheck;      
+    /// <summary>
+    ///  Radius of the overlap circle to determine if grounded
+    /// </summary>
+    const float GroundedRadius = .3f;   
+    /// <summary>
+    /// Whether or not the player is grounded
+    /// </summary>
+    public bool Grounded;
+    private bool LastCheckGrounded;
+    /// <summary>
+    /// A position marking where to check for ceilings
+    /// </summary>
+    public Transform CeilingCheck;     
+    /// <summary>
+    /// Radius of the overlap circle to determine if the player can stand up
+    /// </summary>
+    const float CeilingRadius = .01f;   
+    /// <summary>
+    /// The Rigidbody2D component attached to the player GameObject
+    /// </summary>
+    private Rigidbody2D k_Rigidbody2D; 
+    /// <summary>
+    /// For determining which way the player is curently facing
+    /// </summary>
+    public bool FacingRight = true;            
+    /// <summary>
+    /// For determining wheather or not the player is dashing
+    /// </summary>
+    public bool IsDashing = false;             
+    /// <summary>
+    /// To check for how long should the player dash
+    /// </summary>
+    float dashTime;
+    float timeToDrainSprintStamina;
+    
+    /// <summary>
+    /// Stores the Transform component of the Arm attached to the player
+    /// </summary>
+    private Transform Graphics;
 
-    private Transform Graphics;                          // Stores the Transform component of the Arm attached to the player.
+    public Thruster thruster;
 
+    /// <summary>
+    /// Setting up references
+    /// </summary>
 	public void Awake() 
     {
         Instance = this;
 
-	    // Setting up references
         k_Rigidbody2D = GetComponent<Rigidbody2D>();
 	}
 
     void Start()
     {
         Graphics = transform.FindChild("Graphics");
+        timeToDrainSprintStamina = Time.time;
     }
+
+    private bool isSticky;
 
     public void ImposedUpdate()
     {
-        if (ArmRotation.Instance.rotZ > 90 || ArmRotation.Instance.rotZ < -90)
+        if (P2D_Animator.Instance._HoldGun)
         {
-            Flip();
+            if (ArmRotation.Instance.rotZ > 90 || ArmRotation.Instance.rotZ < -90)
+                Flip();
+        }
+
+        if(isSticky && P2D_Animator.Instance.moveSpeed != 0)
+        {
+            Collider2D[] colliders = GetComponents<Collider2D>();
+            foreach (Collider2D coll in colliders)
+                coll.sharedMaterial = (PhysicsMaterial2D)Resources.Load("PhysicsMaterials/Slippery");
+            isSticky = false;
+        }
+        if (!isSticky && P2D_Animator.Instance.moveSpeed == 0)
+        {
+            Collider2D[] colliders = GetComponents<Collider2D>();
+            foreach (Collider2D coll in colliders)
+                coll.sharedMaterial = (PhysicsMaterial2D)Resources.Load("PhysicsMaterials/Sticky");
+            isSticky = true;
+        }
+
+        if (P2D_Animator.Instance._isSprinting && P2D_Animator.Instance.moveSpeed != 0)
+        {
+            if (timeToDrainSprintStamina < Time.time)
+            {
+                Player.Instance.DrainStamina(m_SprintStaminaCost / sprintStaminaCostRate);
+                timeToDrainSprintStamina = Time.time + 1 / sprintStaminaCostRate;
+            }
+            Player.Instance.DrainStamina(0);
+        }
+
+        if (thruster != null)
+        {
+            if (isSpacePressed && !Grounded && k_Rigidbody2D.velocity.y < thruster.MaxUpwardsSpeed && Player.Instance.pStats.energyCells.virtualTotalEnergy > thruster.EnergyConsumptionPerSecond * Time.deltaTime)
+            {
+                P2D_Animator.Instance.SetStateFlying(true);
+                k_Rigidbody2D.velocity = new Vector2(k_Rigidbody2D.velocity.x, thruster.MaxUpwardsSpeed);
+                StartCoroutine(Player.Instance.pStats.energyCells.DrainEnergy(thruster.EnergyConsumptionPerSecond * Time.deltaTime));
+            }
+            else
+                P2D_Animator.Instance.SetStateFlying(false);
+        }
+        else
+            P2D_Animator.Instance.SetStateFlying(false);
+
+        if (Time.time > dashTime && IsDashing)
+        {
+            k_Rigidbody2D.velocity = Vector2.zero;
+            IsDashing = false;
+            gameObject.layer = 8;
+            return;
         }
     }
-	
+
+    bool isSpacePressed;
+
 	public void ImposedFixedUpdate() 
     {
         Grounded = false;
@@ -61,27 +190,39 @@ public class P2D_Motor : MonoBehaviour
             }
         }
 
-        if (Time.time > dashTime && IsDashing)
-        {
-            k_Rigidbody2D.velocity = Vector2.zero;
-            IsDashing = false;
-            gameObject.layer = 8;
-            return; 
-        }
-        else if(IsDashing)
+        isSpacePressed = Input.GetKey(KeyCode.Space);
+
+        if(IsDashing)
             k_Rigidbody2D.velocity = new Vector2(Mathf.Clamp(k_Rigidbody2D.velocity.x, -1f, 1f) * m_DashSpeed, k_Rigidbody2D.velocity.y);
     }
 
-    public void Move(float move, bool jump, bool crouch, bool sprint = false)
+    private bool IsStaggered = false;
+
+    public void Move(float move, bool jump, bool crouch, bool sprint)
     {
         // If dashing, don't do anything
         if (IsDashing)
             return;
 
+        if (IsStaggered)
+            return;
+
+        if (Player.Instance.pStats.PlayerTemperature == 20)
+        {
+            P2D_Animator.Instance.moveSpeed = 0;
+            return;
+        }
+
+        if (!Grounded)
+        {
+            sprint = false;
+            crouch = false;
+        }
+
         // If crouching, check to see if the player can stand up.
-        if (!crouch) 
-        { 
-            if(Physics2D.OverlapCircle(CeilingCheck.position, CeilingRadius, m_WhatIsGround))
+        if (!crouch)
+        {
+            if (Physics2D.OverlapCircle(CeilingCheck.position, CeilingRadius, m_WhatIsGround))
             {
                 crouch = true;
             }
@@ -98,39 +239,117 @@ public class P2D_Motor : MonoBehaviour
             // Multiply the speed if sprinting by the sprintSpeed multiplier
             move = (sprint ? move * m_SprintSpeed : move);
 
+            move *= Mathf.Clamp(Player.Instance.LowTemperatureSpeedModifier * (Player.Instance.pStats.PlayerTemperature - 20), Player.Instance.LowTemperatureSpeedModifier, 1);
+
             P2D_Animator.Instance.SetStateSprint(sprint);
 
             // Multiply the speed by MaxSpeed
             move *= m_Speed;
 
             // Move the character
-            k_Rigidbody2D.velocity = new Vector2(move, k_Rigidbody2D.velocity.y);
+            if (!LastCheckGrounded)
+                k_Rigidbody2D.velocity = new Vector2(move, k_Rigidbody2D.velocity.y);
+            else
+                k_Rigidbody2D.velocity = new Vector2(move, k_Rigidbody2D.velocity.y / 10);
+
+            if (!P2D_Animator.Instance._HoldGun)
+                if (move == 0)
+                { }
+                else if (Mathf.Sign(move) == 1 && !FacingRight)
+                    Flip();
+                else if (Mathf.Sign(move) == -1 && FacingRight)
+                    Flip();
 
             P2D_Animator.Instance.moveSpeed = move;
         }
-        else
-        {
-            P2D_Animator.Instance.SetStateSprint(false);
-        }
 
         // If the player should jump...
-        if(Grounded && jump)
+        if (Grounded && jump)
         {
             // add a vertical force to the player.
             Grounded = false;
+            k_Rigidbody2D.velocity = new Vector2(k_Rigidbody2D.velocity.x, 0);
             k_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
+            Player.Instance.DrainStamina(m_JumpStaminaCost);
             P2D_Animator.Instance.SetStateJump(jump);
         }
+
+        LastCheckGrounded = Grounded;
     }
 
-    public void Dash(float move, bool dash)
+    void OnEnable()
     {
-        if (dash == false)
+        StartCoroutine(_Stagger(0, true));
+    }
+
+    public void Stagger(object[] tempStorage)
+    {
+        float duration = (float)tempStorage[0];
+        bool ragdoll = (bool)tempStorage[1];
+        StartCoroutine(_Stagger(duration, ragdoll));
+    }
+
+    IEnumerator _Stagger(float duration, bool ragdoll)
+    {
+        IsStaggered = true;
+
+        yield return null;
+
+        Collider2D[] colliders = null;
+        if (ragdoll)
+        {
+            colliders = GetComponents<Collider2D>();
+            foreach (Collider2D coll in colliders)
+                coll.sharedMaterial = (PhysicsMaterial2D)Resources.Load("PhysicsMaterials/Slippery");
+        }
+
+        var stopTime = Time.time + duration;
+
+        while (stopTime > Time.time)
+        {
+            P2D_Animator.Instance.StopAttack();
+            yield return null;
+        }
+
+        if (ragdoll)
+        {
+            foreach (Collider2D coll in colliders)
+                coll.sharedMaterial = (PhysicsMaterial2D)Resources.Load("PhysicsMaterials/Slippery");
+        }
+
+        IsStaggered = false;
+    }
+
+    public void MakeItBouncy()
+    {
+        StartCoroutine(_MakeItBouncy());
+    }
+
+    IEnumerator _MakeItBouncy()
+    {
+        Collider2D[] colliders = null;
+        colliders = GetComponents<Collider2D>();
+        foreach (Collider2D coll in colliders)
+            coll.sharedMaterial = (PhysicsMaterial2D)Resources.Load("PhysicsMaterials/BouncyBox");
+
+        yield return null;
+
+        foreach (Collider2D coll in colliders)
+            coll.sharedMaterial = (PhysicsMaterial2D)Resources.Load("PhysicsMaterials/Slippery");
+    }
+
+    public void Dash(bool dash)
+    {
+        if (!dash || IsDashing)
             return;
 
         IsDashing = true;
         gameObject.layer = 11;
         dashTime = Time.time + m_DashLenght;
+
+        P2D_Animator.Instance.SetStateSprint(false);
+
+        Player.Instance.DrainStamina(m_DashStaminaCost);
     }
 
     void Flip()

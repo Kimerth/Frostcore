@@ -17,7 +17,6 @@ public class LightSource : MonoBehaviour
     public bool markedAsFar = false;
 
     public Unmanaged2DFloatMatrix mobileLight;
-    public Unmanaged2DFloatMatrix fadeOutLight;
 
     public GameMaster.PreRenderedLight preRenderedLight;
 
@@ -44,8 +43,6 @@ public class LightSource : MonoBehaviour
                 mobileLight = new Unmanaged2DFloatMatrix((int)(Power * 40) + 5, (int)(Power * 40) + 5);
             else
                 mobileLight = new Unmanaged2DFloatMatrix((int)(Power * 40) + 4, (int)(Power * 40) + 4);
-
-            fadeOutLight = new Unmanaged2DFloatMatrix(mobileLight.SizeX, mobileLight.SizeY);
         }
 
         GameMaster.gm.lightSources.Add(this);
@@ -55,9 +52,6 @@ public class LightSource : MonoBehaviour
 
     void OnDestroy()
     {
-        if (!Stationary)
-            GameMaster.gm.mapLight.ResetDinamicFadeOutMatrix(this);
-
         if (!Stationary)
             GameMaster.gm.mapLight.ResetDinamicMatrix(this);
 

@@ -49,8 +49,8 @@ public class GameMaster : MonoBehaviour {
     public MapGenerator mapGen;
     public Node[][] Map;
 
-    int playerposx;
-    int playerposy;
+    int cameraCoordX;
+    int cameraCoordY;
 
 	void Start() 
     {
@@ -194,6 +194,9 @@ public class GameMaster : MonoBehaviour {
         isMenuActive = false;
 
         LoadingScreen.SetActive(false);
+        GameObject frostEff = GameObject.Find("FrostEffect");
+        frostEff.SetActive(false);
+        frostEff.SetActive(true);
 
         yield break;
     }
@@ -312,15 +315,15 @@ public class GameMaster : MonoBehaviour {
         if (isMenuActive)
             return;
 
-        playerposx = (int)(m_Player.position.x * 2);
-        playerposy = (int)(m_Player.position.y * 2);
+        cameraCoordX = (int)(mainCam.transform.position.x * 2);
+        cameraCoordY = (int)(mainCam.transform.position.y * 2);
 
-        if (playerposy >= 0)
-            playerposy = mapGen.height - playerposy;
+        if (cameraCoordY >= 0)
+            cameraCoordY = mapGen.height - cameraCoordY;
         else
         {
-            playerposy *= -1;
-            playerposy += mapGen.height;
+            cameraCoordY *= -1;
+            cameraCoordY += mapGen.height;
         }
 
         mapLight.ApplyLight();
@@ -356,13 +359,11 @@ public class GameMaster : MonoBehaviour {
     {
         int frame = 0;
 
-        var size = source.fadeOutLight.SizeX;
-
         for (; ; )
         {
             if(source.markedAsFar)
             {
-                if(Mathf.Sqrt(Mathf.Pow(source.MapPosX - playerposx, 2) + Mathf.Pow(source.MapPosY - playerposy, 2)) < 50)
+                if(Mathf.Sqrt(Mathf.Pow(source.MapPosX - cameraCoordX, 2) + Mathf.Pow(source.MapPosY - cameraCoordY, 2)) < 50)
                     source.markedAsFar = false;
 
                 source.UpdateMapPos();
@@ -373,12 +374,9 @@ public class GameMaster : MonoBehaviour {
 
             if (!source.markedAsFar)
             {
-                if (Mathf.Sqrt(Mathf.Pow(source.MapPosX - playerposx, 2) + Mathf.Pow(source.MapPosY - playerposy, 2)) > 50)
+                if (Mathf.Sqrt(Mathf.Pow(source.MapPosX - cameraCoordX, 2) + Mathf.Pow(source.MapPosY - cameraCoordY, 2)) > 50)
                 {
                     source.markedAsFar = true;
-
-                    if (!source.Stationary)
-                        mapLight.ResetDinamicFadeOutMatrix(source);
 
                     if (!source.Stationary)
                         mapLight.ResetDinamicMatrix(source);
@@ -401,6 +399,7 @@ public class GameMaster : MonoBehaviour {
                 }
                 else
                 {
+                    mapLight.ResetDinamicMatrix(source);
                     applyLight(source.MapPosX, source.MapPosY, 0, source, false);
                 }
 
@@ -416,15 +415,6 @@ public class GameMaster : MonoBehaviour {
 
             if (frame == 5)
             {
-                source.UpdateantMapPos();
-                if (!source.Stationary)
-                    for (int x = 0; x < size; x++)
-                        for (int y = 0; y < size; y++)
-                            source.fadeOutLight[x, y] = source.mobileLight[x, y];
-
-                if (!source.Stationary)
-                    mapLight.ResetDinamicMatrix(source);
-
                 frame = 0;
                 yield return null;
             }
@@ -471,11 +461,6 @@ public class GameMaster : MonoBehaviour {
             source.mobileLight.Clear();
         }
 
-        public void ResetDinamicFadeOutMatrix(LightSource source)
-        {
-            source.fadeOutLight.Clear();
-        }
-
         public float GetLight(int coordX, int coordY)
         {
             return mapLightLevel[coordX][coordY];
@@ -490,17 +475,6 @@ public class GameMaster : MonoBehaviour {
                 return 0;
 
             return source.mobileLight[X, Y];
-        }
-
-        public float DinamicGetFadeOutLight(int coordX, int coordY, LightSource source)
-        {
-            var X = coordX - source.antMapPosX + source.mobileLight.SizeX / 2;
-            var Y = coordY - source.antMapPosY + source.mobileLight.SizeY / 2;
-
-            if (X < 0 || X >= source.mobileLight.SizeX - 1 || Y < 0 || Y >= source.mobileLight.SizeY - 1)
-                return 0;
-
-            return source.fadeOutLight[X, Y];
         }
 
         public float DinamicGetLightAll(int coordX, int coordY)
@@ -523,10 +497,6 @@ public class GameMaster : MonoBehaviour {
 
                 if (DinamicGetLight(coordX, coordY, GameMaster.gm.lightSources[i]) > maxValue)
                     maxValue = DinamicGetLight(coordX, coordY, GameMaster.gm.lightSources[i]);
-
-                if (DinamicGetFadeOutLight(coordX, coordY, GameMaster.gm.lightSources[i]) > maxValue)
-                    maxValue = DinamicGetFadeOutLight(coordX, coordY, GameMaster.gm.lightSources[i]);
-
             }
 
             return maxValue;
@@ -536,20 +506,9 @@ public class GameMaster : MonoBehaviour {
         {
             LightMesh.Instance.UpdateMapPos();
 
-            var cameraCoordX = (int)(GameMaster.gm.mainCam.transform.position.x * 2);
-            var cameraCoordY = (int)(GameMaster.gm.mainCam.transform.position.y * 2);
-
-            if (cameraCoordY >= 0)
-                cameraCoordY = GameMaster.gm.mapGen.height - cameraCoordY;
-            else
+            for (int x = GameMaster.gm.cameraCoordX - 45; x < GameMaster.gm.cameraCoordX + 45; x++)
             {
-                cameraCoordY *= -1;
-                cameraCoordY += GameMaster.gm.mapGen.height;
-            }
-
-            for (int x = cameraCoordX - 45; x < cameraCoordX + 45; x++)
-            {
-                for (int y = cameraCoordY - 25; y < cameraCoordY + 25; y++)
+                for (int y = GameMaster.gm.cameraCoordY - 25; y < GameMaster.gm.cameraCoordY + 25; y++)
                 {
                     if (!GameMaster.gm.isValidPositionNC(x ,y))
                         continue;
